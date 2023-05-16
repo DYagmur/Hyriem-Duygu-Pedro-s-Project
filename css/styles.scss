@@ -1,0 +1,179 @@
+$color_1: black;
+$color_2: #000000;
+$color_3: #000;
+$font-family_1: "Montserrat-light";
+$font-family_2: 'Satisfy', cursive;
+$font-family_3: monospace;
+$background-color_1: black;
+$background-color_2: black;
+
+// Mobile styles
+@media only screen and (min-width: 576px) {
+	#header-nav {
+		min-height: 280px;
+	}
+	.nav-item {
+		padding: 0px 8px;
+	}
+	.discover-img {
+		height: 180px;
+	}
+	
+	.food {
+		width: 180px;
+		height: 167px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	.btn {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.menu-image {
+		height: 50px;
+		width: 50px;
+	}
+	.specials-items {
+		margin-top: 20px;
+		.btn {
+			margin-bottom: 10px;
+		}
+	}
+}
+
+// Tablet styles
+@media only screen and (min-width: 768px) {
+	#header-nav {
+		min-height: 400px;
+	}
+	.navbar {
+		padding: 0 0 3rem;
+	}
+	.nav-item {
+		padding: 0px 12px;
+	}
+	.heading-minus-m {
+		margin-top: -20px;
+	}
+	.border-bottom {
+		width: 81px;
+	}
+	.discover-img {
+		height: 211px;
+	}
+	.food {
+		width: 232px;
+		height: 213px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	.btn {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	.menu-image {
+		height: 60px;
+		width: 60px;
+	}
+	.specials-items {
+		margin-top: 40px;
+		.btn {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+// Desktop styles
+@media only screen and (min-width: 992px) {
+	#header-nav {
+		min-height: 512px;
+	}
+	.navbar {
+		padding: 0 0 4.5rem;
+		color: black;
+	}
+	.nav-item {
+		padding: 0px 18px;
+		color: black;
+	}
+	.resto-heading {
+		font-size: 80px;
+	}
+	.heading-minus {
+		margin-top: -74px;
+	}
+	.heading-minus-m {
+		margin-top: -30px;
+	}
+	.border-bottom {
+		width: 121px;
+	}
+	.discover-img {
+		height: 251px;
+	}
+	.food {
+		width: 292px;
+		height: 267px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	.btn {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.menu-image {
+		height: 80px;
+		width: 80px;
+	}
+	.specials-items {
+		margin-top: 60px;
+		.btn {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+#header-nav {
+	background: url("./img/background3.jpg") no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.nav-link {
+	font-family: $font-family_1;
+}
+
+@media (max-width: 575.98px) {
+	.navbar-toggler {
+	  display:flex;
+	  margin-right: 15px;
+	  border: 1px solid gray;
+	}
+  
+	.navbar-nav {
+	  display: none;
+	  border: 1px solid gray;
+	}
+  
+	.navbar-nav.show {
+	  display: none;
+	  position: absolute;
+	  top: 56px;
+	  left: 0;
+	  background-color: dimgray;
+	  padding: 10px;
+	  width: 100%;
+	  z-index: 1;
+	  border: 1px solid gray;
+	}
+  
+	.nav-item {
+	  display: block;
+	  text-align: center;
+	  margin: 10px 0;
+	  border: 1px solid black;
+	}
+  
+	
+  }
+  
+
