@@ -1,0 +1,53 @@
+@media (min-width: $mobileScreen) {
+   .nav {
+      @include FlexRowCenter;
+      justify-content: space-between;
+      background-color: bisque;
+      height: 10vh;
+      padding: 0 3% 0 1%;
+      > .nav-list {
+         @include FlexRowCenter(12vh);
+         li {
+            display: flex;
+         }
+         a {
+            font-size: 17px;
+            height: 100%;
+            transition: .5s;
+         }
+         :hover {
+            border-bottom: 2px solid blueviolet;
+         }
+      }
+
+      .nav-title {
+         font-size: 36px;
+      }
+
+      .advice-color {
+         color:blueviolet
+      }
+
+      #search-books {
+         padding: 8px;
+         width: 280px;
+         outline: none;
+      }
+
+      .button-group {
+         @include FlexRow(4vh);
+      }
+      
+      .login-btn, .signup-btn {
+         background-color: transparent;
+         border: none;
+         outline: none;
+         cursor: pointer;
+         font-size: 17px;
+         color: darkblue;
+      }
+      :hover {
+         color: blue;
+      }
+   }
+}

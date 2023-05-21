@@ -1,8 +1,6 @@
 <?php
-class BookPage
-{
-   public static function pageHeader()
-   {
+class BookPage {
+   public static function pageHeader() {
       $htmlHeader = '
          <!DOCTYPE html>
          <html lang="en">
@@ -18,32 +16,31 @@ class BookPage
       return $htmlHeader;
    }
 
-   public static function navigation()
-   {
+   public static function navigation() {
       $navigation = '
-         <nav>
+         <nav class="nav">
             <h1 class="nav-title">
-               <a href="#">re<span>advice</span></a>
+               <a href="#">re<span class="advice-color">advice</span></a>
             </h1>
-            <ul>
-               <li><a href="">Home</a></li>
-               <li><a href="">About</a></li>
-               <li><a href="">Team</a></li>
+            <ul class="nav-list">
+               <li><a href="#">Home</a></li>
+               <li><a href="#">About</a></li>
+               <li><a href="#">Team</a></li>
                <li><a href="#">My List</a></li>
             </ul>
             <form action="#">
-				   <input type="search" name="search" id="search" placeholder="Search books"/>
-			   </form>
+               <input type="search" name="search" id="search-books" placeholder="Search books"/>
+            </form>
             <section class="button-group">
                <button class="login-btn" id="login-btn">Login</button>
                <button class="signup-btn" id="signup-btn">Sign up</button>
-            </section>
+            </section>	
          </nav>
       ';
       return $navigation;
    }
-   public static function pageEnd()
-   {
+
+   public static function pageEnd() {
       $htmlPageEnd = '
          </body>
       </html>';
