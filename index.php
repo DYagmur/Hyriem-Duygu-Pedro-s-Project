@@ -1,5 +1,4 @@
 <?php
-require_once("inc/BookPage.class.php");
+require_once("inc/MainPage.class.php");
 
-echo BookPage::pageHeader();
-echo BookPage::navigation();
+echo Page::MainPage();
