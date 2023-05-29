@@ -16,23 +16,6 @@ class Book {
    private $coverImg;
    private $price;
 
-   function __construct($bookId, $title, $author, $rating, $description, $language, $isbn, $genres, $edition, $pages, $publisher, $publishDate, $coverImg, $price) {
-      $this->bookId = $bookId;
-      $this->title = $title;
-      $this->author = $author;
-      $this->rating = $rating;
-      $this->description = $description;
-      $this->language = $language;
-      $this->isbn = $isbn;
-      $this->genres = $genres;
-      $this->edition = $edition;
-      $this->pages = $pages;
-      $this->publisher = $publisher;
-      $this->publishDate = $publishDate;
-      $this->coverImg = $coverImg;
-      $this->price = $price;
-   }
-
    public function getBookId() {
       return $this->bookId;
    }
