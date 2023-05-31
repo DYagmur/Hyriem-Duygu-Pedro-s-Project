@@ -1,20 +1,20 @@
 <?php
 
 class Book {
-   private $bookId;
-   private $title;
-   private $author;
-   private $rating;
-   private $description;
-   private $language;
-   private $isbn;
-   private $genres;
-   private $edition;
-   private $pages;
-   private $publisher;
-   private $publishDate;
-   private $coverImg;
-   private $price;
+   private string $bookId;
+   private string $title;
+   private string $author;
+   private float $rating;
+   private string $description;
+   private string $language;
+   private int $isbn;
+   private string $genres;
+   private string $edition;
+   private int $pages;
+   private string $publisher;
+   private string $publishDate;
+   private string $coverImg;
+   private float $price;
 
    public function getBookId() {
       return $this->bookId;
