@@ -109,7 +109,7 @@ class PageContent {
 
     public static function bookListUser($book) {
         $bookListUser = '
-        <a href="'..'">
+        <a href="#">
             <figure>
                 <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
                 <figcaption>

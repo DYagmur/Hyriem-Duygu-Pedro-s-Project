@@ -5,6 +5,7 @@ class Page {
     // HEADER 
     
     public static function pageHeader() {
+        $btn = '';
         $pageHeader = '
         <!DOCTYPE html>
         <html lang="en">
@@ -38,10 +39,15 @@ class Page {
             </header>
             <main>
         ';
-        if($_SESSION["logged"]){
-            $btn = navOut();
+        // if($_SESSION["logged"]){
+        //     $btn = navOut();
+        // } else {
+        //     $btn = navIn();
+        // }
+        if(true){
+            $btn = self::navOut();
         } else {
-            $btn = navIn();
+            $btn = self::navIn();
         }
         return $pageHeader;
     }
@@ -125,8 +131,8 @@ class Page {
     public static function formLogin() {
         $formLogin = '
         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-            <input type="email" name="email" id="email">
-            <input type="password" name="password" id="password">
+            <input type="email" name="email" id="email" placeholder="Email">
+            <input type="password" name="password" id="password" placeholder="Password">
             <input type="submit" value="LOG IN" class="btn_lg">
             <a href="#">Not our member yet?</a>
         </form>
@@ -140,6 +146,7 @@ class Page {
             <input type="text" name="userName" id="userName" placeholder="Name">
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Password">
+            <label for="userPicture">Profile image</label>
             <input type="file" name="userPicture" id="userPicture">
             <input type="submit" value="Sign up" class="btn_lg">
         </form>
