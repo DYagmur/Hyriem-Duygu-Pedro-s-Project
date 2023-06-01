@@ -9,7 +9,8 @@ class MainPage {
                <meta charset="UTF-8" />
                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-               <title>Book Recommendation</title>
+               <title>Readvice</title>
+               <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                <link rel="stylesheet" href="css/style.css" />
             </head>
             <body>
@@ -17,14 +18,13 @@ class MainPage {
                <section class="filter-container" id="filter-container">
                   <article class="title">
                      <h2>Let us find your book!</h2>
-                     <input type="search" name="search" id="search">
                      <ul class="filter-list">
                         <span>
                            <li><a href="#">All</a></li>
                         </span>
-                        <li><a href="#">Medical</a></li>
+                        <li><a href="?sortby: ">Medical</a></li>
                         <li><a href="#">Science</a></li>
-                        <li><a href="#">Fantasy</a></li>
+                        <li><a href="?sortby: fantasy">Fantasy</a></li>
                         <li><a href="#">Art</a></li>
                         <li><a href="#">Fiction</a></li>
                         <li><a href="#">Nonfiction</a></li>
@@ -47,71 +47,43 @@ class MainPage {
       return $top;
    }
 
+   
+   public static function searchBar() {
+      $searchBar = '
+         <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_book">
+               <button class="btn btn-outline-success my-2 my-sm-0" type="submit" type="submit">Search</button>
+               <input type="hidden" name="search" value="search">
+            </form>
+         </nav>
+      ';
+      return $searchBar;
+    }
+
    public static function bookGallery($bookList) {
       $bookGallery = '
-         <article class="book-gallery">
-            <figure>
-               <img src="" alt="">
-               <figcaption>';
-                  foreach ($bookList as $book) {
-                     $bookGallery .= self::bookCaptions($book);
-                  }
-                  $bookGallery .= '
-               </figcaption>
+         <article class="book-gallery">';
+            foreach ($bookList as $book) {
+               $bookGallery .= self::bookImage($book);
+            }
+            $bookGallery .= '
+         </article>
       ';
 
       return $bookGallery;
    }
 
-   public static function bookCaptions($book) {
-      $bookCaptions = '
-               <img src="" alt="">
-               <span class="publish-group">
-                  <h4 class="publish-date">Published</h4>
-                  <p>'.$book->getPublishDate().'</p>
-               </span>
-               <span class="language-group">
-                  <h4 class="language">Language</h4>
-                  <p>'.$book->getLanguage().'</p>
-               </span>
-               <span class="isbn-group">
-                  <h4 class="isbn">ISBN</h4>
-                  <p>'.$book->getIsbn().'</p>
-               </span>
-               <section class="genres-group">
-                  <h4 class="genres-title">Genres</h4>
-                  <span>'.$book->getGenres().'</span>
-               </section>
-               <section class="ratings">
-                  <span>'.$book->getRating().'</span>
-               </section>
-            </figure>
-            <article class="book-sideinfo">
-               <span class="title-group">
-                  <h2>'.$book->getTitle().'</h2>
-                  <h3>'.$book->getAuthor().'</h3>
-               </span>
-               <section class="description">
-                  '.$book->getDescription().'
-               </section>
-            </article>
-         </article>
+   public static function bookImage($book) {
+      $bookImage = '
+         <figure classs="figure-gallery">
+            <a href="bookInfo.php?book='.$book->getBookId().'">
+               <img class="coverimg" src="'.$book->getCoverImg().'" alt="book-image">  
+            </a>
+         </figure>
       ';
-      return $bookCaptions;
+      return $bookImage;
    }  
-
-   // public static function bookSideInfo($book) {
-   //    $bookSideInfo = '
-   //       <span class="title-group">
-   //          <h2>'.$book->getTitle().'</h2>
-   //          <h3>'.$book->getAuthor().'</h3>
-   //       </span>
-   //       <section class="description">
-   //          '.$book->getDescription().'
-   //       </section>
-   //    ';
-   //    return $bookSideInfo;
-   // }
 
    // public static function loginPage() {
    //    $login = '

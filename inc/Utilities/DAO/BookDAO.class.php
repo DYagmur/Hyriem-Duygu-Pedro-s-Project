@@ -4,11 +4,11 @@ class BookDAO {
    private static $db;
 
    public static function startDb() {
-      self::$db = new PDOService("book");
+      self::$db = new PDOService("Book");
    }
 
    public static function getAllBooks() {
-      $sql = "SELECT * FROM book";
+      $sql = "SELECT * FROM books";
 
       self::$db->query($sql);
       self::$db->execute();
@@ -17,11 +17,22 @@ class BookDAO {
    }
 
    public static function getBookById($bookId) {
-      $sql = "SELECT * FROM book WHERE bookId = :bookId";
+      $sql = "SELECT * FROM books WHERE bookId = :bookId";
 
       self::$db->query($sql);
       self::$db->bind(":bookId", $bookId);
 
+      self::$db->execute();
+
+      return self::$db->singleResult();
+   }
+
+   public static function getGenre( string $genre) {
+      $sql = "SELECT * FROM books WHERE genres LIKE '%:genre%'";
+
+      self::$db->query($sql);
+      self::$db->bind(":genre", "$genre");
+     
       self::$db->execute();
 
       return self::$db->singleResult();
@@ -40,7 +51,7 @@ class BookDAO {
   
 
    public function insertNewBook($newBook) {
-      $sql = "INSERT INTO book(bookId, title, author, rating, description, language, isbn, genres, edition, pages, publisher, publishDate, coverImg, price)  VALUES (:bookId, :title, :author, :rating,:description, :language, :isbn, :genres, :edition, :pages, :publisher, :publishDate, :coverImg, :price)";
+      $sql = "INSERT INTO books(bookId, title, author, rating, description, language, isbn, genres, edition, pages, publisher, publishDate, coverImg, price)  VALUES (:bookId, :title, :author, :rating,:description, :language, :isbn, :genres, :edition, :pages, :publisher, :publishDate, :coverImg, :price)";
 
       self::$db->query($sql);
 

@@ -1,12 +1,13 @@
-@media (min-width: $mobileScreen) {
+@media (min-width: 200px) {
+
    .nav {
-      @include FlexRowCenter;
+      // @include FlexRowCenter;
       justify-content: space-between;
       background-color: bisque;
       height: 10vh;
       padding: 0 3% 0 1%;
       > .nav-list {
-         @include FlexRowCenter(12vh);
+         // @include FlexRowCenter(12vh);
          li {
             display: flex;
          }
@@ -34,9 +35,9 @@
          outline: none;
       }
 
-      .button-group {
-         @include FlexRow(4vh);
-      }
+      // .button-group {
+      //    // @include FlexRow(4vh);
+      // }
       
       .login-btn, .signup-btn {
          background-color: transparent;
@@ -49,9 +50,5 @@
       :hover {
          color: blue;
       }
-   }
-
-   .book-gallery {
-      display: flex;
    }
 }

@@ -11,105 +11,49 @@ class BookRepository {
       $this->bookList = $newBookList;
    }
 
-
-   public function getAllTitles() {
-      $titlesList = [];
-
-      foreach($this->bookList as $book){
-         $titlesList[] = $book->getTitle();
+   public function findBook($bookInput) {
+      $result = [];
+      foreach ($this->bookList as $book) {
+         if(
+            str_contains($book->getBookId(), $bookInput) ||
+            str_contains(strtolower($book->getTitle()), $bookInput) ||
+            str_contains(strtolower($book->getAuthor()), $bookInput) ||
+            str_contains(strtolower($book->getGenres()), $bookInput)
+         ) {
+            $result[] = $book;
+         }
       }
-
-      return $titlesList;
+      return $result;
    }
 
-   public function getAllRatings() {
-      $ratingsList = [];
+   // public static function compareFantasy($book1, $book2) {
+   //    return $book1->getGenre("Fantasy") <=> $book2->getGenre("Fantasy");
+   // }
 
-      foreach($this->bookList as $book){
-         $ratingsList[] = $book->getRating();
-      }
-
-      return $ratingsList;
-   }
-
-   public function getAllAuthors() {
-      $authorsList = [];
-
-      foreach($this->bookList as $book){
-         $authorsList[] = $book->getAuthor();
-      }
-
-      return $authorsList;
-   }
-
-   public function getAllDescriptions() {
-      $descriptionsList = [];
-
-      foreach($this->bookList as $book){
-         $descriptionsList[] = $book->getAuthor();
-      }
-
-      return $descriptionsList;
-   }
-   
-   public function getAllLanguages() {
-      $languagesList = [];
-
-      foreach($this->bookList as $book){
-         $languagesList[] = $book->getLanguage();
-      }
-
-      return $languagesList;
-   }
-
-   public function getAllGenres() {
-      $genresList = [];
-
-      foreach($this->bookList as $book){
-         $genresList[] = $book->getGenre();
-      }
-
-      return $genresList;
-   }
-
-   public function getAllPages() {
-      $pagesList = [];
-
-      foreach($this->bookList as $book){
-         $pagesList[] = $book->getPages();
-      }
-      
-      return $pagesList;
-   }
-
-   public function getAllPublishDate() {
-      $publishDateList = [];
-
-      foreach($this->bookList as $book){
-         $publishDateList[] = $book->getPublishDate();
-      }
-
-      return $publishDateList;
-   }
-
-   public function getAllCoverImgs() {
-      $coverImgsList = [];
-
-      foreach($this->bookList as $book){
-         $coverImgsList[] = $book->getCoverImg();
-      }
-
-      return $coverImgsList;
-   }
-
-   public function getAllPrices() {
-      $pricesList = [];
-
-      foreach($this->bookList as $book){
-         $pricesList[] = $book->getPrice();
-      }
-      return $pricesList;
-   }
-
+   // public function sortBook(string $sortBy) {
+   //    switch ($sortBy) {
+   //       case "fantasy";
+   //          usort($this->bookList,'self::compareFantasy');
+   //       break;
+   //       case "";
+   //          usort($this->bookList,'self::compareFName');
+   //       break;
+   //       case "";
+   //          usort($this->bookList,'self::compareLName');
+   //       break;
+   //       case "";
+   //          usort($this->bookList,'self::compareUsername');
+   //       break;
+   //       case "";
+   //          usort($this->bookList,'self::compareEmail');
+   //       break;
+   //       case "";
+   //          usort($this->bookList,'self::compareAge');
+   //       break;
+   //       case "";
+   //          usort($this->bookList,'self::compareGender');
+   //       break;
+   //    }
+   // }
 
 }
