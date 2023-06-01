@@ -171,21 +171,54 @@ class Page {
                 <li><a href="#">Fantasy</a></li>
                 <li><a href="#">Art</a></li>
                 <li><a href="#">Fiction</a></li>
-                <li><a href="#">Nonfiction</a></li>
-                <li><a href="#">Magic</a></li>
-                <li><a href="#">Adventure</a></li>
-                <li><a href="#">Fairy Tales</a></li>
-                <li><a href="#">Classics</a></li>
-                <li><a href="#">Romance</a></li>
-                <li><a href="#">Novels</a></li>
-                <li><a href="#">Thriller</a></li>
-                <li><a href="#">Horror</a></li>
-                <li><a href="#">Mystery</a></li>
-                <li><a href="#">Biography</a></li>
-                <li><a href="#">Crime</a></li>
-                <li><a href="#">Humor</a></li>
-                <li class="filter-mylist"><a href="#">My List</a></li>
             </ul>
+            <details class="filter-list-more">
+                <summary>
+                    <i class="fa-solid fa-bars"></i>
+                </summary>
+                <ul class="filter-list">
+                    <li><a href="#">Nonfiction</a></li>
+                    <li><a href="#">Magic</a></li>
+                    <li><a href="#">Adventure</a></li>
+                    <li><a href="#">Fairy Tales</a></li>
+                    <li><a href="#">Classics</a></li>
+                    <li><a href="#">Romance</a></li>
+                    <li><a href="#">Novels</a></li>
+                    <li><a href="#">Thriller</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Mystery</a></li>
+                    <li><a href="#">Biography</a></li>
+                    <li><a href="#">Crime</a></li>
+                    <li><a href="#">Humor</a></li>
+                </ul>
+            </details>
+            <details class="filter-list-mobile">
+                <summary>
+                    <i class="fa-solid fa-bars"></i>
+                </summary>
+                <ul class="filter-list">
+                    <li class="filter-all"><a href="#">All</a></li>
+                    <li><a href="#">Medical</a></li>
+                    <li><a href="#">Science</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Art</a></li>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Nonfiction</a></li>
+                    <li><a href="#">Magic</a></li>
+                    <li><a href="#">Adventure</a></li>
+                    <li><a href="#">Fairy Tales</a></li>
+                    <li><a href="#">Classics</a></li>
+                    <li><a href="#">Romance</a></li>
+                    <li><a href="#">Novels</a></li>
+                    <li><a href="#">Thriller</a></li>
+                    <li><a href="#">Horror</a></li>
+                    <li><a href="#">Mystery</a></li>
+                    <li><a href="#">Biography</a></li>
+                    <li><a href="#">Crime</a></li>
+                    <li><a href="#">Humor</a></li>
+                </ul>
+            </details>
+            <a href="#" class="filter-mylist">My List</a>
         </section>
         ';
         return $pageFilter;
@@ -211,5 +244,23 @@ class Page {
         ';
         return $pageFooter;
     }
+
+    // PAGINATION
+
+    public static function pagenation() {
+        $pagenation = '
+        <section class="pagination">
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-angle-left"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#"><i class="fa-solid fa-angle-right"></i></a></li>
+            </ul>
+        </section>
+        ';
+        return $pagenation;
+    }
+
 
 }
