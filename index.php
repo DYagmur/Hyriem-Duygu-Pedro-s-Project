@@ -48,10 +48,14 @@ $bookRepository->setBookList(BookDAO::getAllBooks());
 
 echo MainPage::topContent();
 
-if(!empty($_GET['genre'])) {
-   $bookRepository->setBookList(BookDAO::getGenre($_GET['genre']));
-   // var_dump(BookDAO::getGenre($_GET['genre']));
-   echo MainPage::bookGallery($bookRepository->getBookList());
+if(!empty ($_GET)) {
+   if(!empty ($_GET['genre'])) {
+      $bookRepository->setBookList(BookDAO::getGenre($_GET['genre']));
+      // var_dump(BookDAO::getGenre($_GET['genre']));
+      echo MainPage::bookGallery($bookRepository->getBookList());
+   } else {
+      echo MainPage::bookGallery($bookRepository->getBookList());
+   } 
 } else {
    echo MainPage::bookGallery($bookRepository->getBookList());
 }
