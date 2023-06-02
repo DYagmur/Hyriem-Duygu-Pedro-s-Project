@@ -2,6 +2,30 @@
 
 class PageContent {
 
+    // MAIN BOOK LIST
+
+    public static function pageMainList() {
+        $pageUserList = '
+        <section class="book-list">';
+        foreach($bookList as $book) {
+            $pageUserList .= self::bookListMain($book);
+        }
+        $pageUserList .= '</section>';
+        return $pageUserList;
+    }
+
+    public static function bookListMain($book) {
+        $bookListUser = '
+        <a href="#">
+            <figure>
+                <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
+            </figure>
+        </a>
+        ';
+        return $bookListUser;
+    }
+
+
     // BOOK DETAIL
 
     public static function pageBookDetail($book){

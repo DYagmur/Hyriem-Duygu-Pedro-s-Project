@@ -5,5 +5,5 @@ require_once("inc/PageContent.class.php");
 
 echo Page::pageHeader();
 echo Page::titleDefault("Let's Start!");
-echo Page::formLogin(); --
+echo Page::formLogin(); 
 echo Page::pageFooter();

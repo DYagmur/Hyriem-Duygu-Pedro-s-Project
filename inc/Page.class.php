@@ -45,12 +45,6 @@ class Page {
             </header>
             <main>
         ';
-        // if($_SESSION["logged"]){
-        //     $btn = navOut();
-        // } else {
-        //     $btn = navIn();
-        // }
-        
         return $pageHeader;
     }
 
