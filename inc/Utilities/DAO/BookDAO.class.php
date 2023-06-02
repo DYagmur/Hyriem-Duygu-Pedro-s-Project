@@ -27,31 +27,19 @@ class BookDAO {
       return self::$db->singleResult();
    }
 
-   public static function getGenre( string $genre) {
-      $sql = "SELECT * FROM books WHERE genres LIKE '%:genre%'";
-
-      self::$db->query($sql);
-      self::$db->bind(":genre", "$genre");
-     
-      self::$db->execute();
-
-      return self::$db->singleResult();
-   }
-
-//    public static function getTitle($title) {
-//       $sql = "SELECT * FROM books WHERE title = :title";
-//       $pdo = PDOService::getInstance()->getConnection();
-  
-//       $stmt = $pdo->prepare($sql);
-//       $stmt->bindValue(':title', $title);
-//       $stmt->execute();
+   public static function getGenre(string $genre) {
+      $sql = "SELECT * FROM books WHERE genres LIKE :genre";
    
-//       return $stmt->fetchAll(PDO::FETCH_ASSOC);
-//   }
-  
-
+      self::$db->query($sql);
+      self::$db->bind(":genre", "%$genre%");
+   
+      self::$db->execute();
+   
+      return self::$db->resultSet();
+   }
+   
    public function insertNewBook($newBook) {
-      $sql = "INSERT INTO books(bookId, title, author, rating, description, language, isbn, genres, edition, pages, publisher, publishDate, coverImg, price)  VALUES (:bookId, :title, :author, :rating,:description, :language, :isbn, :genres, :edition, :pages, :publisher, :publishDate, :coverImg, :price)";
+      $sql = "INSERT INTO books(bookId, title, author, rating, description, language, isbn, genres, edition, pages, publisher, publishDate, coverImg, price)  VALUES (:bookId, :title, :author, :rating, :description, :language, :isbn, :genres, :edition, :pages, :publisher, :publishDate, :coverImg, :price)";
 
       self::$db->query($sql);
 

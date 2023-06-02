@@ -22,24 +22,24 @@ class MainPage {
                         <span>
                            <li><a href="#">All</a></li>
                         </span>
-                        <li><a href="?sortby: ">Medical</a></li>
-                        <li><a href="#">Science</a></li>
-                        <li><a href="?sortby: fantasy">Fantasy</a></li>
-                        <li><a href="#">Art</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Nonfiction</a></li>
-                        <li><a href="#">Magic</a></li>
-                        <li><a href="#">Adventure</a></li>
-                        <li><a href="#">Fairy Tales</a></li>
-                        <li><a href="#">Classics</a></li>
-                        <li><a href="#">Romance</a></li>
-                        <li><a href="#">Novels</a></li>
-                        <li><a href="#">Thriller</a></li>
-                        <li><a href="#">Horror</a></li>
-                        <li><a href="#">Mystery</a></li>
-                        <li><a href="#">Biography</a></li>
-                        <li><a href="#">Crime</a></li>
-                        <li><a href="#">Humor</a></li>
+                        <li><a href="?genre=Medical">Medical</a></li>
+                        <li><a href="?genre=Science">Science</a></li>
+                        <li><a href="?genre=Fantasy">Fantasy</a></li>
+                        <li><a href="?genre=Art">Art</a></li>
+                        <li><a href="?genre=Fiction">Fiction</a></li>
+                        <li><a href="?genre=Nonfiction">Nonfiction</a></li>
+                        <li><a href="?genre=Magic">Magic</a></li>
+                        <li><a href="?genre=Adventure">Adventure</a></li>
+                        <li><a href="?genre=Fairy Tales">Fairy Tales</a></li>
+                        <li><a href="?genre=Classics">Classics</a></li>
+                        <li><a href="?genre=Romance">Romance</a></li>
+                        <li><a href="?genre=Novels">Novels</a></li>
+                        <li><a href="?genre=Thriller">Thriller</a></li>
+                        <li><a href="?genre=Horror">Horror</a></li>
+                        <li><a href="?genre=Mystery">Mystery</a></li>
+                        <li><a href="?genre=Biography">Biography</a></li>
+                        <li><a href="?genre=Crime">Crime</a></li>
+                        <li><a href="?genre=Humor">Humor</a></li>
                      </ul>
                   </article>
                </section>

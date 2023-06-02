@@ -17,21 +17,49 @@ $bookRepository->setBookList(BookDAO::getAllBooks());
 // var_dump($bookRepository->getAllCoverImgs()); 
 // var_dump($bookList->getAllLanguages());  
 
-echo MainPage::topContent();
-echo MainPage::searchBar();
-echo MainPage::bookGallery($bookRepository->getBookList());
 
 // if ( !empty($_GET)) {
 //    if ( !empty($_GET['sortby'])) {
-//       $bookRepository->sortBook($_GET['sortby']);
-//       echo MainPage::bookGallery($bookRepository->getBookList());
+//          $bookRepository->sortBook($_GET['sortby']);
+//          echo MainPage::bookGallery($bookRepository->getBookList());
+//       } else {
+//          echo MainPage::bookGallery($bookRepository->getBookList());
+//       }
+//          echo MainPage::pageEnd();
+//    }
+
+// if (!empty($_GET)) {
+//    if (!empty($_GET['sortby'])) {
+//       $sortby = $_GET['sortby'];
+      
+//       if ($sortby === 'genre') {
+//          $genre = 'Fantasy'; 
+//          $sortedBooks = BookDAO::getGenre($genre);
+         
+//          echo MainPage::bookGallery($sortedBooks);
+//       } else {
+//          echo MainPage::bookGallery($bookRepository->getBookList());
+//       }
 //    } else {
 //       echo MainPage::bookGallery($bookRepository->getBookList());
 //    }
 //    echo MainPage::pageEnd();
 // }
 
+echo MainPage::topContent();
+
+if(!empty($_GET['genre'])) {
+   $bookRepository->setBookList(BookDAO::getGenre($_GET['genre']));
+   // var_dump(BookDAO::getGenre($_GET['genre']));
+   echo MainPage::bookGallery($bookRepository->getBookList());
+} else {
+   echo MainPage::bookGallery($bookRepository->getBookList());
+}
+
+
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
 
+echo MainPage::searchBar();
+echo MainPage::bookGallery($bookRepository->getBookList());

@@ -26,17 +26,13 @@ class BookRepository {
       return $result;
    }
 
-   // public static function compareFantasy($book1, $book2) {
-   //    return $book1->getGenre("Fantasy") <=> $book2->getGenre("Fantasy");
-   // }
-
    // public function sortBook(string $sortBy) {
    //    switch ($sortBy) {
    //       case "fantasy";
-   //          usort($this->bookList,'self::compareFantasy');
+   //          usort($this->bookList,'self::'.getGenre().'');
    //       break;
-   //       case "";
-   //          usort($this->bookList,'self::compareFName');
+   //       case "fiction";
+   //          usort($this->bookList,'self::compareFiction');
    //       break;
    //       case "";
    //          usort($this->bookList,'self::compareLName');
