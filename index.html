@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Book Recommendation</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<section class="main" id="main">
+			<article class="title">
+				<h2>Let's find your book!</h2>
+				<input type="search" name="search" id="search">
+				<ul class="filter-list">
+					<span>
+						<li><a href="#">All</a></li>
+					</span>
+					<li><a href="#">Medical</a></li>
+					<li><a href="#">Science</a></li>
+					<li><a href="#">Fantasy</a></li>
+					<li><a href="#">Art</a></li>
+					<li><a href="#">Fiction</a></li>
+					<li><a href="#">Nonfiction</a></li>
+					<li><a href="#">Magic</a></li>
+					<li><a href="#">Adventure</a></li>
+					<li><a href="#">Fairy Tales</a></li>
+					<li><a href="#">Classics</a></li>
+					<li><a href="#">Romance</a></li>
+					<li><a href="#">Novels</a></li>
+					<li><a href="#">Thriller</a></li>
+					<li><a href="#">Horror</a></li>
+					<li><a href="#">Mystery</a></li>
+					<li><a href="#">Biography</a></li>
+					<li><a href="#">Crime</a></li>
+					<li><a href="#">Humor</a></li>
+				</ul>
+			</article>
+		</section>
+		<article class="book-gallery">
+			<figure>
+				<img src="" alt="">
+				<figcaption>
+					<span class="publish-group">
+						<small class="publish-date">Published</small>
+						<p></p>
+					</span>
+					<span class="language-group">
+						<small class="language"></small>
+						<p></p>
+					</span>
+					<span class="isbn-group">
+						<small class="isbn"></small>
+						<p></p>
+					</span>
+					<section class="genres">
+
+					</section>
+				</figcaption>
+			</figure>
+		</article>
+	</body>
+	//Book captions
+	<span class="publish-group">
+		<h4 class="publish-date">Published</h4>
+		<p>'.$book->getPublishDate().'</p>
+	</span>
+	<span class="language-group">
+		<h4 class="language">Language</h4>
+		<p>'.$book->getLanguage().'</p>
+	</span>
+	<span class="isbn-group">
+		<h4 class="isbn">ISBN</h4>
+		<p>'.$book->getIsbn().'</p>
+	</span>
+	<section class="genres-group">
+		<h4 class="genres-title">Genres</h4>
+		<span>'.$book->getGenres().'</span>
+	</section>
+	<section class="ratings">
+		<span>'.$book->getRating().'</span>
+	</section>
+</figure>
+<article class="book-sideinfo">
+	<span class="title-group">
+		<h2>'.$book->getTitle().'</h2>
+		<h3>'.$book->getAuthor().'</h3>
+	</span>
+	<section class="description">
+		'.$book->getDescription().'
+	</section>
+</article>
+</article>
+</html>
