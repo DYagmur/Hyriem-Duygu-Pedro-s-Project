@@ -20,7 +20,7 @@ class MainPage {
                      <h2>Let us find your book!</h2>
                      <ul class="filter-list">
                         <span>
-                           <li><a href="#">All</a></li>
+                           <li><a href="?genre=">All</a></li>
                         </span>
                         <li><a href="?genre=Medical">Medical</a></li>
                         <li><a href="?genre=Science">Science</a></li>

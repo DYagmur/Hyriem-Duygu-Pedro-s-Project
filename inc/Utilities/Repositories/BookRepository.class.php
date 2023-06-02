@@ -26,30 +26,4 @@ class BookRepository {
       return $result;
    }
 
-   // public function sortBook(string $sortBy) {
-   //    switch ($sortBy) {
-   //       case "fantasy";
-   //          usort($this->bookList,'self::'.getGenre().'');
-   //       break;
-   //       case "fiction";
-   //          usort($this->bookList,'self::compareFiction');
-   //       break;
-   //       case "";
-   //          usort($this->bookList,'self::compareLName');
-   //       break;
-   //       case "";
-   //          usort($this->bookList,'self::compareUsername');
-   //       break;
-   //       case "";
-   //          usort($this->bookList,'self::compareEmail');
-   //       break;
-   //       case "";
-   //          usort($this->bookList,'self::compareAge');
-   //       break;
-   //       case "";
-   //          usort($this->bookList,'self::compareGender');
-   //       break;
-   //    }
-   // }
-
 }
