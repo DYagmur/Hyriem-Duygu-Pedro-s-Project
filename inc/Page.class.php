@@ -33,7 +33,13 @@ class Page {
                         </ul>
                     </aside>
                     <aside>
-                        '.$btn.'
+                        ';
+                        if(false){
+                            $pageHeader .= self::navOut();
+                        } else {
+                            $pageHeader .= self::navIn();
+                        }
+                        $pageHeader .= '
                     </aside>
                 </nav>
             </header>
@@ -44,11 +50,7 @@ class Page {
         // } else {
         //     $btn = navIn();
         // }
-        if(true){
-            $btn = self::navOut();
-        } else {
-            $btn = self::navIn();
-        }
+        
         return $pageHeader;
     }
 
