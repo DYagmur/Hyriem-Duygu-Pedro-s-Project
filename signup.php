@@ -22,7 +22,7 @@ if ( ! empty($_POST)) {
     $newPass = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $newUser->setPassword($newPass);
 
-    $userExist = UserDAO::getUserByUsername($_POST['username']);
+    $userExist = UserDAO::getUserByUsername($_POST['userName']);
  
     if (!$userExist) {
         UserDAO::insertUser($newUser);  
