@@ -28,8 +28,8 @@ class Page {
                         </figure>
                         <ul>
                             <li><a href="index.php">Home</a></li>
-                            <li><a href="about.pnp">About</a></li>
-                            <li><a href="contact.pnp">Contact</a></li>
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="contact.php">Contact</a></li>
                         </ul>
                     </section>
                     <aside>
@@ -127,7 +127,7 @@ class Page {
 
     public static function formLogin() {
         $formLogin = '
-        <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+        <form action="'.$_SERVER['PHP_SELF'].'" method="POST" class="default-form">
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Password">
             <input type="submit" value="LOG IN" class="btn_lg">
@@ -139,12 +139,15 @@ class Page {
 
     public static function formSignup() {
         $formSignup = '
-        <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+        <form action="'.$_SERVER['PHP_SELF'].'" method="POST" class="default-form">
             <input type="text" name="userName" id="userName" placeholder="Name">
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Password">
-            <label for="userPicture">Profile image</label>
-            <input type="file" name="userPicture" id="userPicture">
+            <label for="userPicture" class="btn-file">
+                <input type="file" name="userPicture" id="userPicture">
+                <i class="fa-solid fa-plus"></i>
+                Add Profile image
+            </label>
             <input type="submit" value="Sign up" class="btn_lg">
         </form>
         ';
@@ -153,7 +156,7 @@ class Page {
 
     public static function formContact() {
         $formContact = '
-        <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+        <form action="'.$_SERVER['PHP_SELF'].'" method="POST" class="default-form">
             <input type="text" name="name" id="name" placeholder="Name">
             <input type="email" name="email" id="email" placeholder="Email">
             <textarea name="message" id="message"></textarea>

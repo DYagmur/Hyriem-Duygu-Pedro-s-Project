@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+// 
+
+@mixin FlexRow($colGap: 0vh) {
+    display: flex;
+    column-gap: $colGap;
+}
+ 
+@mixin FlexColumn($rowGap: 0vh) {
+    display: flex;
+    flex-direction: column;
+    row-gap: $rowGap;
+}
+ 
+@mixin FlexRowCenter($colGap: 0vh) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: $colGap;
+}
+ 
+@mixin FlexRowColumn($rowGap: 0vh) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: $rowGap;
+}
+
+// 
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary : #FAFF00;
+    --secondary : #00FF94;
+}
+
+p {
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn-lg, .btn-sm {
+    @include FlexRowCenter(1vw);
+    border: 1px solid black;
+    padding: 2%;
+    border-radius: 10vw;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+body {
+    @include FlexRowColumn(5vh);
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    @include FlexRowColumn(7vh);
+    width: 80%;
+    padding-bottom: 10vh;
+}
+
+// HEADER
+
+header {
+    width: 90%;
+    padding: 2% 0;
+}
+
+nav {
+    @include FlexRow();
+    justify-content: space-between;
+    padding-bottom: 5vh;
+
+    section {
+        @include FlexRow(3vw);
+    }
+    
+    aside {
+        @include FlexRow(1vw);
+
+        .btn-sm {
+            width: 7vw;
+            font-size: 14px;
+        }
+    }
+    
+    figure {
+        width: 12vw;
+    }
+    
+    img {
+        width: 100%;
+    }
+    
+    ul,
+    li {
+        @include FlexRow(2vw);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+// TITLE, SEARCH
+
+.title {
+    @include FlexRowColumn(3vh);
+
+    h1 {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 10px;
+    }
+
+    form {
+        border-bottom: 1px solid black;
+        display: flex;
+        width: 60%;
+        height: 40px;
+        position: relative;
+
+        input {
+            border: 0 none;
+            padding: 2% 5%;
+            background-color: transparent;
+        }
+
+        input:first-child {
+            width: 90%;
+        }
+        input:last-child {
+            width: 10%;
+            text-indent: -9999px;
+        }
+
+        &:before {
+            content: "\f002";
+            font-family: "FontAwesome";
+            position: absolute;
+            right: 10px;
+            bottom:10px; 
+            color: black;
+        }
+    }
+}
+
+// FILTER
+
+.filter {
+    @include FlexRowCenter(5vw);
+    position: relative;
+
+    ul {
+        @include FlexRowCenter(5vw);
+    }
+
+    li {
+        @include FlexRowCenter();
+    }
+
+    a {
+        text-align: center;
+    }
+
+    details {
+
+        summary {
+            list-style-type: none;
+        }
+        
+        ul {
+            position: absolute;
+            background-color: var(--primary);
+            width: 90%;
+            left: 0;
+            top: calc(100% + 20px);
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5%;
+        }
+    }
+
+    .filter-list-mobile {
+        display: none;
+    }
+
+    .filter-mylist {
+        width: 5vw;
+    }
+}
+
+// MAIN BOOK LIST
+
+.book-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5vw;
+
+    img {
+        width: 15vw;
+    }
+
+    a:hover {
+        filter: drop-shadow(10px 10px 0px #FAFF00);
+    }
+}
+
+// PAGINATION
+
+.pagination {
+    ul {
+        @include FlexRow(3vw);
+    }
+
+    li {
+        @include FlexRow();
+    }
+}
+
+// FOOTER
+
+footer {
+    width: 90%;
+    padding: 2% 5%;
+    @include FlexRow();
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+
+    aside {
+        @include FlexRow(2vw);
+    }
+}
+
+
+
+// BOOK INFO
+
+.book-detail {
+    width: 90%;
+    @include FlexRow(5vw);
+}
+
+.detail-left {
+    width: 30%;
+
+    figure {
+        @include FlexColumn(4vh);
+    }
+
+    figcaption {
+        @include FlexColumn(4vh);
+    }
+
+    .detail-info {
+        @include FlexColumn(2vh);
+
+        li {
+            @include FlexRow();
+        }
+
+        span {
+            color: grey;
+            width: 35%;
+        }
+    }
+
+    .detail-outlink {
+        font-size: 24px;
+        @include FlexRow(1vw);
+    }
+
+    .detail-genre {
+        @include FlexRow(.5vw);
+        flex-wrap: wrap;
+        row-gap: .5vw;
+
+        li {
+            @include FlexRow();
+            border: 1px solid black;
+            border-radius: 10vw;
+            padding: 2% 4%;
+            font-size: 14px;
+        }
+    }
+}
+
+.detail-right {
+    width: 70%;
+    @include FlexColumn(6vh);
+
+    aside {
+        @include FlexColumn(1vh);
+    }
+
+    h1 {
+        font-size: 32px;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    .detail-description {
+        @include FlexColumn(5vh);
+        padding-top: 5vh;
+    
+        .btn-lg {
+            width: 30%;
+        }
+
+        .btn-lg:first-child:hover {
+            background-color: var(--primary);
+        }
+
+        .btn-lg:last-child:hover {
+            background-color: var(--secondary);
+        }
+    }
+}
+
+.comment {
+    @include FlexColumn(5vh);
+
+    form {
+        @include FlexColumn(1vh);
+        align-items: flex-end;
+    }
+
+    input {
+        border: 1px solid black;
+        padding: 2%;
+        background-color: var(--secondary);
+        width: 20%;
+    }
+
+    textarea {
+        width: 96%;
+        height: 120px;
+        padding: 2%;
+        resize: none;
+    }
+
+    ul {
+        @include FlexColumn(3vh);
+    }
+
+    li {
+        @include FlexColumn(1vh);
+        border-top: 1px solid black;
+        padding-top : 2%;
+
+        aside {
+            flex-direction: row;
+            justify-content: space-between;
+            color: grey;
+        }
+    }
+}
+
+
+
+// FORMS
+
+.default-form {
+    @include FlexRowColumn(4vh);
+    width: 40%;
+    padding-bottom: 10vh;
+
+
+    input {
+        border: 0 none;
+        border-bottom: 1px solid black;
+        padding: 3%;
+        width: 100%;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .btn-file {
+        background-color: var(--secondary);
+    }
+
+    input[type="submit"] {
+        border: 1px solid black;
+        background-color: transparent;
+        width: 70%;
+        border-radius: 10vw;
+        box-shadow: 0px 4px 0px var(--primary);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+}
+
+
+
+// ABOUT
+
+.about {
+
+    figure {
+        @include FlexColumn(3vh);
+    }
+
+    img {
+        width: 100%;
+    }
+
+    figcaption {
+        @include FlexRow(4vw);
+
+        p {
+            width: 60%;
+        }
+
+        ul {
+            @include FlexColumn(3vh);
+        }
+
+        li {
+            @include FlexRow();
+
+            span {
+                color: grey;
+                width: 5vw;
+            }
+        }
+    }
+}

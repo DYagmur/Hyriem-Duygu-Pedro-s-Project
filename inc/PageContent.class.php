@@ -42,14 +42,14 @@ class PageContent {
                 <figure>
                     <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
                     <figcaption>
-                        <ul>
+                        <ul class="detail-info">
                             <li><span>Publish date</span>'.$book->getPublishDate().'</li>
                             <li><span>Publisher</span>'.$book->getPublisher().'</li>
                             <li><span>Language</span>'.$book->getLanguage().'</li>
                             <li><span>ISBN</span>'.$book->getIsbn().'</li>
                             <li><span>Rating</span>'.$book->getRating().'</li>
                         </ul>
-                        <aside class="outlink">
+                        <aside class="detail-outlink">
                             <a href="#">
                                 <i class="fa-solid fa-store"></i>
                             </a>
@@ -69,17 +69,17 @@ class PageContent {
             </section>
             <!-- RIGHT SIDE : info btn comment -->
             <section class="detail-right">
-                <aside class="detail-title">
+                <aside>
                     <h1>'.$book->getTitle().'</h1>
                     <h3>'.$book->getAuthor().'</h3>
                 </aside>
                 <section class="detail-description">
                     <aside>
-                        <a href="#">
+                        <a href="#" class="btn-lg">
                             <i class="fa-solid fa-heart"></i>
                             <p>I love this book!</p>
                         </a>
-                        <a href="#">
+                        <a href="#" class="btn-lg">
                             <i class="fa-solid fa-bookmark"></i>
                             <p>Add to MY LIST</p>
                         </a>
@@ -100,7 +100,7 @@ class PageContent {
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
                 <textarea name="comment" id="comment" placeholder="what do you think?"></textarea>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" class="btn-sm">
             </form>
             <ul>
                 <li>
@@ -163,7 +163,7 @@ class PageContent {
         $pageAbout = '
         <section class="about">
             <figure>
-                <img src="https://picsum.photos/1000/400?random=1" alt="">
+                <img src="img/about.png" alt="about readvice">
                 <figcaption>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi ex neque quaerat qui provident cumque veniam eum iste. Culpa, recusandae odio sequi eius ab ex molestiae nulla illo? Incidunt doloremque molestias quam error corporis, quaerat explicabo dolorum earum odit vel consectetur nobis quod aspernatur debitis perspiciatis eius velit libero laborum possimus aut blanditiis provident ex deserunt corrupti. Recusandae nulla reiciendis maiores? Velit provident blanditiis qui fugiat atque neque inventore, veritatis, error cumque quod repellendus ea dolor facilis esse a? Expedita perferendis mollitia molestiae odio repellat maiores, illo sunt, animi id at pariatur ducimus quae sint obcaecati nesciunt ipsum commodi suscipit eaque delectus enim. Ex facere aperiam explicabo quidem excepturi quisquam illum sunt in esse consequatur quo quos, enim voluptatum quia similique sequi labore beatae repudiandae perferendis dolores laboriosam error? Rerum quo corporis suscipit harum consectetur soluta praesentium odit aliquam accusantium at maxime, iure dolor velit autem quidem ipsum vero, cupiditate illum. Maiores sit dolorem aliquam cupiditate perferendis at fugit in ullam esse fuga quis voluptates, vel doloribus reiciendis aspernatur nobis aliquid ipsum sapiente minus et quas doloremque itaque porro. Cumque obcaecati facere harum id minus iste eum non eaque, quasi eligendi quia sequi voluptas nesciunt aliquid quisquam! Autem, est nostrum.
