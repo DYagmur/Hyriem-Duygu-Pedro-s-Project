@@ -9,11 +9,11 @@ class UserDAO {
     }
 
    public static function insertUser(User $newUser) {
-        $sql = "INSERT INTO users(userName,email,password,userPicture) VALUES (:fName,:lName,:user,:email,:pass)";
+        $sql = "INSERT INTO users(username,email,password,userPicture) VALUES (:username,:email,:password,:userPicture)";
 
         self::$db->query($sql);
 
-        self::$db->bind(":userName",$newUser->getUserName());
+        self::$db->bind(":username",$newUser->getUserName());
         self::$db->bind(":email",$newUser->getEmail());
         self::$db->bind(":password",$newUser->getPassword());
         self::$db->bind(":userPicture",$newUser->getUserPicture());
