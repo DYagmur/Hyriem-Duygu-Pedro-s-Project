@@ -1,10 +1,7 @@
 <?php
 
-require_once("./inc/config.inc.php");
-require_once("./inc/Entities/User.class.php");
-require_once("./inc/Utilities/PDOService.class.php");
-require_once("./inc/Utilities/DAO/UserDAO.class.php");
-require_once("./inc/Utilities/Page.class.php");
+require_once("inc/Page.class.php");
+require_once("inc/PageContent.class.php");
 
 if (!empty($_POST)) {
     UserDAO::startDb();
@@ -29,6 +26,7 @@ if (!empty($_POST)) {
     }
 }
 
-echo Page::getPageHeader();
-echo Page::loginForm();
-echo Page::getPageFooter();
+echo Page::pageHeader();
+echo Page::titleDefault("Let's Start!");
+echo Page::formLogin(); 
+echo Page::pageFooter();

@@ -1,18 +1,14 @@
 <?php
 
-require_once("./inc/config.inc.php");
-require_once("./inc/Entities/User.class.php");
-require_once("./inc/Utilities/PDOService.class.php");
-require_once("./inc/Utilities/DAO/UserDAO.class.php");
-require_once("./inc/Utilities/LoginManager.class.php");
-require_once("./inc/Utilities/Page.class.php");
+require_once("inc/Page.class.php");
+require_once("inc/PageContent.class.php");
 
 session_start();
 LoginManager::verifyLogin();
 UserDAO::startDb();
 
 $currentUser = $_SESSION["username"];
-echo Page::getPageHeader();
+echo Page::PageHeader();
 if ( ! empty($_POST)) {
     $newUser = new User();
     $newUser->setUsername($_POST['userName']);
@@ -31,4 +27,7 @@ if ( ! empty($_POST)) {
     }
 }
 
-echo Page::formNewUser();
+echo Page::pageHeader();
+echo Page::titleDefault("Hi there, nice to see you!");
+echo Page::formSignup();
+echo Page::pageFooter();
