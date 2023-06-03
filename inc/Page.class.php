@@ -72,6 +72,7 @@ class Page {
             <h1>'.$title.'</h1>
             <form action="'.$_SERVER['PHP_SELF'].'">
                 <input type="search" name="search_book" id="search_book" placeholder="Give me a keyword">
+                <input type="hidden" name="search" value="search">
                 <input type="submit">
             </form>
         </section>
