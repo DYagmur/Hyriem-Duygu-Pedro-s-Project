@@ -23,5 +23,5 @@ $bookRepository->setBookList(BookDAO::getAllBooks());
 
 
 echo Page::pageHeader();
-echo PageContent::pageBookDetail($book);
+echo PageContent::pageBookDetail($book);  
 echo Page::pageFooter();

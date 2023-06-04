@@ -99,8 +99,8 @@ class PageContent {
         $pageComment = '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="comment" id="comment" placeholder="What do you think of this book?"></textarea>
-                <input type="submit" value="Submit" class="btn-sm">
+                <textarea name="message" id="comment" placeholder="What do you think of this book?"></textarea>
+                <input type="submit" value="Submit" class="btn-sm" name="post_comment">
             </form>
             <ul>
                 <li>
@@ -125,6 +125,25 @@ class PageContent {
         </section>
         ';
         return $pageComment;
+    }
+
+    public static function successMessage() {
+        $html = '
+        <div class="alert alert-success" role="alert">
+            Comment Uploaded Successfully!
+        </div>
+        ';
+
+        return $html;
+    }
+
+    public static function warningMessage(string $message) {
+        $html = '
+        <div class="alert alert-warning" role="alert">'.
+          $message  
+        .'</div>
+        ';
+        return $html;
     }
 
     // USER LIST
