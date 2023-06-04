@@ -26,4 +26,17 @@ class UserCommentDAO {
 
       return self::$db->singleResult();
    } 
+
+   public static function insertNewComment($comment) {
+      $sql = "INSERT INTO user_comment (date, message) VALUES (:date, :message)";
+
+      self::$db->query($sql);
+
+      self::$db->bind(":date", $comment->getCommentDate());
+      self::$db->bind(":message", $comment->getMessage());
+      
+      self::$db->execute();
+
+      return self::$db->lastInsertedId();
+   }
 }
