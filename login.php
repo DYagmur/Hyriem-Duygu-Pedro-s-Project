@@ -1,32 +1,39 @@
 <?php
+//Require Files
+require_once("inc/config.inc.php");
+
+require_once("inc/Entities/User.class.php");
+
+require_once("inc/Utilities/PDOService.class.php");
+require_once("inc/Utilities/DAO/UserDAO.class.php");
 
 require_once("inc/Page.class.php");
-require_once("inc/PageContent.class.php");
 
-if (!empty($_POST)) {
+if(!empty($_POST)){
+
+    //Initialize the DAO
     UserDAO::startDb();
-
+    //Get the current user 
     $userName = $_POST['username'];
-    $password = $_POST['passLogin'];
-
-    $userNameExist = UserDAO::getUserByUsername($userName);
-
-    if ( (gettype($userNameExist) === 'object') && (get_class($userNameExist) === 'User')) {
-        if ($userNameExist->validateUser($password)) {
-            var_dump("howdy");
-
+    $authUser = UserDAO::getUserByUserName($userName);
+    //Check the DAO returned an object of type user
+    if( (gettype($authUser) == "object") && (get_class($authUser) == "User") ){
+        
+        //Check the password
+        if ($authUser->verifyPassword($_POST['password']))  {
+            //Start the session
             session_start();
+            //Set the user to logged in
+            $_SESSION["loggedin"] = true;
+            $_SESSION['username'] = $authUser;
 
-            $_SESSION["logged"] = true;
-            $_SESSION["userName"] = $userNameExist;
-
-           
+            header("Location: updateaccount.php");
             exit();
         }
     }
 }
 
 echo Page::pageHeader();
-echo Page::titleDefault("Let's Start!");
+echo Page::titleDefault("Let's start the discover amazing books!");
 echo Page::formLogin(); 
 echo Page::pageFooter();

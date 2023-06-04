@@ -2,6 +2,7 @@
 
 require_once("inc/Page.class.php");
 require_once("inc/PageContent.class.php");
+require_once("inc/Utilities/LoginManager.class.php");
 
 session_start();
 LoginManager::verifyLogin();

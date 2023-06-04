@@ -4,37 +4,39 @@ class PageContent {
 
     // MAIN BOOK LIST
 
-    public static function pageMainList() {
-        $pageUserList = '
+    public static function pageMainList($bookList) {
+        $pageMainList = '
         <section class="book-list">';
-        foreach($bookList as $book) {
-            $pageUserList .= self::bookListMain($book);
+        for($i = 0; $i <= 11; $i++){
+            $pageMainList .= self::bookListMain($bookList[$i]);
         }
-        $pageUserList .= '</section>';
-        return $pageUserList;
+        $pageMainList .= '</section>';
+        return $pageMainList;
     }
 
     public static function bookListMain($book) {
-        $bookListUser = '
-        <a href="#">
+        $bookListMain = '
+        <a href="bookInfo.php?book='.$book->getBookId().'">
             <figure>
                 <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
             </figure>
         </a>
         ';
-        return $bookListUser;
+        return $bookListMain;
     }
 
 
     // BOOK DETAIL
 
     public static function pageBookDetail($book){
+        $bookGenres = $book->getGenres();
+        $genres1 = str_replace('[','',$bookGenres);
+        $genres2 = str_replace("]",'',$genres1);
+        $genres3 = str_replace("'",'',$genres2);
+        $oneBookGenre = explode(',',$genres3);
+        
         $pageBookDetail = '
-        <a href="#" class="btn-back">
-            <i class="fa-solid fa-left-long"></i>
-            <p>Back</p>
-        </a>
-        <section class="boot-detail">
+        <section class="book-detail">
             <!-- LEFT SIDE : img, info, shop&share -->
             <section class="detail-left">
                 <figure>
@@ -42,8 +44,10 @@ class PageContent {
                     <figcaption>
                         <ul>
                             <li><span>Publish date</span>'.$book->getPublishDate().'</li>
+                            <li><span>Publisher</span>'.$book->getPublisher().'</li>
                             <li><span>Language</span>'.$book->getLanguage().'</li>
                             <li><span>ISBN</span>'.$book->getIsbn().'</li>
+                            <li><span>Rating</span>'.$book->getRating().'</li>
                         </ul>
                         <aside class="outlink">
                             <a href="#">
@@ -53,8 +57,12 @@ class PageContent {
                                 <i class="fa-solid fa-share-nodes"></i>
                             </a>
                         </aside>
-                        <ul>
-                            <li>'.$book->getGenres().'</li>
+                        <ul class="detail-genre">
+                            ';
+                            foreach($oneBookGenre as $genre){
+                                $pageBookDetail .= '<li>'.$genre.'</li>';
+                            }
+                        $pageBookDetail .='
                         </ul>
                     </figcaption>
                 </figure>
@@ -80,7 +88,7 @@ class PageContent {
                     '.$book->getDescription().'
                     </p>
                 </section>
-                '.pageComment().'
+                '.self::pageComment().'
             </section>
         </section>
         ';

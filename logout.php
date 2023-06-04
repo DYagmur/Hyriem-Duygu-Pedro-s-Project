@@ -5,12 +5,12 @@ require_once("./inc/Entities/User.class.php");
 require_once("./inc/Utilities/PDOService.class.php");
 require_once("./inc/Utilities/DAO/UserDAO.class.php");
 require_once("./inc/Utilities/LoginManager.class.php");
-require_once("./inc/Utilities/Page.class.php");
+require_once("./inc/Page.class.php");
 
 session_start();
 
 session_destroy();
 
-echo Page::getPageHeader();
+echo Page::PageHeader();
 echo "You are out!";
-echo Page::getPageFooter();
+echo Page::PageFooter();
