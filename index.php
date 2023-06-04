@@ -43,5 +43,5 @@ if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
 
-echo MainPage::searchBar();
-echo MainPage::bookGallery($bookRepository->getBookList());
+// echo MainPage::searchBar();
+// echo MainPage::bookGallery($bookRepository->getBookList());
