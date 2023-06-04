@@ -9,13 +9,9 @@ require_once("inc/Utilities/DAO/UserDAO.class.php");
 
 require_once("inc/Page.class.php");
 
-if(!empty($_POST)){
-
-    //Initialize the DAO
-    UserDAO::startDb();
-    //Get the current user 
+if (!empty($_POST['username'])) {
     $userName = $_POST['username'];
-    $authUser = UserDAO::getUserByUserName($userName);
+    $userNameExist = UserDAO::getUserByUsername($userName);
     //Check the DAO returned an object of type user
     if( (gettype($authUser) == "object") && (get_class($authUser) == "User") ){
         
@@ -25,7 +21,7 @@ if(!empty($_POST)){
             session_start();
             //Set the user to logged in
             $_SESSION["loggedin"] = true;
-            $_SESSION['username'] = $authUser;
+            $_SESSION['userName'] = $authUser;
 
             header("Location: updateaccount.php");
             exit();

@@ -266,4 +266,10 @@ class Page {
     }
 
 
+
+    public static function successMessage()
+    {
+        return "<p>Success! User registered successfully.</p>";
+    }
+
 }
