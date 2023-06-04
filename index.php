@@ -24,7 +24,7 @@ if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
 
-echo Page::titleSerch();
+echo Page::titleSearch();
 echo Page::pageFilter();
 
 if(!empty ($_GET)) {

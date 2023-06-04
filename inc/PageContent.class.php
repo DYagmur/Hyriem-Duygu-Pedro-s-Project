@@ -99,7 +99,7 @@ class PageContent {
         $pageComment = '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="comment" id="comment" placeholder="what do you think?"></textarea>
+                <textarea name="comment" id="comment" placeholder="What do you think of this book?"></textarea>
                 <input type="submit" value="Submit" class="btn-sm">
             </form>
             <ul>
