@@ -7,15 +7,14 @@ require_once("inc/Utilities/DAO/UserDAO.class.php");
 require_once("inc/Utilities/LoginManager.class.php");
 require_once("inc/Page.class.php");
 
-
 session_start();
 LoginManager::verifyLogin();
 UserDAO::startDb();
 
 $currentUser = $_SESSION["username"];
-echo Page::PageHeader();
+echo Page::pageHeader();
 
-function signup($username, $email, $password)
+function signup($username, $email, $password, $userPicture)
 {
     // Validate input parameters
     if (empty($username) || empty($email) || empty($password)) {
@@ -32,7 +31,7 @@ function signup($username, $email, $password)
     $newUser = new User();
     $newUser->setUsername($username);
     $newUser->setEmail($email);
-    $newUser->setUserPicture('default.jpg'); // Default user picture
+    $newUser->setUserPicture($userPicture); // Set the user picture
 
     // Hash the password
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -50,12 +49,16 @@ if (!empty($_POST)) {
     $username = $_POST['userName'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $userPicture = $_POST['userPicture']
-    
-    $result = signup($username, $email, $password,$userPicture);
+    $userPicture = $_POST['userPicture'];
+
+    $result = signup($username, $email, $password, $userPicture);
 
     // Display the result
-    echo $row;
+    echo $result;
 }
 
-
+// Rest of the code for rendering the signup page
+echo Page::pageHeader();
+echo Page::titleDefault("Hi there, nice to see you!");
+echo Page::formSignup();
+echo Page::pageFooter();
