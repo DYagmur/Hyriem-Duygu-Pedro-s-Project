@@ -21,4 +21,5 @@ $bookRepository = new BookRepository();
 $bookRepository->setBookList(BookDAO::getAllBooks());
 
 echo BookInfo::bookInfo($book);
+echo MainPage::pageComment();
 // var_dump($bookRepository->getBookList());
