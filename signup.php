@@ -50,11 +50,12 @@ if (!empty($_POST)) {
     $username = $_POST['userName'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $result = signup($username, $email, $password);
+    $userPicture = $_POST['userPicture']
+    
+    $result = signup($username, $email, $password,$userPicture);
 
     // Display the result
-    echo $result;
+    echo $row;
 }
 
 

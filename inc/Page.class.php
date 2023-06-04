@@ -267,9 +267,51 @@ class Page {
 
 
 
-    public static function successMessage()
-    {
-        return "<p>Success! User registered successfully.</p>";
+    public static function successMessage() {
+        $message = '
+        <div class="alert alert-success" role="alert">
+            New User included successfully!
+        </div>
+        ';
+        return $message;
+    }
+
+    public static function userTable( $userList) {
+        $userTable = '
+            <table class="w-50 table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">User Picture</th>
+
+                    </tr>
+                </thead>
+                <tbody>';
+                    foreach($userList as $user) {
+                        $userTable .= self::buildUserRow($user);
+                    }
+        $userTable .= '</tbody>
+            </table>
+        ';
+
+        return $userTable;
+    }
+
+    private static function buildUserRow($newUser){
+        $row = '
+            <tr>
+                <td>'.$newUser->getId().'</td>
+                <td>'.$newUser->getUsername().'</td>
+                <td>'.$newUser->getEmail().'</td>
+                <td>'.$newUser->getPassword().'</td>
+                <td>'.$newUser->getUserPicture().'</td>
+            </tr>
+        ';
+
+        return $row;
     }
 
 }
