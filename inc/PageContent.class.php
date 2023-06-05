@@ -39,7 +39,7 @@ class PageContent {
 
     // BOOK DETAIL
 
-    public static function pageBookDetail($book){
+    public static function pageBookDetail($book, $userId){
         $bookGenres = $book->getGenres();
         $genres1 = str_replace('[','',$bookGenres);
         $genres2 = str_replace("]",'',$genres1);
@@ -64,7 +64,7 @@ class PageContent {
                             <a href="#">
                                 <i class="fa-solid fa-store"></i>
                             </a>
-                            <a href="">
+                            <a href="#">
                                 <i class="fa-solid fa-share-nodes"></i>
                             </a>
                         </aside>
@@ -93,7 +93,7 @@ class PageContent {
                             <i class="fa-solid fa-heart"></i>
                             <p>I love this book!</p>
                         </a>
-                        <a href="#" class="btn-lg">
+                        <a href="userList.php?user='.$userId.'" class="btn-lg">
                             <i class="fa-solid fa-bookmark"></i>
                             <p>Add to MY LIST</p>
                         </a>

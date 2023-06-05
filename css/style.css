@@ -33,6 +33,15 @@ img {
   width: 100%;
 }
 
+input, textarea {
+  background-color: transparent;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  background-color: white;
+}
+
 .btn-lg, .btn-sm {
   display: flex;
   justify-content: center;
@@ -182,6 +191,13 @@ img {
     bottom: 10px;
     color: black;
   }
+  .title-user a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -moz-column-gap: 1vw;
+         column-gap: 1vw;
+  }
   .filter {
     display: flex;
     -moz-column-gap: 0vh;
@@ -197,16 +213,15 @@ img {
   .filter .filter-list-more {
     display: none;
   }
-  .filter .filter-list-mobile summary {
+  .filter details summary {
     display: flex;
     justify-content: center;
     align-items: center;
     -moz-column-gap: 2vw;
          column-gap: 2vw;
-    cursor: pointer;
     font-weight: 600;
   }
-  .filter .filter-list-mobile ul {
+  .filter details ul {
     display: flex;
     -moz-column-gap: 5vw;
          column-gap: 5vw;
@@ -218,8 +233,9 @@ img {
     display: flex;
     flex-wrap: wrap;
     padding: 3%;
+    z-index: 999;
   }
-  .filter .filter-list-mobile li {
+  .filter details li {
     display: flex;
     -moz-column-gap: 0vh;
          column-gap: 0vh;
@@ -458,6 +474,7 @@ img {
   .default-form > a {
     font-size: 14px;
     text-decoration: underline;
+    color: grey;
   }
   .contact-form {
     width: 90%;
@@ -466,9 +483,6 @@ img {
     display: flex;
     flex-direction: column;
     row-gap: 3vh;
-  }
-  .about img {
-    width: 100%;
   }
   .about figcaption {
     display: flex;
@@ -538,11 +552,17 @@ img {
   nav > aside .btn-sm {
     width: 80px;
   }
+  nav > aside .btn-sm:first-child:hover {
+    background-color: var(--primary);
+  }
+  nav > aside .btn-sm:last-child:hover {
+    background-color: var(--secondary);
+  }
   nav details {
     display: none;
   }
   nav li:hover {
-    background: linear-gradient(transparent 50%, var(--primary) 50%);
+    background: linear-gradient(transparent 50%, var(--secondary) 50%);
   }
   footer {
     padding: 2% 5%;
@@ -551,8 +571,11 @@ img {
   }
   footer aside {
     display: flex;
-    -moz-column-gap: 1vw;
-         column-gap: 1vw;
+    -moz-column-gap: 2vw;
+         column-gap: 2vw;
+  }
+  footer aside a:hover {
+    color: white;
   }
   main {
     display: flex;
@@ -584,33 +607,56 @@ img {
     -moz-column-gap: 5vw;
          column-gap: 5vw;
   }
+  .filter .filter-list > li {
+    display: flex;
+    -moz-column-gap: 0vh;
+         column-gap: 0vh;
+  }
+  .filter .filter-list > li:hover {
+    background: linear-gradient(transparent 50%, var(--primary) 50%);
+  }
+  .filter .filter-list .filter-all {
+    border: 1px solid black;
+    padding: 1% 3%;
+    border-radius: 10vw;
+    font-weight: 600;
+  }
+  .filter .filter-list .filter-all:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+  }
   .filter .filter-list-more {
     display: flex;
     -moz-column-gap: 0vh;
          column-gap: 0vh;
   }
-  .filter a {
-    text-align: center;
-  }
   .filter details summary {
-    list-style-type: none;
     cursor: pointer;
   }
   .filter details ul {
-    position: absolute;
-    background-color: var(--primary);
-    width: 90%;
-    left: 0;
-    top: calc(100% + 20px);
     display: flex;
-    flex-wrap: wrap;
-    padding: 5%;
+    -moz-column-gap: 2vw;
+         column-gap: 2vw;
+    width: 94%;
+    top: 7vh;
+    justify-content: space-between;
+  }
+  .filter details li {
+    width: 16%;
+    padding: 2%;
+  }
+  .filter details li:hover {
+    transform: translateX(-10px);
+    font-weight: 600;
   }
   .filter .filter-list-mobile {
     display: none;
   }
   .filter .filter-mylist {
-    padding: 2%;
+    padding: 1% 3%;
+  }
+  .filter .filter-mylist:hover {
+    transform: translateY(-4px);
   }
   .book-list {
     gap: 5vw;
@@ -618,16 +664,18 @@ img {
   .book-list img {
     width: 15vw;
     height: 22.5vw;
-    -o-object-position: center 0;
-       object-position: center 0;
+    border: 1px solid gainsboro;
   }
-  .book-list a:hover {
-    filter: drop-shadow(10px 10px 0px #FAFF00);
+  .book-list img:hover {
+    box-shadow: 5px 5px 0px var(--secondary), -5px -5px 0 var(--primary);
   }
   .pagination ul {
     display: flex;
     -moz-column-gap: 3vw;
          column-gap: 3vw;
+  }
+  .pagination a:hover {
+    text-decoration: underline;
   }
   .bookcover-mobile {
     display: none;
@@ -664,19 +712,16 @@ img {
     grid-column: 2/span 2;
     grid-row: 1;
   }
-  .detail-right aside {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1vh;
-  }
   .detail-right .detail-description .btn-lg {
     width: 30%;
   }
   .detail-right .detail-description .btn-lg:first-child:hover {
     background-color: var(--primary);
+    box-shadow: none;
   }
   .detail-right .detail-description .btn-lg:last-child:hover {
     background-color: var(--secondary);
+    box-shadow: none;
   }
   .comment {
     grid-column: 2/span 2;
@@ -684,6 +729,9 @@ img {
   }
   .comment input {
     width: 20%;
+  }
+  .comment input:hover {
+    transform: translateY(-4px);
   }
   .comment textarea {
     height: 120px;
@@ -695,6 +743,9 @@ img {
     flex-direction: row;
     justify-content: space-between;
   }
+  .comment li a:hover {
+    background: linear-gradient(transparent 50%, white 50%);
+  }
   .default-form {
     width: 40%;
   }
@@ -703,7 +754,7 @@ img {
   }
   .default-form aside label {
     padding: 3%;
-    width: 30%;
+    width: 40%;
     border-bottom: 1px solid black;
   }
   .default-form textarea {
@@ -717,43 +768,31 @@ img {
   .default-form input[type=file] {
     width: 70%;
   }
+  .default-form input[type=submit] {
+    width: 50%;
+    padding: 3%;
+  }
+  .default-form input[type=submit]:hover {
+    background-color: var(--primary);
+    box-shadow: none;
+  }
+  .default-form > a:hover {
+    color: black;
+  }
   .contact-form {
     width: 60%;
+  }
+  .contact-form aside {
     -moz-column-gap: 2vw;
          column-gap: 2vw;
-  }
-  .contact-form input[type=submit] {
-    width: 50%;
-    padding: 2%;
-  }
-  .about figure {
-    display: flex;
-    flex-direction: column;
-    row-gap: 3vh;
-  }
-  .about img {
-    width: 100%;
   }
   .about figcaption {
     display: flex;
     -moz-column-gap: 4vw;
          column-gap: 4vw;
+    flex-direction: row;
   }
   .about figcaption p {
-    width: 60%;
-  }
-  .about figcaption ul {
-    display: flex;
-    flex-direction: column;
-    row-gap: 3vh;
-  }
-  .about figcaption li {
-    display: flex;
-    -moz-column-gap: 0vh;
-         column-gap: 0vh;
-  }
-  .about figcaption li span {
-    color: grey;
-    width: 5vw;
+    width: 70%;
   }
 }/*# sourceMappingURL=style.css.map */

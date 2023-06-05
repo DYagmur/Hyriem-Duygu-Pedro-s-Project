@@ -48,8 +48,14 @@ if (!empty($_POST['post_comment'])) {
    }
 } 
 
+if (!empty($_GET['user'])) {
+   $userId = UserDAO::getUserByUserId($_GET['user']);
+} else {
+   $userId = '';
+}
+
 
 echo Page::pageHeader();
-echo PageContent::pageBookDetail($book);
+echo PageContent::pageBookDetail($book, $userId);
 
 echo Page::pageFooter();
