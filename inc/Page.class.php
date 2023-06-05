@@ -19,7 +19,7 @@ class Page {
         </head>
         <body>
             <header>
-                <nav class="nav">
+                <nav>
                     <section>
                         <figure>
                             <a href="index.php">
@@ -41,6 +41,27 @@ class Page {
                         }
                         $pageHeader .= '
                     </aside>
+                    <details>
+                        <summary>
+                            <i class="fa-solid fa-bars"></i>
+                        </summary>
+                        <article>
+                            <ul>
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="about.php">About</a></li>
+                                <li><a href="contact.php">Contact</a></li>
+                            </ul>
+                            <aside>
+                                ';
+                                if(true){
+                                    $pageHeader .= self::navOut();
+                                } else {
+                                    $pageHeader .= self::navIn();
+                                }
+                                $pageHeader .= '
+                            </aside>
+                        </article>
+                    </details>
                 </nav>
             </header>
             <main>
@@ -66,8 +87,8 @@ class Page {
 
     // TITLE
     
-    public static function titleSearch($title="Let us find your book!") {
-        $titleSerch = '
+    public static function titleSearch($title="Let&rsquo;s find your book!") {
+        $titleSearch = '
         <section class="title">
             <h1>'.$title.'</h1>
             <form action="'.$_SERVER['PHP_SELF'].'">
@@ -77,7 +98,7 @@ class Page {
             </form>
         </section>
         ';
-        return $titleSerch;
+        return $titleSearch;
     }
 
     public static function titleUser($username) {
@@ -139,15 +160,17 @@ class Page {
 
     public static function formSignup() {
         $formSignup = '
-        <form action="'.$_SERVER['PHP_SELF'].'" method="POST" class="default-form">
+        <form action="'.$_SERVER['PHP_SELF'].'" method="POST"  enctype="multipart/form-data" class="default-form">
             <input type="text" name="userName" id="userName" placeholder="Name">
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Password">
-            <label for="userPicture" class="btn-file">
+            <aside>
+                <label for="userPicture" class="btn-file">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Profile image
+                </label>
                 <input type="file" name="userPicture" id="userPicture">
-                <i class="fa-solid fa-plus"></i>
-                Add Profile image
-            </label>
+            </aside>
             <input type="submit" value="Sign up" class="btn_lg">
         </form>
         ';
@@ -156,10 +179,12 @@ class Page {
 
     public static function formContact() {
         $formContact = '
-        <form action="'.$_SERVER['PHP_SELF'].'" method="POST" class="default-form">
-            <input type="text" name="name" id="name" placeholder="Name">
-            <input type="email" name="email" id="email" placeholder="Email">
-            <textarea name="message" id="message"></textarea>
+        <form action="'.$_SERVER['PHP_SELF'].'" method="POST" class="default-form contact-form">
+            <aside>
+                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="email" name="email" id="email" placeholder="Email">
+            </aside>
+            <textarea name="message" id="message" placeholder="Messages"></textarea>
             <input type="submit" value="Send" class="btn_lg">
         </form>
         ';
@@ -181,7 +206,7 @@ class Page {
             </ul>
             <details class="filter-list-more">
                 <summary>
-                    <i class="fa-regular fa-square-plus"></i>
+                    <i class="fa-solid fa-bars-staggered"></i>
                 </summary>
                 <ul class="filter-list">
                     <li><a href="?genre=Nonfiction">Nonfiction</a></li>
@@ -201,9 +226,18 @@ class Page {
             </details>
             <details class="filter-list-mobile">
                 <summary>
-                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-bars-staggered"></i>
+                    <p>';
+
+                    if(! empty ($_GET['genre'])) {
+                        $pageFilter .= $_GET['genre'];
+                    } else {
+                        $pageFilter .='All';
+                    }
+                    $pageFilter .= '
+                    </p>
                 </summary>
-                <ul class="filter-list">
+                <ul class="filter-list-mobile">
                     <li class="filter-all"><a href="?genre=">All</a></li>
                     <li><a href="?genre=Medical">Medical</a></li>
                     <li><a href="?genre=Science">Science</a></li>
@@ -257,17 +291,25 @@ class Page {
     public static function pagination() {
         $pagination = '
         <section class="pagination">
-            <ul>
-                <li><a href="#"><i class="fa-solid fa-angle-left"></i></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#"><i class="fa-solid fa-angle-right"></i></a></li>
-            </ul>
+            <ul>';
+
+            if(!empty ($_GET['genre'])) {
+                $genre = $_GET['genre'];
+            } else {
+                $genre = '';
+            }
+
+        $pagination .= '
+            <li><a href="?genre='.$genre.'&page=1">1</a></li>
+            <li><a href="?genre='.$genre.'&page=2">2</a></li>
+            <li><a href="?genre='.$genre.'&page=3">3</a></li>
+            <li><a href="?genre='.$genre.'&page=4">4</a></li>
+            <li><a href="?genre='.$genre.'&page=5">5</a></li>';
+
+        $pagination .= '</ul>
         </section>
         ';
         return $pagination;
     }
-
 
 }

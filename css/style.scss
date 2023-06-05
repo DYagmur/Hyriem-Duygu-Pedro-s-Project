@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
-// 
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+    --primary : #FAFF00;
+    --secondary : #00FF94;
+}
+
+$bookwidth : 40vw;
+
+// MIXIN
 
 @mixin FlexRow($colGap: 0vh) {
     display: flex;
@@ -27,16 +40,18 @@
     row-gap: $rowGap;
 }
 
-// 
-
-* {
-    margin: 0;
-    padding: 0;
+@mixin TextBackground($color) {
+    background: linear-gradient(transparent 50%, $color 50%);
 }
 
-:root {
-    --primary : #FAFF00;
-    --secondary : #00FF94;
+
+// COMMON VALUE
+
+body {
+    @include FlexRowColumn(5vh);
+    position: relative;
+    min-height: 100vh;
+    background-color: #F3F3F3;
 }
 
 p {
@@ -48,6 +63,17 @@ a {
     color: inherit;
 }
 
+img {
+    width: 100%;
+}
+
+// i {
+//     background-color: black;
+//     display: block;
+//     width: 30px;
+//     height: 30px;
+// }
+
 .btn-lg, .btn-sm {
     @include FlexRowCenter(1vw);
     border: 1px solid black;
@@ -58,373 +84,362 @@ a {
 }
 
 
-body {
-    @include FlexRowColumn(5vh);
-    font-family: 'Open Sans', sans-serif;
-}
 
-main {
-    @include FlexRowColumn(7vh);
-    width: 80%;
-    padding-bottom: 10vh;
-}
 
-// HEADER
+// MOBILE
 
-header {
-    width: 90%;
-    padding: 2% 0;
-}
+@media (min-width: 200px) {
 
-nav {
-    @include FlexRow();
-    justify-content: space-between;
-    padding-bottom: 5vh;
+    // HEADER
 
-    section {
-        @include FlexRow(3vw);
-    }
-    
-    aside {
-        @include FlexRow(1vw);
-
-        .btn-sm {
-            width: 7vw;
-            font-size: 14px;
-        }
-    }
-    
-    figure {
-        width: 12vw;
-    }
-    
-    img {
-        width: 100%;
-    }
-    
-    ul,
-    li {
-        @include FlexRow(2vw);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-}
-
-// TITLE, SEARCH
-
-.title {
-    @include FlexRowColumn(3vh);
-
-    h1 {
-        font-size: 30px;
-        font-weight: 700;
-        letter-spacing: 10px;
+    header {
+        width: 90%;
+        padding: 4% 0;
     }
 
-    form {
-        border-bottom: 1px solid black;
-        display: flex;
-        width: 60%;
-        height: 40px;
+    nav {
+        @include FlexRow();
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 5vh;
         position: relative;
 
-        input {
-            border: 0 none;
-            padding: 2% 5%;
-            background-color: transparent;
-        }
+        section {
+            @include FlexRow();
 
-        input:first-child {
-            width: 90%;
-        }
-        input:last-child {
-            width: 10%;
-            text-indent: -9999px;
-        }
-
-        &:before {
-            content: "\f002";
-            font-family: "FontAwesome";
-            position: absolute;
-            right: 10px;
-            bottom:10px; 
-            color: black;
-        }
-    }
-}
-
-// FILTER
-
-.filter {
-    @include FlexRowCenter(5vw);
-    position: relative;
-
-    ul {
-        @include FlexRowCenter(5vw);
-    }
-
-    li {
-        @include FlexRowCenter();
-    }
-
-    a {
-        text-align: center;
-    }
-
-    details {
-
-        summary {
-            list-style-type: none;
+            ul {
+                display: none;
+            }
         }
         
-        ul {
-            position: absolute;
-            background-color: var(--primary);
-            width: 90%;
-            left: 0;
-            top: calc(100% + 20px);
-            display: flex;
-            flex-wrap: wrap;
-            padding: 5%;
+        &>aside {
+            display: none;
         }
-    }
+        
+        figure {
+            width: 200px;
+        }
 
-    .filter-list-mobile {
-        display: none;
-    }
+        details {
+            
+            summary {
+                list-style-type: none;
+                font-size: 24px;
+            }
 
-    .filter-mylist {
-        width: 5vw;
-    }
-}
+            article {
+                position: absolute;
+                @include FlexRowColumn(3vh);
+                width: 50%;
+                top: 7vh;
+                right: 0;
+                background-color: var(--primary);
+                padding: 10% 4%;
+                z-index: 999;
+            }
 
-// MAIN BOOK LIST
+            ul {
+                @include FlexRowColumn(3vh);
+            }
 
-.book-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 5vw;
+            aside {
+                @include FlexRowColumn(2vh);
+                width: 100%;
+            }
 
-    img {
-        width: 20vw;
-    }
-
-    a:hover {
-        filter: drop-shadow(10px 10px 0px #FAFF00);
-    }
-}
-
-// PAGINATION
-
-.pagination {
-    ul {
-        @include FlexRow(3vw);
-    }
-
-    li {
-        @include FlexRow();
-    }
-}
-
-// FOOTER
-
-footer {
-    width: 90%;
-    padding: 2% 5%;
-    @include FlexRow();
-    justify-content: space-between;
-    background-color: black;
-    color: white;
-
-    aside {
-        @include FlexRow(2vw);
-    }
-}
-
-
-
-// BOOK INFO
-
-.book-detail {
-    width: 90%;
-    @include FlexRow(5vw);
-}
-
-.detail-left {
-    width: 30%;
-
-    figure {
-        @include FlexColumn(4vh);
-    }
-
-    figcaption {
-        @include FlexColumn(4vh);
-    }
-
-    .detail-info {
-        @include FlexColumn(2vh);
+            .btn-sm {
+                width: 60%;
+                padding: 4%;
+                background-color: black;
+                color: white;
+            }
+        }
 
         li {
             @include FlexRow();
-        }
-
-        span {
-            color: grey;
-            width: 35%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
     }
 
-    .detail-outlink {
-        font-size: 24px;
-        @include FlexRow(1vw);
-    }
 
-    .detail-genre {
-        @include FlexRow(.5vw);
-        flex-wrap: wrap;
-        row-gap: .5vw;
+    // FOOTER
 
-        li {
-            @include FlexRow();
-            border: 1px solid black;
-            border-radius: 10vw;
-            padding: 2% 4%;
-            font-size: 14px;
-        }
-    }
-}
-
-.detail-right {
-    width: 70%;
-    @include FlexColumn(6vh);
-
-    aside {
-        @include FlexColumn(1vh);
-    }
-
-    h1 {
-        font-size: 32px;
-        text-transform: uppercase;
-    }
-
-    h3 {
-        font-size: 30px;
-        font-weight: 400;
-    }
-
-    .detail-description {
-        @include FlexColumn(5vh);
-        padding-top: 5vh;
-    
-        .btn-lg {
-            width: 30%;
-        }
-
-        .btn-lg:first-child:hover {
-            background-color: var(--primary);
-        }
-
-        .btn-lg:last-child:hover {
-            background-color: var(--secondary);
-        }
-    }
-}
-
-.comment {
-    @include FlexColumn(5vh);
-
-    form {
-        @include FlexColumn(1vh);
-        align-items: flex-end;
-    }
-
-    input {
-        border: 1px solid black;
-        padding: 2%;
-        background-color: var(--secondary);
-        width: 20%;
-    }
-
-    textarea {
-        width: 96%;
-        height: 120px;
-        padding: 2%;
-        resize: none;
-    }
-
-    ul {
-        @include FlexColumn(3vh);
-    }
-
-    li {
-        @include FlexColumn(1vh);
-        border-top: 1px solid black;
-        padding-top : 2%;
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 90%;
+        padding: 10% 5%;
+        @include FlexRowColumn(3vh);
+        background-color: black;
+        color: grey;
 
         aside {
-            flex-direction: row;
-            justify-content: space-between;
-            color: grey;
+            @include FlexRow(6vw);
         }
     }
-}
 
 
+    // MAIN
 
-// FORMS
+    main {
+        @include FlexRowColumn(3vh);
+        width: 86%;
+        padding-bottom: 25vh;
+    }
 
-.default-form {
-    @include FlexRowColumn(4vh);
-    width: 40%;
-    padding-bottom: 10vh;
 
+    // TITLE, SEARCH
 
-    input {
-        border: 0 none;
-        border-bottom: 1px solid black;
-        padding: 3%;
+    .title {
+        @include FlexRowColumn(5vh);
+
+        h1 {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        form {
+            border-bottom: 1px solid black;
+            display: flex;
+            width: 100%;
+            height: 40px;
+            position: relative;
+
+            input {
+                border: 0 none;
+                padding: 2% 5%;
+                background-color: transparent;
+            }
+
+            input:first-child {
+                width: 90%;
+            }
+            input:last-child {
+                width: 10%;
+                text-indent: -9999px;
+            }
+
+            &:before {
+                content: "\f002";
+                font-family: "FontAwesome";
+                position: absolute;
+                right: 10px;
+                bottom:10px; 
+                color: black;
+            }
+        }
+    }
+
+    // FILTER
+
+    .filter {
+        @include FlexRow();
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
         width: 100%;
+
+        .filter-list {
+            display: none;
+        }
+
+        .filter-list-more {
+            display: none;
+        }
+
+        .filter-list-mobile {
+
+            summary {
+                @include FlexRowCenter(2vw);
+                cursor: pointer;
+                font-weight: 600;
+            }
+            
+            ul {
+                @include FlexRow(5vw);
+                position: absolute;
+                background-color: var(--secondary);
+                width: 94%;
+                left: 0;
+                top: 5vh;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 3%;
+            }
+
+            li {
+                @include FlexRow();
+                width: 40%;
+                padding: 5% 2%;
+                border-bottom: 1px solid black;
+            }
+        }
+
+        .filter-mylist {
+            border: 1px solid black;
+            padding: 2% 6%;
+            border-radius: 10vw;
+            background-color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+        }
     }
 
-    input[type="file"] {
-        display: none;
+
+    // MAIN BOOK LIST
+
+    .book-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 4vw;
+
+        img {
+            width: $bookwidth;
+            height: calc($bookwidth * 1.5);
+            object-fit: cover;
+            object-position: center 0;
+        }
+
     }
 
-    .btn-file {
-        background-color: var(--secondary);
+
+    // PAGINATION
+
+    .pagination {
+        ul {
+            @include FlexRow(8vw);
+        }
+
+        li {
+            @include FlexRow();
+        }
     }
 
-    input[type="submit"] {
-        border: 1px solid black;
-        background-color: transparent;
-        width: 70%;
-        border-radius: 10vw;
-        box-shadow: 0px 4px 0px var(--primary);
-        text-transform: uppercase;
-        font-weight: 600;
-    }
-}
 
+    // BOOK INFO
 
-
-// ABOUT
-
-.about {
-
-    figure {
-        @include FlexColumn(3vh);
+    .book-detail {
+        width: 90%;
+        @include FlexColumn(6vh);
     }
 
-    img {
+    .detail-left {
+        order:2;
         width: 100%;
+
+        figure {
+            @include FlexColumn(4vh);
+        }
+
+        .bookcover {
+            display: none;
+        }
+
+        figcaption {
+            @include FlexColumn(4vh);
+        }
+
+        .detail-info {
+            @include FlexColumn(2vh);
+            font-size: 14px;
+
+            li {
+                @include FlexRow();
+            }
+
+            span {
+                color: grey;
+                width: 35%;
+            }
+        }
+
+        .detail-outlink {
+            font-size: 30px;
+            @include FlexRow(3vw);
+        }
+
+        .detail-genre {
+            @include FlexRow(1vw);
+            flex-wrap: wrap;
+            row-gap: 1vw;
+
+            li {
+                @include FlexRow();
+                border: 1px solid black;
+                border-radius: 10vw;
+                padding: 2% 4%;
+                font-size: 14px;
+            }
+        }
     }
 
-    figcaption {
-        @include FlexRow(4vw);
+    .detail-right {
+        order: 1;
+        width: 100%;
+        @include FlexColumn(6vh);
 
-        p {
-            width: 60%;
+        aside {
+            @include FlexColumn(1vh);
+        }
+
+        h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        .detail-description {
+            @include FlexColumn(5vh);
+            padding-top: 5vh;
+
+            aside {
+                @include FlexColumn(2vh);
+            }
+        
+            .btn-lg {
+                width: 96%;
+            }
+
+            .btn-lg:first-child {
+                box-shadow: 0 4px 0 var(--primary);
+            }
+
+            .btn-lg:last-child {
+                box-shadow: 0 4px 0 var(--secondary);
+            }
+        }
+    }
+
+    .comment {
+        order:3;
+        @include FlexColumn(5vh);
+
+        form {
+            @include FlexColumn(1vh);
+            align-items: flex-end;
+        }
+
+        input {
+            border: 1px solid black;
+            padding: 2%;
+            background-color: var(--secondary);
+            width: 100%;
+        }
+
+        textarea {
+            width: 96%;
+            height: 160px;
+            padding: 2%;
+            resize: none;
         }
 
         ul {
@@ -432,12 +447,455 @@ footer {
         }
 
         li {
-            @include FlexRow();
+            @include FlexColumn(1vh);
+            border-top: 1px solid black;
+            padding-top : 4%;
+        }
+
+        aside {
+            color: grey;
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    // FORMS
+
+    .default-form {
+        @include FlexRowColumn(3vh);
+        width: 80%;
+        padding: 5vh 0;
+
+        aside {
+            @include FlexColumn();
+            width: 100%;
+
+            label {
+                @include FlexRow(1vw);
+                align-items: center;
+                padding: 2%;
+                width: 96%;
+                // background: linear-gradient(transparent 50%, gainsboro 50%);
+                font-size: 14px;
+                text-align: center;
+            }
+        }
+
+        input {
+            border: 0 none;
+            border-bottom: 1px solid black;
+            padding: 3%;
+            width: 94%;
+        }
+
+        textarea {
+            border: 0 none;
+            border: 1px solid black;
+            padding: 3%;
+            width: 94%;
+            height: 200px;
+            resize: none;
+        }
+
+        input[type="file"] {
+            width: 94%;
+            color: grey;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            display: none;
+        }
+
+        input[type="submit"] {
+            border: 1px solid black;
+            background-color: transparent;
+            width: 70%;
+            border-radius: 10vw;
+            box-shadow: 0px 4px 0px var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        & > a {
+            font-size: 14px;
+            text-decoration: underline;
+        }
+    }
+
+    .contact-form {
+        width: 90%;
+    }
+
+
+
+    // ABOUT
+
+    .about {
+
+        figure {
+            @include FlexColumn(3vh);
+        }
+
+        img {
+            width: 100%;
+        }
+
+        figcaption {
+            @include FlexColumn(5vh);
+
+            ul {
+                @include FlexColumn(3vh);
+            }
+
+            li {
+                @include FlexColumn(2vh);
+            }
 
             span {
                 color: grey;
-                width: 5vw;
             }
         }
     }
 }
+
+// TABLET
+
+@media (min-width: 600px) {
+
+    footer {
+        padding: 5%;
+    }
+
+    main {
+        row-gap: 5vh;
+    }
+
+    .filter {
+
+        .filter-list-mobile {
+            ul {
+                width: 50%;
+                row-gap: 1vh;
+            }
+        }
+    }
+
+    .comment {
+        aside {
+            @include FlexRow();
+            justify-content: space-between;
+        }
+    }
+
+}
+
+
+
+// DESKTOP
+
+@media (min-width: 1000px) {
+
+    // HEADER
+
+    header {
+        padding: 2% 0;
+    }
+
+    nav {
+        @include FlexRow();
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 5vh;
+        font-size: 14px;
+
+        section {
+            @include FlexRow(3vw);
+
+            ul {
+                @include FlexRow(3vw);
+            }
+        }
+        
+        & > aside {
+            @include FlexRow(1vw);
+
+            .btn-sm {
+                width: 80px;
+            }
+        }
+        
+        details {
+            display: none;
+        }
+
+        li:hover {
+            @include TextBackground(var(--primary));
+        }
+    }
+
+
+    // FOOTER
+
+    footer {
+        padding: 2% 5%;
+        flex-direction: row;
+        justify-content: space-between;
+
+        aside {
+            @include FlexRow(1vw);
+        }
+    }
+
+
+    // MAIN
+
+    main {
+        @include FlexRowColumn(7vh);
+        width: 80%;
+    }
+
+    // TITLE, SEARCH
+
+    .title {
+        @include FlexRowColumn(3vh);
+
+        form {
+            width: 60%;
+        }
+    }
+
+
+    // FILTER
+
+    .filter {
+        @include FlexRowCenter(5vw);
+
+        .filter-list {
+            @include FlexRowCenter(5vw);
+        }
+
+        .filter-list-more {
+            @include FlexRow();
+        }
+
+        a {
+            text-align: center;
+        }
+
+        details {
+
+            summary {
+                list-style-type: none;
+                cursor: pointer;
+            }
+            
+            ul {
+                position: absolute;
+                background-color: var(--primary);
+                width: 90%;
+                left: 0;
+                top: calc(100% + 20px);
+                display: flex;
+                flex-wrap: wrap;
+                padding: 5%;
+            }
+        }
+
+        .filter-list-mobile {
+            display: none;
+        }
+
+        .filter-mylist {
+            padding: 2%;
+        }
+    }
+
+    // MAIN BOOK LIST
+
+    .book-list {
+        gap: 5vw;
+
+        img {
+            $bookwidth : 15vw;
+            width: $bookwidth;
+            height: calc($bookwidth * 1.5);
+            object-position: center 0;
+        }
+
+        a:hover {
+            filter: drop-shadow(10px 10px 0px #FAFF00);
+        }
+    }
+
+
+    // PAGINATION
+
+    .pagination {
+        ul {
+            @include FlexRow(3vw);
+        }
+    }
+
+
+    // BOOK INFO
+
+    .bookcover-mobile {
+        display: none;
+    }
+    
+    .book-detail {
+        display: grid;
+        gap: 5vw;
+    }
+
+    .detail-left {
+        order:1;
+        grid-column: 1;
+        grid-row: 1 / span 2;
+
+        .bookcover {
+            display: block;
+        }
+
+        .detail-info {
+            font-size: 16px;
+        }
+
+        .detail-outlink {
+            font-size: 24px;
+            @include FlexRow(1vw);
+        }
+
+        .detail-genre {
+            @include FlexRow(.5vw);
+            row-gap: .5vw;
+        }
+    }
+
+    .detail-right {
+        order:2;
+        grid-column: 2 / span 2;
+        grid-row: 1;
+
+        aside {
+            @include FlexColumn(1vh);
+        }
+
+        .detail-description {
+        
+            .btn-lg {
+                width: 30%;
+            }
+
+            .btn-lg:first-child:hover {
+                background-color: var(--primary);
+            }
+
+            .btn-lg:last-child:hover {
+                background-color: var(--secondary);
+            }
+        }
+    }
+
+    .comment {
+        grid-column: 2 / span 2;
+        grid-row: 2;
+
+        input {
+            width: 20%;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        li {
+            padding-top : 2%;
+
+            aside {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+    }
+
+
+    // FORMS
+
+    .default-form {
+        width: 40%;
+
+        aside {
+            flex-direction: row;
+
+            label {
+                padding: 3%;
+                width: 30%;
+                border-bottom: 1px solid black;
+            }
+        }
+
+        textarea {
+            border: 0 none;
+            border: 1px solid black;
+            padding: 3%;
+            width: 94%;
+            height: 200px;
+            resize: none;
+        }
+
+        input[type="file"] {
+            width: 70%;
+        }
+    }
+
+    .contact-form {
+        width: 60%;
+        column-gap: 2vw;
+
+        input[type="submit"] {
+            width: 50%;
+            padding: 2%;
+        }
+    }
+
+
+
+    // ABOUT
+
+    .about {
+
+        figure {
+            @include FlexColumn(3vh);
+        }
+
+        img {
+            width: 100%;
+        }
+
+        figcaption {
+            @include FlexRow(4vw);
+
+            p {
+                width: 60%;
+            }
+
+            ul {
+                @include FlexColumn(3vh);
+            }
+
+            li {
+                @include FlexRow();
+
+                span {
+                    color: grey;
+                    width: 5vw;
+                }
+            }
+        }
+    }
+}
+

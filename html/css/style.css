@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header > nav,
+ul, li,
+aside,
+footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    padding: 2% 10%;
+}
+
+body, main, section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5vh;
+}
+
+/* INDEX */
+
+section.filter {
+    flex-direction: row;
+}
+
+.title {
+    align-items: center;
+}
+
+.title aside {
+    width: 100%;
+}
+
+.filter ul {
+    width: 100%;
+}
+
+.book-list > figure {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5vw;
+}
+
+.book-list a:hover {
+    filter: drop-shadow(10px 10px 0px #FAFF00);
+}
+
+/* BOOK DETAIL */
+
+.book-detail {
+    flex-direction: row;
+    column-gap: 3vw;
+}
+
+.outlink {
+    justify-content: left;
+}
+
+.detail-right aside {
+    flex-direction: column;
+}
+
+.comment > ul {
+    flex-direction: column;
+}
+
+.comment li {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid black;
+    padding: 3% 0;
+}
+
+/* USER LIST */
+
+.book-list-detail figure {
+    display: flex;
+    column-gap: 3vw;
+}
+
+.book-list-detail a:hover img {
+    filter: drop-shadow(10px 10px 0px #FAFF00);
+}
