@@ -9,10 +9,13 @@ require_once("inc/Utilities/DAO/UserDAO.class.php");
 
 require_once("inc/Page.class.php");
 
+
+
 if (!empty($_POST['username'])) {
     $userName = $_POST['username'];
     $userNameExist = UserDAO::getUserByUsername($userName);
-    //Check the DAO returned an object of type user
+
+    
     if( (gettype($authUser) == "object") && (get_class($authUser) == "User") ){
         
         //Check the password

@@ -16,6 +16,7 @@ if ( ! empty($_POST)) {
     $newUser = new User();
     $newUser->setuserName($_POST['userName']);
     $newUser->setEmail($_POST['email']);
+    $newUser->setUserPicture($_POST['userPicture']);
     $newPass = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $newUser->setPassword($newPass);
 
