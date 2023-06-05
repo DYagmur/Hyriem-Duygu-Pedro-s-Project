@@ -6,34 +6,36 @@ require_once("inc/Entities/User.class.php");
 
 require_once("inc/Utilities/PDOService.class.php");
 require_once("inc/Utilities/DAO/UserDAO.class.php");
-
+require_once("inc/Utilities/LoginManager.class.php");
 require_once("inc/Page.class.php");
 
 
 
-if (!empty($_POST['email'])) {
+if (!empty($_POST)) {
+
+    UserDAO::startDb();
     
     $email = $_POST['email'];
-    $emailExist = UserDAO::getEmailbyEmail($email);
+    $loginUser = UserDAO::getEmailbyEmail($email);
 
-    var_dump($emailExist);
+  
    
 
     
-    /* if( (gettype($authUser) == "object") && (get_class($authUser) == "User") ){
+    if( (gettype($loginUser) == "object") && (get_class($loginUser) == "User") ){
         
         //Check the password
-        if ($authUser->verifyPassword($_POST['password']))  {
+        if ($loginUser->verifyPassword($_POST['password']))  {
             //Start the session
             session_start();
             //Set the user to logged in
             $_SESSION["loggedin"] = true;
-            $_SESSION['userName'] = $authUser;
+            $_SESSION['email'] = $loginUser;
 
-            header("Location: index.html");
+            header("Location: index.php");
             exit();
         }
-    } */
+    } 
 }
 
 echo Page::pageHeader();

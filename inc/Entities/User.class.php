@@ -47,5 +47,21 @@ class User {
     public function setuserPicture($userPicture) {
         $this->userPicture = $userPicture;
     }
+
+    //Verify the password
+    function verifyPassword(string $passwordToVerify) : bool {
+        //password comparator
+        $equal = false;
+        //Return a boolean based on verifying if the password given is correct for the current user
+        if(password_verify($passwordToVerify,$this->getPassword())){
+            //set password comparator true
+            $equal = true;
+        } else {
+            //set password comparator false
+            $equal = false;
+        }
+        //return the password comparator
+        return $equal;
+    }
     
 }
