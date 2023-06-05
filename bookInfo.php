@@ -48,7 +48,6 @@ if (!empty($_POST['post_comment'])) {
 } 
 
 
-echo Page::pageHeader();
-echo PageContent::pageBookDetail($book);
+
 
 echo Page::pageFooter();

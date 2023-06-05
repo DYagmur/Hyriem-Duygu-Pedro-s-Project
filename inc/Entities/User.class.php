@@ -40,12 +40,12 @@ class User {
         $this->password = $password;
     }
 
-    public function getUserPicture() {
+    public function getuserPicture() {
         return $this->userPicture;
     }
 
-    public function setUserPicture() {
+    public function setuserPicture($userPicture) {
         $this->userPicture = $userPicture;
     }
-
+    
 }
