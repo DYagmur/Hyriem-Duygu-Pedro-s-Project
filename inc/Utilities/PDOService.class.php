@@ -2,50 +2,43 @@
 
 class PDOService {
 
-    //Pull in the attributes from the config
-    private  $_host = DB_HOST;  
-    private  $_user = DB_USER;  
-    private  $_pass = DB_PASS;  
-    private  $_dbname = DB_NAME;  
+private $_host = DB_HOST;
+private $_user = DB_USER;
+private $_pass = DB_PASS;
+private $_dbname = DB_NAME;
 
-    //Store the PDO Object
-    private  $_dbh;
-    private  $_error;
+private $_dbh;
+private $_error;
 
-    //Store the class we will be working with;
-    private $_className;
+private $_className;
+private $_pstmt;
 
-    //Store the Query Statement;
-    private  $_pstmt;
+public function __construct(string $className) {
+    $this->_className = $className;
 
+    $dsn = 'mysql:host=' . $this->_host . ';dbname=' . $this->_dbname;
+    $options = array(
+        PDO::ATTR_PERSISTENT => true,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    );
 
-    //Construct our wrapper, build the DSN
-    public function __construct(string $className) {
-        
-        $this->_className = $className;
+    try {
+        $this->_dbh = new PDO($dsn, $this->_user, $this->_pass, $options);
+    } catch (PDOException $pe) {
+        $this->_error = $pe->getMessage();
+        // You can handle the error here or throw an exception
+        throw new Exception("Database connection error: " . $this->_error);
+    }
+}
 
-        //Assemble the DSN (Data Source Name)
-        $dsn = 'mysql:host=' .$this->_host. ';dbname=' .$this->_dbname;
-
-        //Set the options for PDO
-        $options = array (
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION );
-        
-
-        //Try to get a PDO class
-        try {
-            $this->_dbh = new PDO($dsn, $this->_user, $this->_pass, $options);
-        } catch (PDOException $pe)   {
-            $this->_error = $pe->getMessage();
-        }
-
+public function query(string $query) {
+    if (!$this->_dbh) {
+        // Handle the case where the database connection is not established
+        throw new Exception("No database connection.");
     }
 
-    //This function prepares a query that has be passed
-    public function query(string $query)    {
-        $this->_pstmt = $this->_dbh->prepare($query);
-    }
+    $this->_pstmt = $this->_dbh->prepare($query);
+}
 
     //This function binds parameters
     public function bind($param, $value, $type=null)    {

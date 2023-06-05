@@ -84,16 +84,34 @@ class MainPage {
       ';
       return $bookImage;
    }  
-
-   // public static function loginPage() {
-   //    $login = '
-   //       <form method="POST">
-   //          <input type="text" name="email" id="email" placeholder="Email">
-   //          <input type="password" name="password" id="password" placeholder="Password">
-   //       </form>
-   //    ';
-   //    return $login;
-   // }
+   
+   public static function pageComment(){
+      $pageComment = '
+      <section class="comment">
+         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+            <textarea name="comment" id="comment" placeholder="What do you think of this book?"></textarea>
+            <input type="submit" value="Submit">
+         </form>
+            <ul>
+               <li>
+                  <aside>
+                     <a href="userList.html">USERNAME</a>
+                     <p>MM-DD-YY</p>
+                  </aside>
+               <li>
+                  <aside>
+                     <a href="userList.html">USERNAME</a>
+                     <p>MM-DD-YY</p>
+                  </aside>
+               <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+               </p>
+               </li>
+            </ul>
+      </section>
+      ';
+      return $pageComment;
+   }
 
    public static function pageEnd() {
       $htmlPageEnd = '
@@ -102,37 +120,5 @@ class MainPage {
       </html>';
       return $htmlPageEnd;
    }
-
-   public static function pageComment(){
-      $pageComment = '
-         <section class="comment">
-            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-               <textarea name="comment" id="comment" placeholder="what do you think?"></textarea>
-               <input type="submit" value="Submit">
-            </form>
-            <ul>
-               <li>
-                     <aside>
-                        <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
-                     </aside>
-               <li>
-                     <aside>
-                        <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
-                     </aside>
-                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-                     </p>
-               </li>
-            </ul>
-         </section>
-      ';                <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-                     </p>
-               </li>
-     
-      return $pageComment;
-  }
 
 }

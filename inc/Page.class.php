@@ -66,7 +66,7 @@ class Page {
 
     // TITLE
     
-    public static function titleSerch($title="Let us find your book!") {
+    public static function titleSearch($title="Let us find your book!") {
         $titleSerch = '
         <section class="title">
             <h1>'.$title.'</h1>

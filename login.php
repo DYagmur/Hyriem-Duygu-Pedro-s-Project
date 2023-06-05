@@ -23,7 +23,7 @@ if (!empty($_POST['username'])) {
             $_SESSION["loggedin"] = true;
             $_SESSION['userName'] = $authUser;
 
-            header("Location: updateaccount.php");
+            header("Location: index.html");
             exit();
         }
     }
