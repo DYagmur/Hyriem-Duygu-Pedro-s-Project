@@ -10,17 +10,22 @@ require_once("inc/Page.class.php");
 session_start();
 UserDAO::startDb();
 
-echo Page::PageHeader();
+
 
 if ( ! empty($_POST)) {
     $newUser = new User();
     $newUser->setuserName($_POST['userName']);
     $newUser->setEmail($_POST['email']);
-    $newUser->setUserPicture($_POST['userPicture']);
+    $newUser->setUserPicture($_FILES['userPicture']['name']);
     $newPass = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $newUser->setPassword($newPass);
 
+    /* $check = $newUser->setUserPicture($_POST['userPicture']);
+    var_dump($check); */
+
     $userExist = UserDAO::getUserByUsername($_POST['userName']);
+    $userExist = UserDAO::getEmailbyEmail($_POST['email']);
+
  
     if (!$userExist) {
         UserDAO::insertUser($newUser);  
@@ -29,7 +34,6 @@ if ( ! empty($_POST)) {
     }
 }
 
-echo Page::formSignup();
 
 echo Page::pageHeader();
 echo Page::titleDefault("Hi there, nice to see you!");

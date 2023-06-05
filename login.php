@@ -11,12 +11,16 @@ require_once("inc/Page.class.php");
 
 
 
-if (!empty($_POST['username'])) {
-    $userName = $_POST['username'];
-    $userNameExist = UserDAO::getUserByUsername($userName);
+if (!empty($_POST['email'])) {
+    
+    $email = $_POST['email'];
+    $emailExist = UserDAO::getEmailbyEmail($email);
+
+    var_dump($emailExist);
+   
 
     
-    if( (gettype($authUser) == "object") && (get_class($authUser) == "User") ){
+    /* if( (gettype($authUser) == "object") && (get_class($authUser) == "User") ){
         
         //Check the password
         if ($authUser->verifyPassword($_POST['password']))  {
@@ -29,7 +33,7 @@ if (!empty($_POST['username'])) {
             header("Location: index.html");
             exit();
         }
-    }
+    } */
 }
 
 echo Page::pageHeader();

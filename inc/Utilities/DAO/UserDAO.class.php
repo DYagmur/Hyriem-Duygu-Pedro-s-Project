@@ -45,6 +45,19 @@ class UserDAO {
         return self::$db->resultSet();
     }
 
+    public static function getEmailbyEmail(string $email)  {
+        $sql = "SELECT * FROM users WHERE email=:email";
+
+        self::$db->query($sql);
+
+        self::$db->bind(":email",$email);
+
+        self::$db->execute();
+      
+        return self::$db->singleResult();
+    }
+
+
 
     
 }
