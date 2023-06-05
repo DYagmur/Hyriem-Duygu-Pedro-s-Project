@@ -1,0 +1,850 @@
+// MOBILE
+
+@media (min-width: 200px) {
+
+    // HEADER
+
+    header {
+        width: 90%;
+        padding: 4% 0;
+    }
+
+    nav {
+        @include FlexRow();
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 5vh;
+        font-size: 14px;
+
+        section {
+            @include FlexRow(3vw);
+
+            ul {
+                display: none;
+            }
+        }
+        
+        &>aside {
+            display: none;
+        }
+        
+        figure {
+            width: 200px;
+        }
+        
+        
+        li {
+            @include FlexRow();
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        li:hover {
+            @include TextBackground(var(--primary));
+        }
+    }
+
+    // FOOTER
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 90%;
+        padding: 2% 5%;
+        @include FlexRow();
+        justify-content: space-between;
+        background-color: black;
+        color: white;
+
+        aside {
+            @include FlexRow(2vw);
+        }
+    }
+
+
+    // MAIN
+
+    main {
+        @include FlexRowColumn(7vh);
+        width: 80%;
+        padding-bottom: 20vh;
+    }
+
+    // TITLE, SEARCH
+
+    .title {
+        @include FlexRowColumn(3vh);
+
+        h1 {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 10px;
+        }
+
+        form {
+            border-bottom: 1px solid black;
+            display: flex;
+            width: 60%;
+            height: 40px;
+            position: relative;
+
+            input {
+                border: 0 none;
+                padding: 2% 5%;
+                background-color: transparent;
+            }
+
+            input:first-child {
+                width: 90%;
+            }
+            input:last-child {
+                width: 10%;
+                text-indent: -9999px;
+            }
+
+            &:before {
+                content: "\f002";
+                font-family: "FontAwesome";
+                position: absolute;
+                right: 10px;
+                bottom:10px; 
+                color: black;
+            }
+        }
+    }
+
+    // FILTER
+
+    .filter {
+        @include FlexRowCenter(5vw);
+        position: relative;
+
+        ul {
+            @include FlexRowCenter(5vw);
+        }
+
+        li {
+            @include FlexRowCenter();
+        }
+
+        a {
+            text-align: center;
+        }
+
+        details {
+
+            summary {
+                list-style-type: none;
+                cursor: pointer;
+            }
+            
+            ul {
+                position: absolute;
+                background-color: var(--primary);
+                width: 90%;
+                left: 0;
+                top: calc(100% + 20px);
+                display: flex;
+                flex-wrap: wrap;
+                padding: 5%;
+            }
+        }
+
+        .filter-list-mobile {
+            display: none;
+        }
+
+        .filter-mylist {
+            width: 5vw;
+        }
+    }
+
+    // MAIN BOOK LIST
+
+    .book-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5vw;
+
+        figure {
+            width: 15vw;
+        }
+
+        a:hover {
+            filter: drop-shadow(10px 10px 0px #FAFF00);
+        }
+    }
+
+    // PAGINATION
+
+    .pagination {
+        ul {
+            @include FlexRow(3vw);
+        }
+
+        li {
+            @include FlexRow();
+        }
+    }
+
+
+
+
+
+    // BOOK INFO
+
+    .book-detail {
+        width: 90%;
+        @include FlexRow(5vw);
+    }
+
+    .detail-left {
+        width: 30%;
+
+        figure {
+            @include FlexColumn(4vh);
+        }
+
+        figcaption {
+            @include FlexColumn(4vh);
+        }
+
+        .detail-info {
+            @include FlexColumn(2vh);
+
+            li {
+                @include FlexRow();
+            }
+
+            span {
+                color: grey;
+                width: 35%;
+            }
+        }
+
+        .detail-outlink {
+            font-size: 24px;
+            @include FlexRow(1vw);
+        }
+
+        .detail-genre {
+            @include FlexRow(.5vw);
+            flex-wrap: wrap;
+            row-gap: .5vw;
+
+            li {
+                @include FlexRow();
+                border: 1px solid black;
+                border-radius: 10vw;
+                padding: 2% 4%;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .detail-right {
+        width: 70%;
+        @include FlexColumn(6vh);
+
+        aside {
+            @include FlexColumn(1vh);
+        }
+
+        h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        .detail-description {
+            @include FlexColumn(5vh);
+            padding-top: 5vh;
+        
+            .btn-lg {
+                width: 30%;
+            }
+
+            .btn-lg:first-child:hover {
+                background-color: var(--primary);
+            }
+
+            .btn-lg:last-child:hover {
+                background-color: var(--secondary);
+            }
+        }
+    }
+
+    .comment {
+        @include FlexColumn(5vh);
+
+        form {
+            @include FlexColumn(1vh);
+            align-items: flex-end;
+        }
+
+        input {
+            border: 1px solid black;
+            padding: 2%;
+            background-color: var(--secondary);
+            width: 20%;
+        }
+
+        textarea {
+            width: 96%;
+            height: 120px;
+            padding: 2%;
+            resize: none;
+        }
+
+        ul {
+            @include FlexColumn(3vh);
+        }
+
+        li {
+            @include FlexColumn(1vh);
+            border-top: 1px solid black;
+            padding-top : 2%;
+
+            aside {
+                flex-direction: row;
+                justify-content: space-between;
+                color: grey;
+            }
+        }
+    }
+
+
+
+    // FORMS
+
+    .default-form {
+        @include FlexRowColumn(4vh);
+        width: 40%;
+        padding-bottom: 10vh;
+
+        aside {
+            @include FlexRow(1vw);
+            width: 100%;
+            vertical-align: bottom;
+
+            label {
+                padding: 3%;
+                width: 60%;
+            }
+        }
+
+        input {
+            border: 0 none;
+            border-bottom: 1px solid black;
+            padding: 3%;
+            width: 96%;
+        }
+
+        textarea {
+            border: 0 none;
+            border: 1px solid black;
+            padding: 3%;
+            width: 94%;
+            height: 200px;
+            resize: none;
+        }
+
+        input[type="file"] {
+            width: 100%;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            display: none;
+        }
+
+        .btn-file {
+            // background-color: var(--secondary);
+            background: linear-gradient(transparent 50%, gainsboro 50%);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            border: 1px solid black;
+            background-color: transparent;
+            width: 70%;
+            border-radius: 10vw;
+            box-shadow: 0px 4px 0px var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    }
+
+    .contact-form {
+        width: 60%;
+    }
+
+
+
+    // ABOUT
+
+    .about {
+
+        figure {
+            @include FlexColumn(3vh);
+        }
+
+        img {
+            width: 100%;
+        }
+
+        figcaption {
+            @include FlexRow(4vw);
+
+            p {
+                width: 60%;
+            }
+
+            ul {
+                @include FlexColumn(3vh);
+            }
+
+            li {
+                @include FlexRow();
+
+                span {
+                    color: grey;
+                    width: 5vw;
+                }
+            }
+        }
+    }
+}
+
+
+
+// // TABLET
+
+// @media (min-width: 600px) {
+
+//     // HEADER
+
+//     header {
+//         width: 90%;
+//         padding: 2% 0;
+//     }
+
+//     nav {
+//         @include FlexRow();
+//         justify-content: space-between;
+//         align-items: center;
+//         padding-bottom: 5vh;
+//         font-size: 14px;
+
+//         section {
+//             @include FlexRow(3vw);
+//         }
+        
+//         aside {
+//             @include FlexRow(1vw);
+
+//             .btn-sm {
+//                 width: 80px;
+//             }
+//         }
+        
+//         figure {
+//             width: 200px;
+//         }
+        
+//         ul {
+//             @include FlexRow(2vw);
+//         }
+
+//         li {
+//             @include FlexRow();
+//             text-transform: uppercase;
+//             letter-spacing: 2px;
+//         }
+
+//         li:hover {
+//             @include TextBackground(var(--primary));
+//         }
+//     }
+
+//     // FOOTER
+
+//     footer {
+//         position: absolute;
+//         bottom: 0;
+//         width: 90%;
+//         padding: 2% 5%;
+//         @include FlexRow();
+//         justify-content: space-between;
+//         background-color: black;
+//         color: white;
+
+//         aside {
+//             @include FlexRow(2vw);
+//         }
+//     }
+
+
+//     // MAIN
+
+//     main {
+//         @include FlexRowColumn(7vh);
+//         width: 80%;
+//         padding-bottom: 20vh;
+//     }
+
+//     // TITLE, SEARCH
+
+//     .title {
+//         @include FlexRowColumn(3vh);
+
+//         h1 {
+//             font-size: 30px;
+//             font-weight: 700;
+//             letter-spacing: 10px;
+//         }
+
+//         form {
+//             border-bottom: 1px solid black;
+//             display: flex;
+//             width: 60%;
+//             height: 40px;
+//             position: relative;
+
+//             input {
+//                 border: 0 none;
+//                 padding: 2% 5%;
+//                 background-color: transparent;
+//             }
+
+//             input:first-child {
+//                 width: 90%;
+//             }
+//             input:last-child {
+//                 width: 10%;
+//                 text-indent: -9999px;
+//             }
+
+//             &:before {
+//                 content: "\f002";
+//                 font-family: "FontAwesome";
+//                 position: absolute;
+//                 right: 10px;
+//                 bottom:10px; 
+//                 color: black;
+//             }
+//         }
+//     }
+
+//     // FILTER
+
+//     .filter {
+//         @include FlexRowCenter(5vw);
+//         position: relative;
+
+//         ul {
+//             @include FlexRowCenter(5vw);
+//         }
+
+//         li {
+//             @include FlexRowCenter();
+//         }
+
+//         a {
+//             text-align: center;
+//         }
+
+//         details {
+
+//             summary {
+//                 list-style-type: none;
+//                 cursor: pointer;
+//             }
+            
+//             ul {
+//                 position: absolute;
+//                 background-color: var(--primary);
+//                 width: 90%;
+//                 left: 0;
+//                 top: calc(100% + 20px);
+//                 display: flex;
+//                 flex-wrap: wrap;
+//                 padding: 5%;
+//             }
+//         }
+
+//         .filter-list-mobile {
+//             display: none;
+//         }
+
+//         .filter-mylist {
+//             width: 5vw;
+//         }
+//     }
+
+//     // MAIN BOOK LIST
+
+//     .book-list {
+//         display: flex;
+//         justify-content: center;
+//         flex-wrap: wrap;
+//         gap: 5vw;
+
+//         figure {
+//             width: 15vw;
+//         }
+
+//         a:hover {
+//             filter: drop-shadow(10px 10px 0px #FAFF00);
+//         }
+//     }
+
+//     // PAGINATION
+
+//     .pagination {
+//         ul {
+//             @include FlexRow(3vw);
+//         }
+
+//         li {
+//             @include FlexRow();
+//         }
+//     }
+
+
+
+
+
+//     // BOOK INFO
+
+//     .book-detail {
+//         width: 90%;
+//         @include FlexRow(5vw);
+//     }
+
+//     .detail-left {
+//         width: 30%;
+
+//         figure {
+//             @include FlexColumn(4vh);
+//         }
+
+//         figcaption {
+//             @include FlexColumn(4vh);
+//         }
+
+//         .detail-info {
+//             @include FlexColumn(2vh);
+
+//             li {
+//                 @include FlexRow();
+//             }
+
+//             span {
+//                 color: grey;
+//                 width: 35%;
+//             }
+//         }
+
+//         .detail-outlink {
+//             font-size: 24px;
+//             @include FlexRow(1vw);
+//         }
+
+//         .detail-genre {
+//             @include FlexRow(.5vw);
+//             flex-wrap: wrap;
+//             row-gap: .5vw;
+
+//             li {
+//                 @include FlexRow();
+//                 border: 1px solid black;
+//                 border-radius: 10vw;
+//                 padding: 2% 4%;
+//                 font-size: 14px;
+//             }
+//         }
+//     }
+
+//     .detail-right {
+//         width: 70%;
+//         @include FlexColumn(6vh);
+
+//         aside {
+//             @include FlexColumn(1vh);
+//         }
+
+//         h1 {
+//             font-size: 32px;
+//             text-transform: uppercase;
+//         }
+
+//         h3 {
+//             font-size: 30px;
+//             font-weight: 400;
+//         }
+
+//         .detail-description {
+//             @include FlexColumn(5vh);
+//             padding-top: 5vh;
+        
+//             .btn-lg {
+//                 width: 30%;
+//             }
+
+//             .btn-lg:first-child:hover {
+//                 background-color: var(--primary);
+//             }
+
+//             .btn-lg:last-child:hover {
+//                 background-color: var(--secondary);
+//             }
+//         }
+//     }
+
+//     .comment {
+//         @include FlexColumn(5vh);
+
+//         form {
+//             @include FlexColumn(1vh);
+//             align-items: flex-end;
+//         }
+
+//         input {
+//             border: 1px solid black;
+//             padding: 2%;
+//             background-color: var(--secondary);
+//             width: 20%;
+//         }
+
+//         textarea {
+//             width: 96%;
+//             height: 120px;
+//             padding: 2%;
+//             resize: none;
+//         }
+
+//         ul {
+//             @include FlexColumn(3vh);
+//         }
+
+//         li {
+//             @include FlexColumn(1vh);
+//             border-top: 1px solid black;
+//             padding-top : 2%;
+
+//             aside {
+//                 flex-direction: row;
+//                 justify-content: space-between;
+//                 color: grey;
+//             }
+//         }
+//     }
+
+
+
+//     // FORMS
+
+//     .default-form {
+//         @include FlexRowColumn(4vh);
+//         width: 40%;
+//         padding-bottom: 10vh;
+
+//         aside {
+//             @include FlexRow(1vw);
+//             width: 100%;
+//             vertical-align: bottom;
+
+//             label {
+//                 padding: 3%;
+//                 width: 60%;
+//             }
+//         }
+
+//         input {
+//             border: 0 none;
+//             border-bottom: 1px solid black;
+//             padding: 3%;
+//             width: 96%;
+//         }
+
+//         textarea {
+//             border: 0 none;
+//             border: 1px solid black;
+//             padding: 3%;
+//             width: 94%;
+//             height: 200px;
+//             resize: none;
+//         }
+
+//         input[type="file"] {
+//             width: 100%;
+//         }
+
+//         input[type="file"]::-webkit-file-upload-button {
+//             display: none;
+//         }
+
+//         .btn-file {
+//             // background-color: var(--secondary);
+//             background: linear-gradient(transparent 50%, gainsboro 50%);
+//             font-size: 14px;
+//             text-align: center;
+//         }
+
+//         input[type="submit"] {
+//             border: 1px solid black;
+//             background-color: transparent;
+//             width: 70%;
+//             border-radius: 10vw;
+//             box-shadow: 0px 4px 0px var(--primary);
+//             text-transform: uppercase;
+//             font-weight: 600;
+//         }
+//     }
+
+//     .contact-form {
+//         width: 60%;
+//     }
+
+
+
+//     // ABOUT
+
+//     .about {
+
+//         figure {
+//             @include FlexColumn(3vh);
+//         }
+
+//         img {
+//             width: 100%;
+//         }
+
+//         figcaption {
+//             @include FlexRow(4vw);
+
+//             p {
+//                 width: 60%;
+//             }
+
+//             ul {
+//                 @include FlexColumn(3vh);
+//             }
+
+//             li {
+//                 @include FlexRow();
+
+//                 span {
+//                     color: grey;
+//                     width: 5vw;
+//                 }
+//             }
+//         }
+//     }
+// }

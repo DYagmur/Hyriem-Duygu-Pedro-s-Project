@@ -7,12 +7,23 @@ class PageContent {
     public static function pageMainList($bookList) {
         $pageMainList = '
         <section class="book-list">';
-        for($i = 0; $i <= 11; $i++){
+        
+        if(! empty ($_GET['page'])) {
+            $pageNumber = $_GET['page'];
+        } else {
+            $pageNumber = 1;
+        }
+            
+        $listNumber = 12;
+        for($i = (($pageNumber -1) * $listNumber); $i <= ($pageNumber *12) -1; $i++){
             $pageMainList .= self::bookListMain($bookList[$i]);
         }
+
+        
         $pageMainList .= '</section>';
         return $pageMainList;
     }
+
 
     public static function bookListMain($book) {
         $bookListMain = '
@@ -40,7 +51,7 @@ class PageContent {
             <!-- LEFT SIDE : img, info, shop&share -->
             <section class="detail-left">
                 <figure>
-                    <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
+                    <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'" class="bookcover">
                     <figcaption>
                         <ul class="detail-info">
                             <li><span>Publish date</span>'.$book->getPublishDate().'</li>
@@ -69,6 +80,9 @@ class PageContent {
             </section>
             <!-- RIGHT SIDE : info btn comment -->
             <section class="detail-right">
+                <figure>
+                    <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'" class="bookcover-mobile">
+                </figure>
                 <aside>
                     <h1>'.$book->getTitle().'</h1>
                     <h3>'.$book->getAuthor().'</h3>
@@ -88,8 +102,8 @@ class PageContent {
                     '.$book->getDescription().'
                     </p>
                 </section>
-                '.self::pageComment().'
             </section>
+            '.self::pageComment().'
         </section>
         ';
         return $pageBookDetail;
@@ -99,8 +113,8 @@ class PageContent {
         $pageComment = '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="comment" id="comment" placeholder="what do you think?"></textarea>
-                <input type="submit" value="Submit" class="btn-sm">
+                <textarea name="post_comment" id="comment" placeholder="what do you think?"></textarea>
+                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
             </form>
             <ul>
                 <li>
