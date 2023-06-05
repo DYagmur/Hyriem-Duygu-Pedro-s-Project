@@ -120,7 +120,7 @@ class PageContent {
                 <li>
                     <aside>
                         <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
+                        <p></p>
                     </aside>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
@@ -179,7 +179,7 @@ class PageContent {
                 <img src="img/about.png" alt="about readvice">
                 <figcaption>
                     <p>
-                       Our goal in readvice is to provide you the best experience for finding and discovering your favorite books! Here, you can find several several kinds of books with multiple genres available. Try filtering by the genre or simply search for the book you are looking for. Once you have liked a certain amount of books, readvice will recommend you similar books that match your personal taste! We created this website to help you build your own book taste and to facilitate your needs for better books on a very user friendly interface. 
+                       Our goal in readvice is to give you the best experience for finding and discovering your favorite books! Here, you can find several several kinds of books with multiple genres available. Try filtering by the genre or simply search for the book you are looking for. Once you have liked a certain amount of books, readvice will recommend you similar books that match your personal taste! We created this website to help you build your own book taste and to facilitate your needs for better books on a very user friendly interface. 
                     </p>
                     <ul>
                         <li><span>Address</span>889 W Pender St #200, Vancouver, BC V6C 3B2</li>

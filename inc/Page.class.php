@@ -152,7 +152,7 @@ class Page {
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Password">
             <input type="submit" value="LOG IN" class="btn_lg">
-            <a href="#">Not our member yet?</a>
+            <a href="signup.php">Not our member yet?</a>
         </form>
         ';
         return $formLogin;
@@ -184,7 +184,7 @@ class Page {
                 <input type="text" name="name" id="name" placeholder="Name">
                 <input type="email" name="email" id="email" placeholder="Email">
             </aside>
-            <textarea name="message" id="message" placeholder="Messages"></textarea>
+            <textarea name="message" id="message" placeholder="Message"></textarea>
             <input type="submit" value="Send" class="btn_lg">
         </form>
         ';

@@ -3,10 +3,12 @@
 require_once("inc/config.inc.php");
 
 require_once("inc/Entities/Book.class.php");
+require_once("inc/Entities/UserComment.class.php");
 require_once("inc/Utilities/Repositories/BookRepository.class.php");
 
 require_once("inc/Utilities/PDOService.class.php");
 require_once("inc/Utilities/DAO/BookDAO.class.php");
+require_once("inc/Utilities/DAO/UserCommentDAO.class.php");
 
 require_once("inc/Page.class.php");
 require_once("inc/PageContent.class.php");
