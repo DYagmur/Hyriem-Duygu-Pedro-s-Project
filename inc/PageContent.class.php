@@ -113,7 +113,7 @@ class PageContent {
         $pageComment = '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="post_comment" id="comment" placeholder="what do you think?"></textarea>
+                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
                 <input type="submit" value="Submit" class="btn-sm" name="submitComment">
             </form>
             <ul>
@@ -140,26 +140,6 @@ class PageContent {
         ';
         return $pageComment;
     }
-
-    public static function successMessage() {
-        $html = '
-        <div class="alert alert-success" role="alert">
-            Comment Uploaded Successfully!
-        </div>
-        ';
-
-        return $html;
-    }
-
-    public static function warningMessage(string $message) {
-        $html = '
-        <div class="alert alert-warning" role="alert">'.
-          $message  
-        .'</div>
-        ';
-        return $html;
-    }
-
     // USER LIST
 
     public static function pageUserList($bookList) {
@@ -199,7 +179,7 @@ class PageContent {
                 <img src="img/about.png" alt="about readvice">
                 <figcaption>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi ex neque quaerat qui provident cumque veniam eum iste. Culpa, recusandae odio sequi eius ab ex molestiae nulla illo? Incidunt doloremque molestias quam error corporis, quaerat explicabo dolorum earum odit vel consectetur nobis quod aspernatur debitis perspiciatis eius velit libero laborum possimus aut blanditiis provident ex deserunt corrupti. Recusandae nulla reiciendis maiores? Velit provident blanditiis qui fugiat atque neque inventore, veritatis, error cumque quod repellendus ea dolor facilis esse a? Expedita perferendis mollitia molestiae odio repellat maiores, illo sunt, animi id at pariatur ducimus quae sint obcaecati nesciunt ipsum commodi suscipit eaque delectus enim. Ex facere aperiam explicabo quidem excepturi quisquam illum sunt in esse consequatur quo quos, enim voluptatum quia similique sequi labore beatae repudiandae perferendis dolores laboriosam error? Rerum quo corporis suscipit harum consectetur soluta praesentium odit aliquam accusantium at maxime, iure dolor velit autem quidem ipsum vero, cupiditate illum. Maiores sit dolorem aliquam cupiditate perferendis at fugit in ullam esse fuga quis voluptates, vel doloribus reiciendis aspernatur nobis aliquid ipsum sapiente minus et quas doloremque itaque porro. Cumque obcaecati facere harum id minus iste eum non eaque, quasi eligendi quia sequi voluptas nesciunt aliquid quisquam! Autem, est nostrum.
+                       Our goal in readvice is to provide you the best experience for finding and discovering your favorite books! Here, you can find several several kinds of books with multiple genres available. Try filtering by the genre or simply search for the book you are looking for. Once you have liked a certain amount of books, readvice will recommend you similar books that match your personal taste! We created this website to help you build your own book taste and to facilitate your needs for better books on a very user friendly interface. 
                     </p>
                     <ul>
                         <li><span>Address</span>889 W Pender St #200, Vancouver, BC V6C 3B2</li>
