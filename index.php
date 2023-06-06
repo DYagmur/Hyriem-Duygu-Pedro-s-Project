@@ -18,7 +18,7 @@ $bookRepository = new BookRepository();
 $bookRepository->setBookList(BookDAO::getAllBooks());
 
 
-echo Page::pageHeader();
+echo Page::pageHeader($userName);
 
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));

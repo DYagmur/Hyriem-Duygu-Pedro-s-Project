@@ -38,7 +38,7 @@ if ( ! empty($_POST)) {
 }
 
 
-echo Page::pageHeader();
+echo Page::pageHeader($userName);
 echo Page::titleDefault("Hi there, nice to see you!");
 echo Page::formSignup();
 echo Page::pageFooter();

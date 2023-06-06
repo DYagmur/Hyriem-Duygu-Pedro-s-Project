@@ -11,6 +11,6 @@ session_start();
 
 session_destroy();
 
-echo Page::PageHeader();
+echo Page::PageHeader($userName);
 echo "You are out!";
 echo Page::PageFooter();

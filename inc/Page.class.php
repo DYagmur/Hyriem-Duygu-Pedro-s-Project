@@ -4,7 +4,7 @@ class Page {
 
     // HEADER 
     
-    public static function pageHeader() {
+    public static function pageHeader($userName) {
         $btn = '';
         $pageHeader = '
         <!DOCTYPE html>
@@ -37,7 +37,7 @@ class Page {
                         if(true){
                             $pageHeader .= self::navOut();
                         } else {
-                            $pageHeader .= self::navIn();
+                            $pageHeader .= self::navIn($userName);
                         }
                         $pageHeader .= '
                     </aside>
@@ -56,7 +56,7 @@ class Page {
                                 if(true){
                                     $pageHeader .= self::navOut();
                                 } else {
-                                    $pageHeader .= self::navIn();
+                                    $pageHeader .= self::navIn($userName);
                                 }
                                 $pageHeader .= '
                             </aside>
@@ -77,9 +77,9 @@ class Page {
         return $navOut;
     }
 
-    public static function navIn() {
+    public static function navIn($userName) {
         $navIn = '
-        <p>Hi, username</p>
+        <p>Welcome to ReadVice '.$userName.'</p>
         <a href="logout.php" class="btn-sm">Log out</a>
         ';
         return $navIn;

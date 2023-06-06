@@ -32,13 +32,24 @@ if (!empty($_POST)) {
             $_SESSION["loggedin"] = true;
             $_SESSION['email'] = $loginUser;
 
-            header("Location: index.php");
+            /* header("Location: index.php"); */
+            echo "Welcome to ReadVice!";
+
+            
             exit();
         }
     } 
 }
 
-echo Page::pageHeader();
+echo Page::pageHeader($userName);
 echo Page::titleDefault("Let's start the discover amazing books!");
-echo Page::formLogin(); 
+echo Page::formLogin();
+
+
+/* if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    echo "Welcome to ReadVice, '$userName'!";
+} else {
+    
+} */
+
 echo Page::pageFooter();
