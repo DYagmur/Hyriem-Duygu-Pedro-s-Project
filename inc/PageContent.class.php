@@ -39,7 +39,7 @@ class PageContent {
 
     // BOOK DETAIL
 
-    public static function pageBookDetail($book){
+    public static function pageBookDetail($book, $comment){
         $bookGenres = $book->getGenres();
         $genres1 = str_replace('[','',$bookGenres);
         $genres2 = str_replace("]",'',$genres1);
@@ -103,13 +103,13 @@ class PageContent {
                     </p>
                 </section>
             </section>
-            '.self::pageComment().'
+            '.self::pageComment($comment).'
         </section>
         ';
         return $pageBookDetail;
     }
 
-    public static function pageComment(){
+    public static function pageComment($comment){
         $pageComment = '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
@@ -129,10 +129,10 @@ class PageContent {
                 <li>
                     <aside>
                         <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
+                        <p>'.$comment->getCommentDate().'</p>
                     </aside>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+                        '.$comment->getMessage().'
                     </p>
                 </li>
             </ul>

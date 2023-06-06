@@ -28,6 +28,8 @@ if (!empty($_GET['book'])) {
    $book = BookDAO::getBookById($_GET['book']);
 } 
 
+$bookId = $book->getBookId();
+
 if (!empty($_POST['post_comment'])) {
 
    session_start();
@@ -36,7 +38,7 @@ if (!empty($_POST['post_comment'])) {
 
    $userComment = new UserComment();
    $userComment->setUserCommentId(1);
-   $userComment->setBookCommentId("1000751.Pollyanna");
+   $userComment->setBookCommentId($bookId);
    $userComment->setCommentDate($currentDate);
    $userComment->setMessage($_POST['post_comment']);
 
@@ -47,9 +49,11 @@ if (!empty($_POST['post_comment'])) {
    }
 } 
 
+$comment = UserCommentDAO::getCommentByBookId($bookId);
+var_dump($comment);
 
 echo Page::pageHeader();
-echo PageContent::pageBookDetail($book);
 // echo PageContent::pageBookDetail($book, $comment);
+echo PageContent::pageBookDetail($book, $comment);
 
 echo Page::pageFooter();

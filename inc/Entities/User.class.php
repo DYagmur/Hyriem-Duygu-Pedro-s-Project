@@ -44,8 +44,7 @@ class User {
         return $this->userPicture;
     }
 
-    public function setUserPicture() {
+    public function setUserPicture($userPicture) {
         $this->userPicture = $userPicture;
     }
-
 }
