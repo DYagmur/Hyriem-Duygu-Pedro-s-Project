@@ -191,30 +191,37 @@ class Page {
         <section class="filter">
             <ul class="filter-list">
                 <li class="filter-all"><a href="?genre=">All</a></li>
-                <li><a href="?genre=Medical">Medical</a></li>
-                <li><a href="?genre=Science">Science</a></li>
-                <li><a href="?genre=Fantasy">Fantasy</a></li>
                 <li><a href="?genre=Art">Art</a></li>
-                <li><a href="?genre=Fiction">Fiction</a></li>
+                <li><a href="?genre=Science">Science</a></li>
+                <li><a href="?genre=Thriller">Thriller</a></li>
+                <li><a href="?genre=Fantasy">Fantasy</a></li>
+                <li><a href="?genre=Horror">Horror</a></li>
             </ul>
             <details class="filter-list-more">
                 <summary>
                     <i class="fa-solid fa-bars-staggered"></i>
                 </summary>
                 <ul>
+                    <li><a href="?genre=Fiction">Fiction</a></li>
                     <li><a href="?genre=Nonfiction">Nonfiction</a></li>
                     <li><a href="?genre=Magic">Magic</a></li>
                     <li><a href="?genre=Adventure">Adventure</a></li>
-                    <li><a href="?genre=Fairy Tales">Fairy Tales</a></li>
+                    <li><a href="?genre=Medical">Medical</a></li>
+                    <li><a href="?genre=Drama">Drama</a></li>
                     <li><a href="?genre=Classics">Classics</a></li>
                     <li><a href="?genre=Romance">Romance</a></li>
-                    <li><a href="?genre=Novels">Novels</a></li>
-                    <li><a href="?genre=Thriller">Thriller</a></li>
-                    <li><a href="?genre=Horror">Horror</a></li>
+                    <li><a href="?genre=Comics">Comics</a></li>
+                    <li><a href="?genre=Fairy Tales">Fairy Tales</a></li>
                     <li><a href="?genre=Mystery">Mystery</a></li>
                     <li><a href="?genre=Biography">Biography</a></li>
                     <li><a href="?genre=Crime">Crime</a></li>
                     <li><a href="?genre=Humor">Humor</a></li>
+                    <li><a href="?genre=Novels">Novels</a></li>
+                    <li><a href="?genre=Philosophy">Philosophy</a></li>
+                    <li><a href="?genre=Religion">Religion</a></li>
+                    <li><a href="?genre=Suspense">Suspense</a></li>
+                    <li><a href="?genre=Zombies">Zombies</a></li>
+                    <li><a href="?genre=Sports">Sports</a></li>
                 </ul>
             </details>
             <details class="filter-list-mobile">
