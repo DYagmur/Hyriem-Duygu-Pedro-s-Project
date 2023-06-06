@@ -26,6 +26,9 @@ if ( ! empty($_POST)) {
     $userExist = UserDAO::getUserByUsername($_POST['userName']);
     $userExist = UserDAO::getEmailbyEmail($_POST['email']);
 
+    header("Location: index.php");
+        
+
  
     if (!$userExist) {
         UserDAO::insertUser($newUser);  

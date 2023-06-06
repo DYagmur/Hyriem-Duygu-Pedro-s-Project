@@ -29,7 +29,8 @@ if (!empty($_GET['book'])) {
 } 
 
 if (!empty($_POST['post_comment'])) {
-
+   
+   var_dump($book);
    session_start();
 
    $currentDate = date("y-m-d");
@@ -48,6 +49,7 @@ if (!empty($_POST['post_comment'])) {
 } 
 
 
-
+echo Page::pageHeader();
+echo PageContent::pageBookDetail($book);
 
 echo Page::pageFooter();

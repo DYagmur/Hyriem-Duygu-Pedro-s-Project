@@ -23,11 +23,11 @@ class UserComment {
       $this->userId = $userId;
    }
 
-   public function getBookId() {
+   public function getBookCommentId() {
       return $this->bookId;
    }
 
-   public function setBookId($bookId) {
+   public function setBookCommentId($bookId) {
       $this->bookId = $bookId;
    }
 
