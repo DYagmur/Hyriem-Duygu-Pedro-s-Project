@@ -27,6 +27,17 @@ class UserCommentDAO {
       return self::$db->singleResult();
    } 
 
+   public static function getCommentByBookId($bookId) {
+      $sql = "SELECT * FROM user_comment WHERE bookId = :id";
+
+      self::$db->query($sql);
+      self::$db->bind(":id", $bookId);
+
+      self::$db->execute();
+      
+      return self::$db->singleResult();
+   } 
+
    public static function insertNewComment($comment) {
     $sql = "INSERT INTO user_comment(userId, bookId, date, message) VALUES (:userId, :bookId, :date, :message)";
 

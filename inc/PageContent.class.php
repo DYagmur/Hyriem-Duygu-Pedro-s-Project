@@ -39,7 +39,7 @@ class PageContent {
 
     // BOOK DETAIL
 
-    public static function pageBookDetail($book, $userId){
+    public static function pageBookDetail($book, $comment){
         $bookGenres = $book->getGenres();
         $genres1 = str_replace('[','',$bookGenres);
         $genres2 = str_replace("]",'',$genres1);
@@ -93,7 +93,7 @@ class PageContent {
                             <i class="fa-solid fa-heart"></i>
                             <p>I love this book!</p>
                         </a>
-                        <a href="userList.php?user='.$userId.'" class="btn-lg">
+                        <a href="userList.php?user=" class="btn-lg">
                             <i class="fa-solid fa-bookmark"></i>
                             <p>Add to MY LIST</p>
                         </a>
@@ -103,14 +103,16 @@ class PageContent {
                     </p>
                 </section>
             </section>
-            '.self::pageComment().'
+            '.self::pageComment($comment).'
         </section>
         ';
         return $pageBookDetail;
     }
 
-    public static function pageComment(){
-        $pageComment = '
+    public static function pageComment($comment){
+
+        if($comment){
+            $pageComment = '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
                 <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
@@ -120,10 +122,10 @@ class PageContent {
                 <li>
                     <aside>
                         <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
+                        <p>'.$comment->getCommentDate().'</p>
                     </aside>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+                    '.$comment->getMessage().'
                     </p>
                 </li>
                 <li>
@@ -138,6 +140,46 @@ class PageContent {
             </ul>
         </section>
         ';
+
+        } else {
+            $pageComment = '
+        <section class="comment">
+            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+            </form>
+            
+        </section>
+        ';
+        }
+        // $pageComment = '
+        // <section class="comment">
+        //     <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+        //         <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+        //         <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+        //     </form>
+        //     <ul>
+        //         <li>
+        //             <aside>
+        //                 <a href="userList.html">USERNAME</a>
+        //                 <p>'.$comment->getCommentDate().'</p>
+        //             </aside>
+        //             <p>
+        //             '.$comment->getMessage().'
+        //             </p>
+        //         </li>
+        //         <li>
+        //             <aside>
+        //                 <a href="userList.html">USERNAME</a>
+        //                 <p>MM-DD-YY</p>
+        //             </aside>
+        //             <p>
+        //                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+        //             </p>
+        //         </li>
+        //     </ul>
+        // </section>
+        // ';
         return $pageComment;
     }
     // USER LIST

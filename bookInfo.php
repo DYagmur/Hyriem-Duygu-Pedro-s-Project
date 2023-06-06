@@ -28,34 +28,41 @@ if (!empty($_GET['book'])) {
    $book = BookDAO::getBookById($_GET['book']);
 } 
 
+
+$bookId = $book->getBookId();
+// var_dump($bookId);
+
 if (!empty($_POST['post_comment'])) {
+
    
-   var_dump($book);
-   session_start();
-
    $currentDate = date("y-m-d");
-
+   
    $userComment = new UserComment();
    $userComment->setUserCommentId(1);
-   $userComment->setBookCommentId("1000751.Pollyanna");
+   $userComment->setBookCommentId($bookId);
    $userComment->setCommentDate($currentDate);
    $userComment->setMessage($_POST['post_comment']);
 
    $lastIdInserted = UserCommentDAO::insertNewComment($userComment);
 
    if(isset($_POST['submitComment'])) {
-      header("Location: index.php");
+      header('Location: index.php');
    }
 } 
 
-if (!empty($_GET['user'])) {
-   $userId = UserDAO::getUserByUserId($_GET['user']);
-} else {
-   $userId = '';
-}
+// if (!empty($_GET['user'])) {
+//    $userId = UserDAO::getUserByUserId($_GET['user']);
+// } else {
+//    $userId = '';
+// }
+
+
+
+$comment = UserCommentDAO::getCommentByBookId('1000751.Pollyanna');
 
 
 echo Page::pageHeader();
-echo PageContent::pageBookDetail($book, $userId);
+
+echo PageContent::pageBookDetail($book, $comment);
 
 echo Page::pageFooter();
