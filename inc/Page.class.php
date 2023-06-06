@@ -104,12 +104,8 @@ class Page {
     public static function titleUser($username) {
         $titleUser = '
         <section class="title">
-            <h1>'.$username.'&rsquo; list</h1>
-            <aside>
-                <a href="#" class="btn-back">
-                    <i class="fa-solid fa-left-long"></i>
-                    <p>Back</p>
-                </a>
+            <h1>'.$username.'&rsquo;s list</h1>
+            <aside class="title-user">
                 <a href="mailto:userEmail">
                     <i class="fa-solid fa-envelope"></i>
                     <p>userEmail@mail.com</p>
@@ -121,18 +117,15 @@ class Page {
     }
 
     public static function titleMy() {
-        $titleUser = '
+        $titleMy = '
         <section class="title">
             <h1>My list</h1>
             <aside>
-                <a href="#" class="btn-back">
-                    <i class="fa-solid fa-left-long"></i>
-                    <p>Back</p>
-                </a>
+                <a href="logout.php" class="btn-sm">Log out</a>
             </aside>
         </section>
         ';
-        return $titleUser;
+        return $titleMy;
     }
 
     public static function titleDefault($title) {
@@ -208,7 +201,7 @@ class Page {
                 <summary>
                     <i class="fa-solid fa-bars-staggered"></i>
                 </summary>
-                <ul class="filter-list">
+                <ul>
                     <li><a href="?genre=Nonfiction">Nonfiction</a></li>
                     <li><a href="?genre=Magic">Magic</a></li>
                     <li><a href="?genre=Adventure">Adventure</a></li>
@@ -259,7 +252,7 @@ class Page {
                     <li><a href="?genre=Humor">Humor</a></li>
                 </ul>
             </details>
-            <a href="#" class="filter-mylist">My List</a>
+            <a href="userList.php" class="filter-mylist">My List</a>
         </section>
         ';
         return $pageFilter;

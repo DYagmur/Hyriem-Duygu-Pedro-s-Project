@@ -46,5 +46,5 @@ if( !empty($_GET['search'])) {
 }
 
 
-// echo MainPage::searchBar();
-// echo MainPage::bookGallery($bookRepository->getBookList());
+echo Page::pagination();
+echo Page::pageFooter();
