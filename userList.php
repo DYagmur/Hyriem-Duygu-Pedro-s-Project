@@ -19,11 +19,14 @@ require_once("inc/PageContent.class.php");
 BookDAO::startDb();
 UserDAO::startDb();
 UserCommentDAO::startDb();
+UserListDAO::startDb();
 
 
-if (!empty($_GET['userId'])) {
-    $user = BookDAO::getUserById($_GET['userId']);
-    $user = new User();
+if (!empty($_GET['add-list'])) {
+    $userList = new UserList();
+    $userList->setUserId($_SESSION['userId']);
+    $userList->setBookId($_GET['add-list']);
+    UserListDAO::insertToList($userList);
 }
 
 $username = $user->getUserName();
