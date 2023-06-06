@@ -103,85 +103,125 @@ class PageContent {
                     </p>
                 </section>
             </section>
-            '.self::pageComment($comment).'
-        </section>
-        ';
-        return $pageBookDetail;
-    }
-
-    public static function pageComment($comment){
-
+            ';
+        
         if($comment){
-            $pageComment = '
+            $pageBookDetail .= '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
                 <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
                 <input type="submit" value="Submit" class="btn-sm" name="submitComment">
             </form>
-            <ul>
-                <li>
-                    <aside>
-                        <a href="userList.html">USERNAME</a>
-                        <p>'.$comment->getCommentDate().'</p>
-                    </aside>
-                    <p>
-                    '.$comment->getMessage().'
-                    </p>
-                </li>
-                <li>
-                    <aside>
-                        <a href="userList.html">USERNAME</a>
-                        <p>'.$comment->getCommentDate().'</p>
-                    </aside>
-                    <p>
-                        '.$comment->getMessage().'
-                    </p>
-                </li>
-            </ul>
+            <ul>';
+            for($i = 0; $i < count($comment); $i++) {
+                $pageBookDetail .= '
+                    <li>
+                        <aside>
+                            <a href="userList.html">USERNAME</a>
+                            <p>'.$comment[$i]->getCommentDate().'</p>
+                        </aside>
+                        <p>
+                        '.$comment[$i]->getMessage().'
+                        </p>
+                    </li>';
+            }
+                
+            $pageBookDetail .= '</ul>
         </section>
         ';
 
         } else {
-            $pageComment = '
+            $pageBookDetail .= '
         <section class="comment">
             <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
                 <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
                 <input type="submit" value="Submit" class="btn-sm" name="submitComment">
             </form>
-            
+        </section>
         </section>
         ';
         }
-        // $pageComment = '
-        // <section class="comment">
-        //     <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-        //         <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
-        //         <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-        //     </form>
-        //     <ul>
-        //         <li>
-        //             <aside>
-        //                 <a href="userList.html">USERNAME</a>
-        //                 <p>'.$comment->getCommentDate().'</p>
-        //             </aside>
-        //             <p>
-        //             '.$comment->getMessage().'
-        //             </p>
-        //         </li>
-        //         <li>
-        //             <aside>
-        //                 <a href="userList.html">USERNAME</a>
-        //                 <p>MM-DD-YY</p>
-        //             </aside>
-        //             <p>
-        //                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-        //             </p>
-        //         </li>
-        //     </ul>
-        // </section>
-        // ';
-        return $pageComment;
+        return $pageBookDetail;
     }
+
+    // public static function pageComment($comment){
+
+    //     if($comment){
+    //         $pageComment = '
+    //     <section class="comment">
+    //         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+    //             <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+    //             <input type="hidden" value="'.$_GET['book'].'" name="bookId">
+    //             <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+    //         </form>
+    //         <ul>
+    //             <li>
+    //                 <aside>
+    //                     <a href="userList.html">USERNAME</a>
+    //                     <p>'.$comment->getCommentDate().'</p>
+    //                 </aside>
+    //                 <p>
+    //                 '.$comment->getMessage().'
+    //                 </p>
+    //             </li>
+    //             <li>
+    //                 <aside>
+    //                     <a href="userList.html">USERNAME</a>
+    //                     <p>MM-DD-YY</p>
+    //                 </aside>
+    //                 <p>
+    //                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+    //                 </p>
+    //             </li>
+    //         </ul>
+    //     </section>
+    //     ';
+
+    //     } else {
+    //         $pageComment = '
+    //     <section class="comment">
+    //         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+    //             <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+    //             <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+    //         </form>
+            
+    //     </section>
+    //     ';
+    //     }
+    //     // $pageComment = '
+    //     // <section class="comment">
+    //     //     <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+    //     //         <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+    //     //         <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+    //     //     </form>
+    //     //     <ul>
+    //     //         <li>
+    //     //             <aside>
+    //     //                 <a href="userList.html">USERNAME</a>
+    //     //                 <p>'.$comment->getCommentDate().'</p>
+    //     //             </aside>
+    //     //             <p>
+    //     //             '.$comment->getMessage().'
+    //     //             </p>
+    //     //         </li>
+    //     //         <li>
+    //     //             <aside>
+    //     //                 <a href="userList.html">USERNAME</a>
+    //     //                 <p>MM-DD-YY</p>
+    //     //             </aside>
+    //     //             <p>
+    //     //                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+    //     //             </p>
+    //     //         </li>
+    //     //     </ul>
+    //     // </section>
+    //     // ';
+    //     return $pageComment;
+    // }
+
+
     // USER LIST
 
     public static function pageUserList($bookList) {
