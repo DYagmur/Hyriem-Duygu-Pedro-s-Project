@@ -13,7 +13,6 @@ require_once("inc/Utilities/DAO/UserCommentDAO.class.php");
 require_once("inc/Page.class.php");
 require_once("inc/PageContent.class.php");
 
-
 $bookList = BookDAO::startDb();
 
 $bookRepository = new BookRepository();
@@ -44,7 +43,6 @@ if(!empty ($_GET)) {
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
-
 
 echo Page::pagination();
 echo Page::pageFooter();

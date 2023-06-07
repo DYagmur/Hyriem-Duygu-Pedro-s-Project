@@ -3,7 +3,7 @@
 class UserList {
    private int $userListId;
    private int $userId;
-   private string $bookId;
+   private string $bookListId;
 
    public function getUserListId() {
       return $this->userListId;
@@ -21,11 +21,11 @@ class UserList {
       $this->userId = $userId;
    }
 
-   public function getBookId() {
-      return $this->bookId;
+   public function getBookListId() {
+      return $this->bookListId;
    }
 
-   public function setBookId($bookId) {
-      $this->bookId = $bookId;
+   public function setBookListId($bookListId) {
+      $this->bookListId = $bookListId;
    }
 }

@@ -16,7 +16,7 @@ class UserListDAO {
       return self::$db->resultSet();
    }
 
-   public function getUserListByUserId($userId) {
+   public static function getUserListByUserId($userId) {
       $sql = "SELECT * FROM user_list WHERE userId = :id";
 
       self::$db->query($sql);
@@ -27,13 +27,16 @@ class UserListDAO {
       return self::$db->singleResult();
    }
 
-   public function insertToList($userList) {
-      $sql = "INSERT INTO user_list (userId, bookId) VALUES (:userId, :bookId)";
+   public static function insertToList($userList) {
+      $sql = "INSERT INTO user_list (userListId, userId, bookId) VALUES (:userListId, :userId, :bookId)";
 
       self::$db->query($sql);
+      self::$db->bind(":userListId", $userList->getUserListId());
       self::$db->bind(":userId", $userList->getUserId());
       self::$db->bind(":bookId", $userList->getBookId());
 
       self::$db->execute();
+
+      return self::$db->lastInsertedId();
    }
 }

@@ -22,7 +22,7 @@ UserCommentDAO::startDb();
 
 
 date_default_timezone_set("America/Vancouver");
-$currentDate = date("y-m-d");
+$currentDate = date("y-m-d h:i:s");
 
 
 
