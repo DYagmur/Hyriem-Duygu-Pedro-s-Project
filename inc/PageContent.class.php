@@ -39,7 +39,7 @@ class PageContent {
 
     // BOOK DETAIL
 
-    public static function pageBookDetail($book){
+    public static function pageBookDetail($book, $comment){
         $bookGenres = $book->getGenres();
         $genres1 = str_replace('[','',$bookGenres);
         $genres2 = str_replace("]",'',$genres1);
@@ -64,7 +64,7 @@ class PageContent {
                             <a href="#">
                                 <i class="fa-solid fa-store"></i>
                             </a>
-                            <a href="">
+                            <a href="#">
                                 <i class="fa-solid fa-share-nodes"></i>
                             </a>
                         </aside>
@@ -93,7 +93,7 @@ class PageContent {
                             <i class="fa-solid fa-heart"></i>
                             <p>I love this book!</p>
                         </a>
-                        <a href="#" class="btn-lg">
+                        <a href="userList.php?user=" class="btn-lg">
                             <i class="fa-solid fa-bookmark"></i>
                             <p>Add to MY LIST</p>
                         </a>
@@ -103,62 +103,124 @@ class PageContent {
                     </p>
                 </section>
             </section>
-            '.self::pageComment().'
+            ';
+        
+        if($comment){
+            $pageBookDetail .= '
+        <section class="comment">
+            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
+                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+            </form>
+            <ul>';
+            for($i = 0; $i < count($comment); $i++) {
+                $pageBookDetail .= '
+                    <li>
+                        <aside>
+                            <a href="userList.html">USERNAME</a>
+                            <p>'.$comment[$i]->getCommentDate().'</p>
+                        </aside>
+                        <p>
+                        '.$comment[$i]->getMessage().'
+                        </p>
+                    </li>';
+            }
+                
+            $pageBookDetail .= '</ul>
         </section>
         ';
+
+        } else {
+            $pageBookDetail .= '
+        <section class="comment">
+            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
+                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+            </form>
+        </section>
+        </section>
+        ';
+        }
         return $pageBookDetail;
     }
 
-    public static function pageComment(){
-        $pageComment = '
-        <section class="comment">
-            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="post_comment" id="comment" placeholder="what do you think?"></textarea>
-                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-            </form>
-            <ul>
-                <li>
-                    <aside>
-                        <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
-                    </aside>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-                    </p>
-                </li>
-                <li>
-                    <aside>
-                        <a href="userList.html">USERNAME</a>
-                        <p>MM-DD-YY</p>
-                    </aside>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-                    </p>
-                </li>
-            </ul>
-        </section>
-        ';
-        return $pageComment;
-    }
+    // public static function pageComment($comment){
 
-    public static function successMessage() {
-        $html = '
-        <div class="alert alert-success" role="alert">
-            Comment Uploaded Successfully!
-        </div>
-        ';
+    //     if($comment){
+    //         $pageComment = '
+    //     <section class="comment">
+    //         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+    //             <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+    //             <input type="hidden" value="'.$_GET['book'].'" name="bookId">
+    //             <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+    //         </form>
+    //         <ul>
+    //             <li>
+    //                 <aside>
+    //                     <a href="userList.html">USERNAME</a>
+    //                     <p>'.$comment->getCommentDate().'</p>
+    //                 </aside>
+    //                 <p>
+    //                 '.$comment->getMessage().'
+    //                 </p>
+    //             </li>
+    //             <li>
+    //                 <aside>
+    //                     <a href="userList.html">USERNAME</a>
+    //                     <p>MM-DD-YY</p>
+    //                 </aside>
+    //                 <p>
+    //                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+    //                 </p>
+    //             </li>
+    //         </ul>
+    //     </section>
+    //     ';
 
-        return $html;
-    }
+    //     } else {
+    //         $pageComment = '
+    //     <section class="comment">
+    //         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+    //             <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+    //             <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+    //         </form>
+            
+    //     </section>
+    //     ';
+    //     }
+    //     // $pageComment = '
+    //     // <section class="comment">
+    //     //     <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+    //     //         <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+    //     //         <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+    //     //     </form>
+    //     //     <ul>
+    //     //         <li>
+    //     //             <aside>
+    //     //                 <a href="userList.html">USERNAME</a>
+    //     //                 <p>'.$comment->getCommentDate().'</p>
+    //     //             </aside>
+    //     //             <p>
+    //     //             '.$comment->getMessage().'
+    //     //             </p>
+    //     //         </li>
+    //     //         <li>
+    //     //             <aside>
+    //     //                 <a href="userList.html">USERNAME</a>
+    //     //                 <p>MM-DD-YY</p>
+    //     //             </aside>
+    //     //             <p>
+    //     //                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
+    //     //             </p>
+    //     //         </li>
+    //     //     </ul>
+    //     // </section>
+    //     // ';
+    //     return $pageComment;
+    // }
 
-    public static function warningMessage(string $message) {
-        $html = '
-        <div class="alert alert-warning" role="alert">'.
-          $message  
-        .'</div>
-        ';
-        return $html;
-    }
 
     // USER LIST
 
@@ -199,7 +261,7 @@ class PageContent {
                 <img src="img/about.png" alt="about readvice">
                 <figcaption>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi ex neque quaerat qui provident cumque veniam eum iste. Culpa, recusandae odio sequi eius ab ex molestiae nulla illo? Incidunt doloremque molestias quam error corporis, quaerat explicabo dolorum earum odit vel consectetur nobis quod aspernatur debitis perspiciatis eius velit libero laborum possimus aut blanditiis provident ex deserunt corrupti. Recusandae nulla reiciendis maiores? Velit provident blanditiis qui fugiat atque neque inventore, veritatis, error cumque quod repellendus ea dolor facilis esse a? Expedita perferendis mollitia molestiae odio repellat maiores, illo sunt, animi id at pariatur ducimus quae sint obcaecati nesciunt ipsum commodi suscipit eaque delectus enim. Ex facere aperiam explicabo quidem excepturi quisquam illum sunt in esse consequatur quo quos, enim voluptatum quia similique sequi labore beatae repudiandae perferendis dolores laboriosam error? Rerum quo corporis suscipit harum consectetur soluta praesentium odit aliquam accusantium at maxime, iure dolor velit autem quidem ipsum vero, cupiditate illum. Maiores sit dolorem aliquam cupiditate perferendis at fugit in ullam esse fuga quis voluptates, vel doloribus reiciendis aspernatur nobis aliquid ipsum sapiente minus et quas doloremque itaque porro. Cumque obcaecati facere harum id minus iste eum non eaque, quasi eligendi quia sequi voluptas nesciunt aliquid quisquam! Autem, est nostrum.
+                       Our goal in readvice is to give you the best experience for finding and discovering your favorite books! Here, you can find several several kinds of books with multiple genres available. Try filtering by the genre or simply search for the book you are looking for. Once you have liked a certain amount of books, readvice will recommend you similar books that match your personal taste! We created this website to help you build your own book taste and to facilitate your needs for better books on a very user friendly interface. 
                     </p>
                     <ul>
                         <li><span>Address</span>889 W Pender St #200, Vancouver, BC V6C 3B2</li>

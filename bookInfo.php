@@ -22,33 +22,43 @@ UserCommentDAO::startDb();
 
 
 date_default_timezone_set("America/Vancouver");
-$currentDate = date("Y-m-d H:i:s");
+$currentDate = date("y-m-d");
+
+
 
 if (!empty($_GET['book'])) {
    $book = BookDAO::getBookById($_GET['book']);
+   $bookId = $book->getBookId();
+   $allComment = UserCommentDAO::getAllCommentByBookId($_GET['book']);
 } 
 
+
 if (!empty($_POST['post_comment'])) {
+
+   if (! empty($_POST['bookId'])) {
+      $bookId = $_POST['bookId'];
    
-   session_start();
+      $userComment = new UserComment();
+      $userComment->setUserCommentId(1);
+      $userComment->setBookCommentId($bookId);
+      $userComment->setCommentDate($currentDate);
+      $userComment->setMessage($_POST['post_comment']);
+   
+      $lastIdInserted = UserCommentDAO::insertNewComment($userComment);
 
-   $currentDate = date("y-m-d");
-
-   $userComment = new UserComment();
-   $userComment->setUserCommentId(1);
-   $userComment->setBookCommentId("1000751.Pollyanna");
-   $userComment->setCommentDate($currentDate);
-   $userComment->setMessage($_POST['post_comment']);
-
-   $lastIdInserted = UserCommentDAO::insertNewComment($userComment);
-
-   if(isset($_POST['submitComment'])) {
-      header("Location: index.php");
+      // $comment = UserCommentDAO::getCommentByBookId($bookId);
+      // $comment->setBookCommentId($bookId);
+      $allComment = UserCommentDAO::getAllCommentByBookId($bookId);
+      
    }
 } 
 
 
-echo Page::pageHeader($userName);
-echo PageContent::pageBookDetail($book);
+if (empty($book)) {
+   $book = BookDAO::getBookById($_POST['bookId']);
+}
 
+
+echo Page::pageHeader();
+echo PageContent::pageBookDetail($book, $allComment);
 echo Page::pageFooter();

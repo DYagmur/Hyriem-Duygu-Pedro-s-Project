@@ -40,28 +40,28 @@ class User {
         $this->password = $password;
     }
 
-    public function getuserPicture() {
+    public function getUserPicture() {
         return $this->userPicture;
     }
 
-    public function setuserPicture($userPicture) {
+    public function setUserPicture($userPicture) {
         $this->userPicture = $userPicture;
     }
 
-    //Verify the password
-    function verifyPassword(string $passwordToVerify) : bool {
-        //password comparator
+    
+     function verifyPassword(string $passwordToVerify) : bool {
+       
         $equal = false;
-        //Return a boolean based on verifying if the password given is correct for the current user
+
         if(password_verify($passwordToVerify,$this->getPassword())){
-            //set password comparator true
+            
             $equal = true;
         } else {
-            //set password comparator false
+            
             $equal = false;
         }
-        //return the password comparator
+        
         return $equal;
     }
-    
+
 }

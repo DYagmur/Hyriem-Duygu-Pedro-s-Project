@@ -33,15 +33,17 @@ if (!empty($_POST)) {
             $_SESSION['email'] = $loginUser;
 
             /* header("Location: index.php"); */
+            
+            header("Location: index.php" );
+
             echo "Welcome to ReadVice!";
 
-            
             exit();
         }
     } 
 }
 
-echo Page::pageHeader($userName);
+echo Page::pageHeader();
 echo Page::titleDefault("Let's start the discover amazing books!");
 echo Page::formLogin();
 

@@ -3,22 +3,33 @@
 require_once("inc/config.inc.php");
 
 require_once("inc/Entities/Book.class.php");
+require_once("inc/Entities/User.class.php");
+
 require_once("inc/Utilities/Repositories/BookRepository.class.php");
 
 require_once("inc/Utilities/PDOService.class.php");
 require_once("inc/Utilities/DAO/BookDAO.class.php");
+require_once("inc/Utilities/DAO/UserDAO.class.php");
 
 require_once("inc/Page.class.php");
 require_once("inc/PageContent.class.php");
 
 
 $bookList = BookDAO::startDb();
+UserDAO::startDb();
+
 
 $bookRepository = new BookRepository();
 $bookRepository->setBookList(BookDAO::getAllBooks());
 
+session_start();
 
-echo Page::pageHeader($userName);
+    
+    $user = $_SESSION['email'];
+    $user->getUserName();
+
+echo Page::pageHeader($user->getUserName()); 
+
 
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
@@ -42,6 +53,7 @@ if(!empty ($_GET)) {
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
+
 
 
 // echo MainPage::searchBar();

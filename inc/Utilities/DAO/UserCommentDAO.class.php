@@ -23,20 +23,44 @@ class UserCommentDAO {
       self::$db->bind(":commentId", $commentId);
 
       self::$db->execute();
-
+      
       return self::$db->singleResult();
    } 
 
-   public static function insertNewComment($comment) {
-      $sql = "INSERT INTO user_comment (date, message) VALUES (:date, :message)";
+   public static function getCommentByBookId($bookId) {
+      $sql = "SELECT * FROM user_comment WHERE bookId = :id";
 
       self::$db->query($sql);
+      self::$db->bind(":id", $bookId);
 
-      self::$db->bind(":date", $comment->getCommentDate());
-      self::$db->bind(":message", $comment->getMessage());
-      
       self::$db->execute();
+      
+      return self::$db->singleResult();
+   } 
 
-      return self::$db->lastInsertedId();
-   }
+   public static function getAllCommentByBookId($bookId) {
+      $sql = "SELECT * FROM user_comment WHERE bookId = :id";
+
+      self::$db->query($sql);
+      self::$db->bind(":id", $bookId);
+
+      self::$db->execute();
+      
+      return self::$db->resultSet();
+   } 
+
+   public static function insertNewComment($comment) {
+    $sql = "INSERT INTO user_comment(userId, bookId, date, message) VALUES (:userId, :bookId, :date, :message)";
+
+    self::$db->query($sql);
+
+    self::$db->bind(":userId", $comment->getUserCommentId());
+    self::$db->bind(":bookId", $comment->getBookCommentId());
+    self::$db->bind(":date", $comment->getCommentDate());
+    self::$db->bind(":message", $comment->getMessage());
+    
+    self::$db->execute();
+
+    return self::$db->lastInsertedId();
+ }
 }
