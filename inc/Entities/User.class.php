@@ -47,4 +47,21 @@ class User {
     public function setUserPicture($userPicture) {
         $this->userPicture = $userPicture;
     }
+
+    
+     function verifyPassword(string $passwordToVerify) : bool {
+       
+        $equal = false;
+
+        if(password_verify($passwordToVerify,$this->getPassword())){
+            
+            $equal = true;
+        } else {
+            
+            $equal = false;
+        }
+        
+        return $equal;
+    }
+
 }
