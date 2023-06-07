@@ -286,30 +286,6 @@ class Page {
         return $pageFooter;
     }
 
-    // PAGINATION
-
-    public static function pagination() {
-        $pagination = '
-        <section class="pagination">
-            <ul>';
-
-            if(!empty ($_GET['genre'])) {
-                $genre = $_GET['genre'];
-            } else {
-                $genre = '';
-            }
-
-        $pagination .= '
-            <li><a href="?genre='.$genre.'&page=1">1</a></li>
-            <li><a href="?genre='.$genre.'&page=2">2</a></li>
-            <li><a href="?genre='.$genre.'&page=3">3</a></li>
-            <li><a href="?genre='.$genre.'&page=4">4</a></li>
-            <li><a href="?genre='.$genre.'&page=5">5</a></li>';
-
-        $pagination .= '</ul>
-        </section>
-        ';
-        return $pagination;
-    }
+    
 
 }

@@ -326,6 +326,11 @@ input:focus, textarea:focus {
         li {
             @include FlexRow();
         }
+
+        .currentPage {
+            text-decoration: underline;
+            font-weight: 700;
+        }
     }
 
 
@@ -755,6 +760,7 @@ input:focus, textarea:focus {
 
     .book-list {
         gap: 5vw;
+        justify-content: center;
 
         img {
             $bookwidth : 15vw;
@@ -821,8 +827,11 @@ input:focus, textarea:focus {
         order:2;
         grid-column: 2 / span 2;
         grid-row: 1;
+        row-gap: 1vh;
 
         .detail-description {
+
+            padding-top: 10vh;
         
             .btn-lg {
                 width: 30%;

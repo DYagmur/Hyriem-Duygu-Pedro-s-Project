@@ -13,14 +13,20 @@ class PageContent {
         } else {
             $pageNumber = 1;
         }
-            
-        $listNumber = 12;
-        for($i = (($pageNumber -1) * $listNumber); $i <= ($pageNumber *12) -1; $i++){
-            $pageMainList .= self::bookListMain($bookList[$i]);
+        
+        if (count($bookList) >= 12) {
+            $listNumber = 12;
+            for($i = (($pageNumber -1) * $listNumber); $i <= ($pageNumber *12) -1; $i++){
+                $pageMainList .= self::bookListMain($bookList[$i]);
+            }
+        } else {
+            foreach($bookList as $books) {
+                $pageMainList .= self::bookListMain($books);
+            }
         }
 
+        $pageMainList .= '</section>'.self::pagination($bookList);
         
-        $pageMainList .= '</section>';
         return $pageMainList;
     }
 
@@ -34,6 +40,75 @@ class PageContent {
         </a>
         ';
         return $bookListMain;
+    }
+
+    // PAGINATION
+
+    public static function pagination($bookList) {
+        $pagination = '
+        <section class="pagination">
+            <ul>';
+            $page = '?page=';
+
+            if(!empty ($_GET['genre'])) {
+                $page = '?genre='.$_GET['genre'].'&page=';
+            }
+            if(!empty ($_GET['search'])) {
+                $page = '?search_book='.$_GET['search_book'].'&search=search&page=';
+            }
+
+            if (! empty($_GET['page'])){
+                $pageNum = $_GET['page'];
+            } else {
+                $pageNum = 1;
+            }
+
+            $currentPageCss = ' class="currentPage"';
+
+            if((count($bookList) / 12 ) >= 5) {
+                if ($pageNum > 0) {
+                    $pagination .= '<li><a href="'.$page.($pageNum-1).'"><i class="fa-solid fa-angle-left"></i></a></li>';
+                } else {
+                    $pagination .= '<li><a href="'.$page.$pageNum.'"><i class="fa-solid fa-angle-left"></i></a></li>';
+                }
+
+                if ($pageNum <= 5) {
+                    for($i = 1; $i <= 5 ; $i++) {
+                        if ($pageNum == $i) {
+                            $currentPageCss = ' class="currentPage"';
+                        } if ($pageNum != $i) {
+                            $currentPageCss = '';
+                        }
+                        $pagination .= '<li'.$currentPageCss.'><a href="'.$page.$i.'">'.$i.'</a></li>';
+                    }
+                } else {
+                    for($i = 4; $i > 0 ; $i--) {
+                        $pagination .= '<li><a href="'.$page.($pageNum-$i).'">'.($pageNum-$i).'</a></li>';
+                    }
+                    $pagination .= '<li'.$currentPageCss.'><a href="'.$page.$pageNum.'">'.$pageNum.'</a></li>';
+                }
+
+                if ($pageNum < (count($bookList) / 12 )) {
+                    $pagination .= '<li><a href="'.$page.($pageNum+1).'"><i class="fa-solid fa-angle-right"></i></a></li>';
+                } else {
+                    $pagination .= '<li><a href="'.$page.$pageNum.'"><i class="fa-solid fa-angle-right"></i></a></li>';
+                }
+
+            } else {
+                for($i = 1; $i <= (count($bookList) / 12 ); $i++) {
+                    if ($pageNum == $i) {
+                        $currentPageCss = ' class="currentPage"';
+                    } if ($pageNum != $i) {
+                        $currentPageCss = '';
+                    }
+                    $pagination .= '<li'.$currentPageCss.'><a href="'.$page.$i.'">'.$i.'</a></li>';
+                }
+            }
+
+        $pagination .= '</ul>
+        </section>
+        ';
+        return $pagination;
     }
 
 

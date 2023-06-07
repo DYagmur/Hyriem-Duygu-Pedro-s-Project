@@ -44,5 +44,6 @@ if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
 
-echo Page::pagination();
+
+
 echo Page::pageFooter();
