@@ -61,7 +61,29 @@ if (!empty($_POST['post_comment'])) {
       $allComment = UserCommentDAO::getAllCommentByBookId($bookId);
       
    }
-} 
+}
+
+if(!empty($_GET['add-list'])) {
+
+   if (!empty($_POST['bookId'])) {
+       $bookId = $_POST['bookId'];
+
+       $userList = new UserList();
+
+       $userList->setUserListId(1);
+       $userList->setUserId();
+       $userList->setBookListId($bookId);
+   
+       $lastIdInserted = UserListDAO::insertToList($userList);
+       var_dump($userList);
+
+       if($lastIdInserted !== false) {
+           echo "Book added to your list!";
+       } else {
+           echo "Sorry, there was a problem adding the book to your list.";
+       }
+   }
+}
 
 
 if (empty($book)) {

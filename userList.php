@@ -32,27 +32,6 @@ if($_SESSION) {
    echo Page::pageHeader(); 
 }
 
-if(!empty($_POST['add-list'])) {
-    if (!empty($_POST['bookId'])) {
-        $bookId = $_POST['bookId'];
-
-        $userList = new UserList();
-
-        $userList->setUserListId(1);
-        $userList->setUserId($_SESSION['userId']);
-        $userList->setBookListId($bookId);
-    
-        $lastIdInserted = UserListDAO::insertToList($userList);
-        var_dump($userList);
-
-        if($lastIdInserted !== false) {
-            echo "Book added to your list!";
-        } else {
-            echo "Sorry, there was a problem adding the book to your list.";
-        }
-    }
-}
-
 // $username = $user->getUserName();
 
 
