@@ -42,6 +42,8 @@ if (!empty($_POST)) {
             echo "Welcome to ReadVice!";
 
             exit();
+        } else {
+            echo "Incorrect email/password combination";
         }
     } 
 }
