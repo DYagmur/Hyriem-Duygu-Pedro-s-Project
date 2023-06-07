@@ -3,7 +3,7 @@
 class UserComment {
    private int $commentId;
    private int $userId;
-   private string $bookId;
+   private string $bookCommentId;
    private string $date;
    private string $message;
 
@@ -24,11 +24,11 @@ class UserComment {
    }
 
    public function getBookCommentId() {
-      return $this->bookId;
+      return $this->bookCommentId;
    }
 
-   public function setBookCommentId($bookId) {
-      $this->bookId = $bookId;
+   public function setBookCommentId($bookCommentId) {
+      $this->bookCommentId = $bookCommentId;
    }
 
    public function getCommentDate() {

@@ -103,12 +103,8 @@ class Page {
     public static function titleUser($username) {
         $titleUser = '
         <section class="title">
-            <h1>'.$username.'&rsquo; list</h1>
-            <aside>
-                <a href="#" class="btn-back">
-                    <i class="fa-solid fa-left-long"></i>
-                    <p>Back</p>
-                </a>
+            <h1>'.$username.'&rsquo;s list</h1>
+            <aside class="title-user">
                 <a href="mailto:userEmail">
                     <i class="fa-solid fa-envelope"></i>
                     <p>userEmail@mail.com</p>
@@ -120,18 +116,15 @@ class Page {
     }
 
     public static function titleMy() {
-        $titleUser = '
+        $titleMy = '
         <section class="title">
             <h1>My list</h1>
             <aside>
-                <a href="#" class="btn-back">
-                    <i class="fa-solid fa-left-long"></i>
-                    <p>Back</p>
-                </a>
+                <a href="logout.php" class="btn-sm">Log out</a>
             </aside>
         </section>
         ';
-        return $titleUser;
+        return $titleMy;
     }
 
     public static function titleDefault($title) {
@@ -151,7 +144,7 @@ class Page {
             <input type="email" name="email" id="email" placeholder="Email">
             <input type="password" name="password" id="password" placeholder="Password">
             <input type="submit" value="LOG IN" class="btn_lg">
-            <a href="#">Not our member yet?</a>
+            <a href="signup.php">Not our member yet?</a>
         </form>
         ';
         return $formLogin;
@@ -183,7 +176,7 @@ class Page {
                 <input type="text" name="name" id="name" placeholder="Name">
                 <input type="email" name="email" id="email" placeholder="Email">
             </aside>
-            <textarea name="message" id="message" placeholder="Messages"></textarea>
+            <textarea name="message" id="message" placeholder="Message"></textarea>
             <input type="submit" value="Send" class="btn_lg">
         </form>
         ';
@@ -197,30 +190,37 @@ class Page {
         <section class="filter">
             <ul class="filter-list">
                 <li class="filter-all"><a href="?genre=">All</a></li>
-                <li><a href="?genre=Medical">Medical</a></li>
-                <li><a href="?genre=Science">Science</a></li>
-                <li><a href="?genre=Fantasy">Fantasy</a></li>
                 <li><a href="?genre=Art">Art</a></li>
-                <li><a href="?genre=Fiction">Fiction</a></li>
+                <li><a href="?genre=Science">Science</a></li>
+                <li><a href="?genre=Thriller">Thriller</a></li>
+                <li><a href="?genre=Fantasy">Fantasy</a></li>
+                <li><a href="?genre=Horror">Horror</a></li>
             </ul>
             <details class="filter-list-more">
                 <summary>
                     <i class="fa-solid fa-bars-staggered"></i>
                 </summary>
-                <ul class="filter-list">
+                <ul>
+                    <li><a href="?genre=Fiction">Fiction</a></li>
                     <li><a href="?genre=Nonfiction">Nonfiction</a></li>
                     <li><a href="?genre=Magic">Magic</a></li>
                     <li><a href="?genre=Adventure">Adventure</a></li>
-                    <li><a href="?genre=Fairy Tales">Fairy Tales</a></li>
+                    <li><a href="?genre=Medical">Medical</a></li>
+                    <li><a href="?genre=Drama">Drama</a></li>
                     <li><a href="?genre=Classics">Classics</a></li>
                     <li><a href="?genre=Romance">Romance</a></li>
-                    <li><a href="?genre=Novels">Novels</a></li>
-                    <li><a href="?genre=Thriller">Thriller</a></li>
-                    <li><a href="?genre=Horror">Horror</a></li>
+                    <li><a href="?genre=Comics">Comics</a></li>
+                    <li><a href="?genre=Fairy Tales">Fairy Tales</a></li>
                     <li><a href="?genre=Mystery">Mystery</a></li>
                     <li><a href="?genre=Biography">Biography</a></li>
                     <li><a href="?genre=Crime">Crime</a></li>
                     <li><a href="?genre=Humor">Humor</a></li>
+                    <li><a href="?genre=Novels">Novels</a></li>
+                    <li><a href="?genre=Philosophy">Philosophy</a></li>
+                    <li><a href="?genre=Religion">Religion</a></li>
+                    <li><a href="?genre=Suspense">Suspense</a></li>
+                    <li><a href="?genre=Zombies">Zombies</a></li>
+                    <li><a href="?genre=Sports">Sports</a></li>
                 </ul>
             </details>
             <details class="filter-list-mobile">
@@ -258,7 +258,7 @@ class Page {
                     <li><a href="?genre=Humor">Humor</a></li>
                 </ul>
             </details>
-            <a href="#" class="filter-mylist">My List</a>
+            <a href="userList.php" class="filter-mylist">My List</a>
         </section>
         ';
         return $pageFilter;
@@ -285,43 +285,6 @@ class Page {
         return $pageFooter;
     }
 
-    // PAGINATION
-
-    public static function pagination() {
-        $pagination = '
-        <section class="pagination">
-            <ul>';
-
-            if(!empty ($_GET['genre'])) {
-                $genre = $_GET['genre'];
-            } else {
-                $genre = '';
-            }
-
-        $pagination .= '
-            <li><a href="?genre='.$genre.'&page=1">1</a></li>
-            <li><a href="?genre='.$genre.'&page=2">2</a></li>
-            <li><a href="?genre='.$genre.'&page=3">3</a></li>
-            <li><a href="?genre='.$genre.'&page=4">4</a></li>
-            <li><a href="?genre='.$genre.'&page=5">5</a></li>';
-
-        $pagination .= '</ul>
-        </section>
-        ';
-        return $pagination;
-    }
-    
-    public static function successMessage() {
-        $message = '
-        <div class="alert alert-success" role="alert">
-            New User included successfully!
-        </div>
-        ';
-        return $message;
-    }
-
-    
-
-
-
 }
+
+

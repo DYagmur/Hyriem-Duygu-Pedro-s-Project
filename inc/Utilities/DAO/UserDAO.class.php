@@ -35,6 +35,17 @@ class UserDAO {
         return self::$db->singleResult();
     }
 
+    static function getUserByUserId(string $userId)  {
+        $sql = "SELECT * FROM users WHERE userId=:id";
+
+        self::$db->query($sql);
+
+        self::$db->bind(":id",$userId);
+
+        self::$db->execute();
+      
+        return self::$db->singleResult();
+    }
 
     public static function getAllUsers(){
         $sql = "SELECT * FROM users";
@@ -60,4 +71,5 @@ class UserDAO {
 
 
     
+
 }
