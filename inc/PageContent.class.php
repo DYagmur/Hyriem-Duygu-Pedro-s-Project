@@ -168,7 +168,7 @@ class PageContent {
                             <i class="fa-solid fa-heart"></i>
                             <p>I love this book!</p>
                         </a>
-                        <a href="userList.php?user='.$book->getUserId().'" class="btn-lg" name="add-list">
+                        <a href="userList.php?user='.$book->getBookId().'" class="btn-lg" name="add-list">
                             <i class="fa-solid fa-bookmark"></i>
                             <p>Add to MY LIST</p>
                         </a>

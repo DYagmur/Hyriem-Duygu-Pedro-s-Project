@@ -71,7 +71,7 @@ if(!empty($_GET['add-list'])) {
        $userList = new UserList();
 
        $userList->setUserListId(1);
-       $userList->setUserId();
+      //  $userList->setUserId();
        $userList->setBookListId($bookId);
    
        $lastIdInserted = UserListDAO::insertToList($userList);
