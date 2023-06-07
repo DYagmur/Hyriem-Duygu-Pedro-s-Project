@@ -26,17 +26,16 @@ if ( ! empty($_POST)) {
     $userExist = UserDAO::getUserByUsername($_POST['userName']);
     $userExist = UserDAO::getEmailbyEmail($_POST['email']);
 
-    header("Location: index.php");
-        
     if (!$userExist) {
         UserDAO::insertUser($newUser);  
-        echo Page::successMessage();
         unset($_POST);
     }
+    
+    header("Location: index.php");
 }
 
 
 echo Page::pageHeader($userName);
-echo Page::titleDefault("Hi there, nice to see you!");
+echo Page::titleDefault("Let's get started!");
 echo Page::formSignup();
 echo Page::pageFooter();

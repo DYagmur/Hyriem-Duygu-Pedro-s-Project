@@ -56,7 +56,6 @@ if(!empty($_POST['add-list'])) {
 // $username = $user->getUserName();
 
 
-echo Page::pageHeader();
 echo Page::titleUser("testname");
 // echo PageContent::pageUserList($userList);
 echo Page::pageFooter();

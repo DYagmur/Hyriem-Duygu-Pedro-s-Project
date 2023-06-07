@@ -47,7 +47,7 @@ if (!empty($_POST)) {
 }
 
 echo Page::pageHeader();
-echo Page::titleDefault("Let's start the discover amazing books!");
+echo Page::titleDefault("Hi there, nice to see you!");
 echo Page::formLogin();
 
 
