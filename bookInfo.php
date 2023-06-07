@@ -20,6 +20,16 @@ BookDAO::startDb();
 UserDAO::startDb();
 UserCommentDAO::startDb();
 
+session_start();
+
+if($_SESSION) {
+   $user = $_SESSION['email'];
+   $user->getUserName();
+   echo Page::pageHeader($user->getUserName()); 
+} else {
+   echo Page::pageHeader(); 
+}
+
 
 date_default_timezone_set("America/Vancouver");
 $currentDate = date("y-m-d h:i:s");
@@ -59,6 +69,5 @@ if (empty($book)) {
 }
 
 
-echo Page::pageHeader();
 echo PageContent::pageBookDetail($book, $allComment);
 echo Page::pageFooter();

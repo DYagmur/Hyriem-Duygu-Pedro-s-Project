@@ -13,11 +13,13 @@ UserDAO::startDb();
 
 session_start();
 
-
-    $user = $_SESSION['email'];
-    $user->getUserName();
-
-echo Page::pageHeader($user->getUserName()); 
+if($_SESSION) {
+   $user = $_SESSION['email'];
+   $user->getUserName();
+   echo Page::pageHeader($user->getUserName()); 
+} else {
+   echo Page::pageHeader(); 
+}
 echo Page::titleDefault("Contact Us");
 echo Page::formContact();
 echo Page::pageFooter();

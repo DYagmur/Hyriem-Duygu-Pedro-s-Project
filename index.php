@@ -24,12 +24,13 @@ $bookRepository->setBookList(BookDAO::getAllBooks());
 
 session_start();
 
-    
-    $user = $_SESSION['email'];
-    $user->getUserName();
-
-echo Page::pageHeader($user->getUserName()); 
-
+if($_SESSION) {
+   $user = $_SESSION['email'];
+   $user->getUserName();
+   echo Page::pageHeader($user->getUserName()); 
+} else {
+   echo Page::pageHeader(); 
+}
 
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));

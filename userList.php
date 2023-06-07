@@ -22,6 +22,16 @@ UserDAO::startDb();
 UserCommentDAO::startDb();
 UserListDAO::startDb();
 
+session_start();
+
+if($_SESSION) {
+   $user = $_SESSION['email'];
+   $user->getUserName();
+   echo Page::pageHeader($user->getUserName()); 
+} else {
+   echo Page::pageHeader(); 
+}
+
 if(!empty($_POST['add-list'])) {
     if (!empty($_POST['bookId'])) {
         $bookId = $_POST['bookId'];

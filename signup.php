@@ -10,7 +10,7 @@ require_once("inc/Page.class.php");
 session_start();
 UserDAO::startDb();
 
-
+$userName = '';
 
 if ( ! empty($_POST)) {
     $newUser = new User();
@@ -28,8 +28,6 @@ if ( ! empty($_POST)) {
 
     header("Location: index.php");
         
-
- 
     if (!$userExist) {
         UserDAO::insertUser($newUser);  
         echo Page::successMessage();

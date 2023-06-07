@@ -34,11 +34,20 @@ class Page {
                     </section>
                     <aside>
                         ';
-                        if(!$_SESSION["loggedin"]){
-                            $pageHeader .= self::navOut();
+                        if(! empty($_SESSION["loggedin"])) {
+                            if($_SESSION["loggedin"]){
+                                $pageHeader .= self::navIn($userName);
+                            } else {
+                                $pageHeader .= self::navOut();
+                            }
                         } else {
-                            $pageHeader .= self::navIn($userName);
+                            $pageHeader .= self::navOut();
                         }
+                        // if(! $_SESSION["loggedin"]){
+                        //     $pageHeader .= self::navOut();
+                        // } else {
+                        //     $pageHeader .= self::navIn($userName);
+                        // }
                         $pageHeader .= '
                     </aside>
                     <details>
@@ -53,10 +62,14 @@ class Page {
                             </ul>
                             <aside>
                                 ';
-                                if(!$_SESSION["loggedin"]){
-                                    $pageHeader .= self::navOut();
+                                if(! empty($_SESSION["loggedin"])) {
+                                    if($_SESSION["loggedin"]){
+                                        $pageHeader .= self::navIn($userName);
+                                    } else {
+                                        $pageHeader .= self::navOut();
+                                    }
                                 } else {
-                                    $pageHeader .= self::navIn($userName);
+                                    $pageHeader .= self::navOut();
                                 }
                                 $pageHeader .= '
                             </aside>

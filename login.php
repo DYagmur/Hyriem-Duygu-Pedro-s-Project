@@ -9,11 +9,14 @@ require_once("inc/Utilities/DAO/UserDAO.class.php");
 require_once("inc/Utilities/LoginManager.class.php");
 require_once("inc/Page.class.php");
 
+UserDAO::startDb();
+
+session_start();
+
 
 
 if (!empty($_POST)) {
 
-    UserDAO::startDb();
     
     $email = $_POST['email'];
     $loginUser = UserDAO::getEmailbyEmail($email);
