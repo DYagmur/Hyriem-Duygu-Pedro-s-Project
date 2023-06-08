@@ -32,7 +32,7 @@ if(! empty($_POST)) {
    $to = "pedrossgarcia88@gmail.com";
    $subject = "Email Test - ";
 
-   $message = "<b>Email messages from Readvice customers.</b>\n";
+   $message = "<b>$message.</b>\n";
    $message .= "
       <ul>
          <li>Name: $name</li>
