@@ -87,7 +87,7 @@ class Page {
 
     public static function navIn($userName) {
         $navIn = '
-        <p>welcome to readvice , <span>'.$userName.'</span></p>
+        <p>Welcome to readvice, <span>'.$userName.'</span></p>
         ';
         return $navIn;
     }
