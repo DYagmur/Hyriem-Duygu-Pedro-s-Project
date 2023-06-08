@@ -20,8 +20,44 @@ if($_SESSION) {
 } else {
    echo Page::pageHeader(); 
 }
-echo Page::titleDefault("Contact Us");
-echo Page::formContact();
+
+if(! empty($_POST)) {
+   echo Page::titleDefault("Contact Us");
+   echo Page::formContact();
+
+   $name = $_POST['name'];
+   $email = $_POST['email'];
+   $message = $_POST['message'];
+
+   $to = "pedrossgarcia88@gmail.com";
+   $subject = "Email Test - ";
+
+   $message = "<b>Email messages from Readvice customers.</b>\n";
+   $message .= "
+      <ul>
+         <li>Name: $name</li>
+         <li>Email: $email</li>
+      </ul>
+   ";
+
+   $header = "From: pedrossgarcia88@gmail.com \n";
+   $header .= "Cc:pedrossgarcia88@gmail.com \r\n";
+   $header .= "MIME-Version: 1.0\n";
+   $header .= "Content-type: text/html\n";
+   
+   $retval = mail($to, $subject, $message, $header);
+
+   if($retval == true) {
+      echo "Message sent successfully";
+   } else {
+      echo "Message could not be sent";
+   }
+
+} else {
+   echo Page::titleDefault("Contact Us");
+   echo Page::formContact();
+}
+
 echo Page::pageFooter();
 
 

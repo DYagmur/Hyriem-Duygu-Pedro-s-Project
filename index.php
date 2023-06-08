@@ -50,7 +50,6 @@ if(!empty ($_GET)) {
    echo PageContent::pageMainList($bookRepository->getBookList());
 }
 
-
 if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
