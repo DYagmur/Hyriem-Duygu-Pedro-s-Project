@@ -3,8 +3,9 @@
 class UserList {
    private int $userListId;
    private int $userId;
+   private string $bookListId;
+   
    private string $bookId;
-
    private string $title;
    private string $author;
    private float $rating;
@@ -36,11 +37,11 @@ class UserList {
    }
 
    public function getBookListId() {
-      return $this->bookId;
+      return $this->bookListId;
    }
 
-   public function setBookListId($bookId) {
-      $this->bookId = $bookId;
+   public function setBookListId($bookListId) {
+      $this->bookListId = $bookListId;
    }
 
    // 
