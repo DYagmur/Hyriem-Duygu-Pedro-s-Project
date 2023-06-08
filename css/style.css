@@ -756,8 +756,8 @@ input:focus, textarea:focus {
     justify-content: center;
   }
   .book-list img {
-    width: 16vw;
-    height: 24vw;
+    width: 15vw;
+    height: 22.5vw;
   }
   .book-list img:hover {
     box-shadow: 5px 5px 0px var(--secondary), -5px -5px 0 var(--primary);
