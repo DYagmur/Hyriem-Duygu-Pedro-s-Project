@@ -2,10 +2,18 @@
 
 class UserComment {
    private int $commentId;
-   private int $userId;
+   private string $userCommentName;
    private string $bookCommentId;
    private string $date;
    private string $message;
+
+   public function getUserCommentName() {
+      return $this->userCommentName;
+   }
+
+   public function setUserCommentName($userCommentName) {
+      $this->userCommentName = $userCommentName;
+   }
 
    public function getCommentId() {
       return $this->commentId;
@@ -13,14 +21,6 @@ class UserComment {
 
    public function setCommentId($commentId) {
       $this->commentId = $commentId;
-   }
-
-   public function getUserCommentId() {
-      return $this->userId;
-   }
-
-   public function setUserCommentId($userId) {
-      $this->userId = $userId;
    }
 
    public function getBookCommentId() {

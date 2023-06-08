@@ -25,16 +25,26 @@ UserListDAO::startDb();
 session_start();
 
 if($_SESSION) {
-   $user = $_SESSION['email'];
+   $user = $_SESSION['loginUser'];
    $user->getUserName();
    echo Page::pageHeader($user->getUserName()); 
 } else {
    echo Page::pageHeader(); 
 }
 
-// $username = $user->getUserName();
+if(! empty($_GET['user'])) {
+   $bookRepository = new BookRepository();
+   $bookRepository->setBookList(UserListDAO::getUserListByUserId($user->getUserId()));
+   if(! empty($_GET['remove'])) {
+      $bookRepository->setBookList(UserListDAO::removeFromList($_GET['remove']));
+      $bookRepository->setBookList(UserListDAO::getUserListByUserId($user->getUserId()));
+   } 
+   $userList = $bookRepository->getBookList();
+} else {
+   $userList = '';
+}
 
 
-echo Page::titleUser("testname");
-// echo PageContent::pageUserList($userList);
+echo Page::titleUser($user);
+echo PageContent::pageUserList($userList, $user->getUserId());
 echo Page::pageFooter();

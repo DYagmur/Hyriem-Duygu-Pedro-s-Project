@@ -14,36 +14,24 @@ UserDAO::startDb();
 session_start();
 
 
-
 if (!empty($_POST)) {
-
     
     $email = $_POST['email'];
     $loginUser = UserDAO::getEmailbyEmail($email);
 
   
-   
-
-    
     if( (gettype($loginUser) == "object") && (get_class($loginUser) == "User") ){
         
-        //Check the password
         if ($loginUser->verifyPassword($_POST['password']))  {
-            //Start the session
-            session_start();
-            //Set the user to logged in
-            $_SESSION["loggedin"] = true;
-            $_SESSION['email'] = $loginUser;
 
-            /* header("Location: index.php"); */
+            session_start();
+            $_SESSION["loggedin"] = true;
+            $_SESSION['loginUser'] = $loginUser;
             
             header("Location: index.php" );
-
-            echo "Welcome to ReadVice!";
-
             exit();
         } else {
-            echo "Incorrect email/password combination";
+            echo '<aside class="toast error"><p>Incorrect email/password combination</p></aside>';
         }
     } 
 }
@@ -51,12 +39,4 @@ if (!empty($_POST)) {
 echo Page::pageHeader();
 echo Page::titleDefault("Hi there, nice to see you!");
 echo Page::formLogin();
-
-
-/* if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    echo "Welcome to ReadVice, '$userName'!";
-} else {
-    
-} */
-
 echo Page::pageFooter();

@@ -14,7 +14,7 @@ UserDAO::startDb();
 session_start();
 
 if($_SESSION) {
-   $user = $_SESSION['email'];
+   $user = $_SESSION['loginUser'];
    $user->getUserName();
    echo Page::pageHeader($user->getUserName()); 
 } else {

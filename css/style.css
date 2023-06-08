@@ -55,6 +55,31 @@ input:focus, textarea:focus {
   font-weight: 600;
 }
 
+.toast {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  text-align: center;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 1vw;
+       column-gap: 1vw;
+}
+.toast p {
+  font-weight: 600;
+}
+
+.added {
+  background-color: var(--primary);
+}
+
+.error {
+  background-color: red;
+  color: white;
+}
+
 @media (min-width: 200px) {
   header {
     width: 90%;
@@ -157,6 +182,15 @@ input:focus, textarea:focus {
     align-items: center;
     row-gap: 5vh;
   }
+  .title .userPic > img {
+    width: 100px;
+    height: 100px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    border-radius: 50%;
+  }
   .title h1 {
     font-size: 30px;
     font-weight: 700;
@@ -191,12 +225,21 @@ input:focus, textarea:focus {
     bottom: 10px;
     color: black;
   }
+  .title-user {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vh;
+  }
   .title-user a {
     display: flex;
     justify-content: center;
     align-items: center;
     -moz-column-gap: 1vw;
          column-gap: 1vw;
+  }
+  .title-user .btn-sm {
+    border-color: grey;
+    color: grey;
   }
   .filter {
     display: flex;
@@ -257,6 +300,9 @@ input:focus, textarea:focus {
     flex-wrap: wrap;
     gap: 4vw;
   }
+  .book-list figure {
+    position: relative;
+  }
   .book-list img {
     width: 40vw;
     height: 60vw;
@@ -264,6 +310,24 @@ input:focus, textarea:focus {
        object-fit: cover;
     -o-object-position: center 0;
        object-position: center 0;
+    border: 1px solid gainsboro;
+  }
+  .book-list figcaption {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+  }
+  .book-list figcaption a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -moz-column-gap: 0vh;
+         column-gap: 0vh;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
   }
   .pagination ul {
     display: flex;
@@ -379,6 +443,14 @@ input:focus, textarea:focus {
   .detail-right .detail-description .btn-lg:last-child {
     box-shadow: 0 4px 0 var(--secondary);
   }
+  .detail-right .detail-description .liked {
+    background-color: var(--primary);
+    box-shadow: none;
+  }
+  .detail-right .detail-description .added {
+    background-color: var(--secondary);
+    box-shadow: none;
+  }
   .comment {
     order: 3;
     display: flex;
@@ -397,11 +469,18 @@ input:focus, textarea:focus {
     background-color: var(--secondary);
     width: 100%;
   }
+  .comment input:disabled {
+    background-color: #E7E7E7;
+    border-color: #B7B7B7;
+  }
   .comment textarea {
     width: 96%;
     height: 160px;
     padding: 2%;
     resize: none;
+  }
+  .comment textarea:disabled {
+    background-color: #E7E7E7;
   }
   .comment ul {
     display: flex;
@@ -518,6 +597,10 @@ input:focus, textarea:focus {
     width: 50%;
     row-gap: 1vh;
   }
+  .book-list img {
+    width: 25vw;
+    height: 37.5vw;
+  }
   .comment aside {
     display: flex;
     -moz-column-gap: 0vh;
@@ -561,6 +644,12 @@ input:focus, textarea:focus {
   }
   nav > aside .btn-sm:last-child:hover {
     background-color: var(--secondary);
+  }
+  nav > aside p {
+    letter-spacing: 1px;
+  }
+  nav > aside span {
+    font-weight: 600;
   }
   nav details {
     display: none;
@@ -669,7 +758,6 @@ input:focus, textarea:focus {
   .book-list img {
     width: 15vw;
     height: 22.5vw;
-    border: 1px solid gainsboro;
   }
   .book-list img:hover {
     box-shadow: 5px 5px 0px var(--secondary), -5px -5px 0 var(--primary);
@@ -722,7 +810,10 @@ input:focus, textarea:focus {
     padding-top: 10vh;
   }
   .detail-right .detail-description .btn-lg {
-    width: 30%;
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 30%;
+    padding: 2% 6%;
   }
   .detail-right .detail-description .btn-lg:first-child:hover {
     background-color: var(--primary);
@@ -741,6 +832,9 @@ input:focus, textarea:focus {
   }
   .comment input:hover {
     transform: translateY(-4px);
+  }
+  .comment input:hover:disabled {
+    transform: none;
   }
   .comment textarea {
     height: 120px;
