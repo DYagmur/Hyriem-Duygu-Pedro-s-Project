@@ -85,6 +85,30 @@ input:focus, textarea:focus {
     font-weight: 600;
 }
 
+.toast {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    text-align: center;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    column-gap: 1vw;
+
+    p {
+        font-weight: 600;
+    }
+}
+
+.added {
+    background-color: var(--primary);
+}
+.error {
+    background-color: red;
+    color: white;
+}
+
 
 
 
@@ -196,6 +220,14 @@ input:focus, textarea:focus {
     .title {
         @include FlexRowColumn(5vh);
 
+        .userPic > img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+        }
+
         h1 {
             font-size: 30px;
             font-weight: 700;
@@ -237,8 +269,15 @@ input:focus, textarea:focus {
     }
 
     .title-user {
+        @include FlexColumn(1vh);
+
         a {
             @include FlexRowCenter(1vw);
+        }
+
+        .btn-sm {
+            border-color: grey;
+            color: grey;
         }
     }
 
@@ -306,11 +345,31 @@ input:focus, textarea:focus {
         flex-wrap: wrap;
         gap: 4vw;
 
+        figure {
+            position: relative;
+        }
+
         img {
             width: $bookwidth;
             height: calc($bookwidth * 1.5);
             object-fit: cover;
             object-position: center 0;
+            border: 1px solid gainsboro;
+        }
+
+        figcaption {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+
+            a {
+                @include FlexRowCenter();
+                width: 40px;
+                height: 40px;
+                background-color: rgba(0,0,0,.5);
+                color: white;
+                border-radius: 50%;
+            }
         }
 
     }
@@ -429,6 +488,15 @@ input:focus, textarea:focus {
             .btn-lg:last-child {
                 box-shadow: 0 4px 0 var(--secondary);
             }
+
+            .liked {
+                background-color: var(--primary);
+                box-shadow: none;
+            }
+            .added {
+                background-color: var(--secondary);
+                box-shadow: none;
+            }
         }
     }
 
@@ -446,6 +514,11 @@ input:focus, textarea:focus {
             padding: 2%;
             background-color: var(--secondary);
             width: 100%;
+
+            &:disabled {
+                background-color: #E7E7E7;
+                border-color: #B7B7B7;
+            }
         }
 
         textarea {
@@ -453,6 +526,10 @@ input:focus, textarea:focus {
             height: 160px;
             padding: 2%;
             resize: none;
+
+            &:disabled {
+                background-color: #E7E7E7;
+            }
         }
 
         ul {
@@ -591,6 +668,14 @@ input:focus, textarea:focus {
         }
     }
 
+    .book-list {
+        img {
+            $bookwidth : 25vw;
+            width: $bookwidth;
+            height: calc($bookwidth * 1.5);
+        }
+    }
+
     .comment {
         aside {
             @include FlexRow();
@@ -639,6 +724,14 @@ input:focus, textarea:focus {
             }
             .btn-sm:last-child:hover {
                 background-color: var(--secondary);
+            }
+
+            p {
+                letter-spacing: 1px;
+            }
+
+            span {
+                font-weight: 600;
             }
         }
         
@@ -766,7 +859,6 @@ input:focus, textarea:focus {
             $bookwidth : 15vw;
             width: $bookwidth;
             height: calc($bookwidth * 1.5);
-            border: 1px solid gainsboro;
         }
 
         img:hover {
@@ -834,7 +926,9 @@ input:focus, textarea:focus {
             padding-top: 10vh;
         
             .btn-lg {
-                width: 30%;
+                width: fit-content;
+                min-width: 30%;
+                padding: 2% 6%;
             }
 
             .btn-lg:first-child:hover {
@@ -859,6 +953,10 @@ input:focus, textarea:focus {
 
         input:hover {
             transform: translateY(-4px);
+
+            &:disabled {
+                transform: none;
+            }
         }
 
         textarea {

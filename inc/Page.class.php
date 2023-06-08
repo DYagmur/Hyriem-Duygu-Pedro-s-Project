@@ -43,11 +43,6 @@ class Page {
                         } else {
                             $pageHeader .= self::navOut();
                         }
-                        // if(! $_SESSION["loggedin"]){
-                        //     $pageHeader .= self::navOut();
-                        // } else {
-                        //     $pageHeader .= self::navIn($userName);
-                        // }
                         $pageHeader .= '
                     </aside>
                     <details>
@@ -92,7 +87,7 @@ class Page {
 
     public static function navIn($userName) {
         $navIn = '
-        <p>Welcome to ReadVice , '.$userName.'</p>
+        <p>welcome to readvice , <span>'.$userName.'</span></p>
         ';
         return $navIn;
     }
@@ -113,31 +108,23 @@ class Page {
         return $titleSearch;
     }
 
-    public static function titleUser($username) {
+    public static function titleUser($user) {
         $titleUser = '
         <section class="title">
-            <h1>'.$username.'&rsquo;s list</h1>
+            <figure class="userPic">
+                <img src="'.$user->getUserPicture().'" alt="'.$user->getUserName().'">
+            </figure>
+            <h1>'.$user->getUserName().'&rsquo;s list</h1>
             <aside class="title-user">
-                <a href="mailto:userEmail">
+                <a href="mailto:'.$user->getEmail().'">
                     <i class="fa-solid fa-envelope"></i>
-                    <p>userEmail@mail.com</p>
+                    <p>'.$user->getEmail().'</p>
                 </a>
-            </aside>
-        </section>
-        ';
-        return $titleUser;
-    }
-
-    public static function titleMy() {
-        $titleMy = '
-        <section class="title">
-            <h1>My list</h1>
-            <aside>
                 <a href="logout.php" class="btn-sm">Log out</a>
             </aside>
         </section>
         ';
-        return $titleMy;
+        return $titleUser;
     }
 
     public static function titleDefault($title) {
@@ -198,7 +185,7 @@ class Page {
 
     // FILTER
 
-    public static function pageFilter() {
+    public static function pageFilter($user='') {
         $pageFilter = '
         <section class="filter">
             <ul class="filter-list">
@@ -270,8 +257,15 @@ class Page {
                     <li><a href="?genre=Crime">Crime</a></li>
                     <li><a href="?genre=Humor">Humor</a></li>
                 </ul>
-            </details>
-            <a href="userList.php" class="filter-mylist">My List</a>
+            </details>';
+            if(! empty($_SESSION['loggedin'])) {
+                if ($_SESSION['loggedin']) {
+                    $pageFilter .= '<a href="userList.php?user='.$user.'" class="filter-mylist">My List</a>';
+                }
+            } else {
+                $pageFilter .= '<a href="login.php" class="filter-mylist">My List</a>';
+            }
+            $pageFilter .= '
         </section>
         ';
         return $pageFilter;

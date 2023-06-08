@@ -56,6 +56,9 @@ class PageContent {
             if(!empty ($_GET['search'])) {
                 $page = '?search_book='.$_GET['search_book'].'&search=search&page=';
             }
+            if(!empty ($_GET['user'])) {
+                $page = '?user='.$_GET['user'].'&page=';
+            }
 
             if (! empty($_GET['page'])){
                 $pageNum = $_GET['page'];
@@ -146,7 +149,7 @@ class PageContent {
                         <ul class="detail-genre">
                             ';
                             foreach($oneBookGenre as $genre){
-                                $pageBookDetail .= '<li>'.$genre.'</li>';
+                                $pageBookDetail .= '<li><a href="index.php?search_book='.strtolower($genre).'&search=search">'.$genre.'</a></li>';
                             }
                         $pageBookDetail .='
                         </ul>
@@ -163,15 +166,45 @@ class PageContent {
                     <h3>'.$book->getAuthor().'</h3>
                 </aside>
                 <section class="detail-description">
-                    <aside>
-                        <a href="#" class="btn-lg">
-                            <i class="fa-solid fa-heart"></i>
-                            <p>I love this book!</p>
-                        </a>
-                        <a href="userList.php?user='.$book->getUserId().'" class="btn-lg" name="add-list">
-                            <i class="fa-solid fa-bookmark"></i>
-                            <p>Add to MY LIST</p>
-                        </a>
+                    <aside>';
+                        if(! empty($_SESSION['loggedin'])) {
+                            if ($_SESSION['loggedin']) {
+                                $pageBookDetail .= '<a href="?book='.$book->getBookId().'&like=1" class="btn-lg';
+                                    if(! empty($_GET['like'])) {
+                                        if($_GET['like']) {
+                                            $pageBookDetail .= ' liked';
+                                        } else {
+                                            $pageBookDetail .= '';
+                                        }
+                                    }
+                            $pageBookDetail .='
+                            ">
+                                <i class="fa-solid fa-heart"></i>
+                                <p>I love this book!</p>
+                            </a>
+                            <a href="?book='.$book->getBookId().'&add=1" class="btn-lg';
+                                if(! empty($_GET['add'])) {
+                                    if($_GET['add']) {
+                                        $pageBookDetail .= ' added';
+                                    } else {
+                                        $pageBookDetail .= '';
+                                    }
+                                }
+                                $pageBookDetail .= '
+                                ">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                    <p>Add to MY LIST</p>
+                                </a>';
+                            }
+                        } else {
+                            $pageBookDetail .= '
+                            <a href="login.php" class="btn-lg">
+                                <i class="fa-solid fa-flag"></i>
+                                <p>Make your own list</p>
+                            </a>';
+                        }
+                        
+                        $pageBookDetail .= '
                     </aside>
                     <p>
                     '.$book->getDescription().'
@@ -179,152 +212,129 @@ class PageContent {
                 </section>
             </section>
             ';
-        
-        if($comment){
-            $pageBookDetail .= '
-        <section class="comment">
-            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
-                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
-                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-            </form>
-            <ul>';
-            for($i = 0; $i < count($comment); $i++) {
-                $pageBookDetail .= '
-                    <li>
-                        <aside>
-                            <a href="userList.html">USERNAME</a>
-                            <p>'.$comment[$i]->getCommentDate().'</p>
-                        </aside>
-                        <p>
-                        '.$comment[$i]->getMessage().'
-                        </p>
-                    </li>';
+            if(! empty($_SESSION['loggedin'])) {
+                if ($_SESSION['loggedin']) {
+                    if($comment){
+                        $pageBookDetail .= '
+                        <section class="comment">
+                            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
+                                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+                            </form>
+                            <ul>';
+                            for($i = 0; $i < count($comment); $i++) {
+                                $pageBookDetail .= '
+                                    <li>
+                                        <aside>
+                                            <a href="#">'.$comment[$i]->getUserCommentName().'</a>
+                                            <p>'.$comment[$i]->getCommentDate().'</p>
+                                        </aside>
+                                        <p>
+                                        '.$comment[$i]->getMessage().'
+                                        </p>
+                                    </li>';
+                            }
+                            $pageBookDetail .= '</ul>
+                        </section>
+                        ';
+                    } else {
+                        $pageBookDetail .= '
+                        <section class="comment">
+                            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
+                                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
+                                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
+                            </form>
+                        </section>
+                        </section>
+                        ';
+                    }
+                }
+            } else {
+                if($comment){
+                    $pageBookDetail .= '
+                    <section class="comment">
+                        <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                            <textarea name="post_comment" id="comment" placeholder="You need to Login!" disabled></textarea>
+                            <input type="hidden" value="'.$book->getBookId().'" name="bookId">
+                            <input type="submit" value="Submit" class="btn-sm" name="submitComment" disabled>
+                        </form>
+                        <ul>';
+                        for($i = 0; $i < count($comment); $i++) {
+                            $pageBookDetail .= '
+                                <li>
+                                    <aside>
+                                        <a href="userList.html">'.$comment[$i]->getUserCommentName().'</a>
+                                        <p>'.$comment[$i]->getCommentDate().'</p>
+                                    </aside>
+                                    <p>
+                                    '.$comment[$i]->getMessage().'
+                                    </p>
+                                </li>';
+                        }
+                        $pageBookDetail .= '</ul>
+                    </section>
+                    ';
+                } else {
+                    $pageBookDetail .= '
+                    <section class="comment">
+                        <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
+                            <textarea name="post_comment" id="comment" placeholder="You need to Login!" disabled></textarea>
+                            <input type="hidden" value="'.$book->getBookId().'" name="bookId">
+                            <input type="submit" value="Submit" class="btn-sm" name="submitComment" disabled>
+                        </form>
+                    </section>
+                    </section>
+                    ';
+                }
             }
-                
-            $pageBookDetail .= '</ul>
-        </section>
-        ';
-
-        } else {
-            $pageBookDetail .= '
-        <section class="comment">
-            <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-                <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
-                <input type="hidden" value="'.$book->getBookId().'" name="bookId">
-                <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-            </form>
-        </section>
-        </section>
-        ';
-        }
         return $pageBookDetail;
     }
 
-    // public static function pageComment($comment){
-
-    //     if($comment){
-    //         $pageComment = '
-    //     <section class="comment">
-    //         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-    //             <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
-    //             <input type="hidden" value="'.$_GET['book'].'" name="bookId">
-    //             <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-    //         </form>
-    //         <ul>
-    //             <li>
-    //                 <aside>
-    //                     <a href="userList.html">USERNAME</a>
-    //                     <p>'.$comment->getCommentDate().'</p>
-    //                 </aside>
-    //                 <p>
-    //                 '.$comment->getMessage().'
-    //                 </p>
-    //             </li>
-    //             <li>
-    //                 <aside>
-    //                     <a href="userList.html">USERNAME</a>
-    //                     <p>MM-DD-YY</p>
-    //                 </aside>
-    //                 <p>
-    //                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-    //                 </p>
-    //             </li>
-    //         </ul>
-    //     </section>
-    //     ';
-
-    //     } else {
-    //         $pageComment = '
-    //     <section class="comment">
-    //         <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-    //             <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
-    //             <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-    //         </form>
-            
-    //     </section>
-    //     ';
-    //     }
-    //     // $pageComment = '
-    //     // <section class="comment">
-    //     //     <form action="'.$_SERVER['PHP_SELF'].'" method="POST">
-    //     //         <textarea name="post_comment" id="comment" placeholder="What do you think of this book?"></textarea>
-    //     //         <input type="submit" value="Submit" class="btn-sm" name="submitComment">
-    //     //     </form>
-    //     //     <ul>
-    //     //         <li>
-    //     //             <aside>
-    //     //                 <a href="userList.html">USERNAME</a>
-    //     //                 <p>'.$comment->getCommentDate().'</p>
-    //     //             </aside>
-    //     //             <p>
-    //     //             '.$comment->getMessage().'
-    //     //             </p>
-    //     //         </li>
-    //     //         <li>
-    //     //             <aside>
-    //     //                 <a href="userList.html">USERNAME</a>
-    //     //                 <p>MM-DD-YY</p>
-    //     //             </aside>
-    //     //             <p>
-    //     //                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, natus debitis iusto blanditiis iure quo expedita, obcaecati ipsam esse corporis tenetur cum quos perferendis dicta in velit facilis? Aliquam, amet.
-    //     //             </p>
-    //     //         </li>
-    //     //     </ul>
-    //     // </section>
-    //     // ';
-    //     return $pageComment;
-    // }
-
-
     // USER LIST
 
-    public static function pageUserList($bookList) {
+    public static function pageUserList($bookList, $user) {
         $pageUserList = '
-        <section class="book-list-detail">';
-        foreach($bookList as $book) {
-            $pageUserList .= self::bookListUser($book);
+        <section class="book-list">';
+        
+        if(! empty ($_GET['page'])) {
+            $pageNumber = $_GET['page'];
+        } else {
+            $pageNumber = 1;
         }
-        $pageUserList .= '</section>';
+        
+        if (count($bookList) >= 12) {
+            $listNumber = 12;
+            for($i = (($pageNumber -1) * $listNumber); $i <= ($pageNumber *12) -1; $i++){
+                $pageUserList .= self::bookUserList($bookList[$i], $user);
+            }
+        } else {
+            foreach($bookList as $books) {
+                $pageUserList .= self::bookUserList($books, $user);
+            }
+        }
+
+        $pageUserList .= '</section>'.self::pagination($bookList);
+        
         return $pageUserList;
     }
 
-    public static function bookListUser($book) {
-        $bookListUser = '
-        <a href="#">
+
+    public static function bookUserList($book, $user) {
+        $bookUserList = '
             <figure>
-                <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
+                <a href="bookInfo.php?book='.$book->getBookId().'">
+                    <img src="'.$book->getCoverImg().'" alt="'.$book->getTitle().'">
+                </a>
                 <figcaption>
-                    <h4>'.$book->getTitle().'</h4>
-                    <h6>'.$book->getAuthor().'</h6>
-                    <p>
-                    '.$book->getDescription().'
-                    </p>
+                    <a href="?user='.$user.'&remove='.$book->getBookId().'">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </a>
                 </figcaption>
-            </figure>
-        </a>
+            </figure> 
         ';
-        return $bookListUser;
+        return $bookUserList;
     }
 
     // ABOUT

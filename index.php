@@ -15,7 +15,7 @@ require_once("inc/Page.class.php");
 require_once("inc/PageContent.class.php");
 
 
-$bookList = BookDAO::startDb();
+BookDAO::startDb();
 UserDAO::startDb();
 
 
@@ -25,7 +25,7 @@ $bookRepository->setBookList(BookDAO::getAllBooks());
 session_start();
 
 if($_SESSION) {
-   $user = $_SESSION['email'];
+   $user = $_SESSION['loginUser'];
    $user->getUserName();
    echo Page::pageHeader($user->getUserName()); 
 } else {
@@ -37,7 +37,14 @@ if( !empty($_GET['search'])) {
 }
 
 echo Page::titleSearch();
-echo Page::pageFilter();
+
+if($_SESSION) {
+   echo Page::pageFilter($user->getUserID());
+} else {
+   echo Page::pageFilter(); 
+}
+
+
 
 if(!empty ($_GET)) {
    if(!empty ($_GET['genre'])) {
@@ -55,9 +62,5 @@ if( !empty($_GET['search'])) {
    $bookRepository->setBookList($bookRepository->findBook($_GET['search_book']));
 }
 
-
-
-// echo MainPage::searchBar();
-// echo MainPage::bookGallery($bookRepository->getBookList());
 
 echo Page::pageFooter();

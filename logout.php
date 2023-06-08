@@ -12,5 +12,10 @@ session_start();
 session_destroy();
 
 echo Page::PageHeader();
-echo "You are out!";
+echo Page::titleDefault("See you soon &#x1F44B;");
+echo '
+<a href="login.php" class="btn-lg">
+    <i class="fa-solid fa-arrow-left-long"></i>
+    <p>Go to main</p>
+</a>';
 echo Page::PageFooter();
