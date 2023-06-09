@@ -60,4 +60,5 @@ Users will be able to send an email using contact form.
 
 ![image](https://github.com/DYagmur/ReadVice/assets/30656517/a39c82e6-9570-4037-a728-2f455bf44dc0)
 
+![image](https://github.com/DYagmur/ReadVice/assets/30656517/743cbc30-bd7a-4638-861f-5185223cd84b)
 
